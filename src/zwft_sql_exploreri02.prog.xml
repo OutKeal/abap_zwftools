@@ -8,13 +8,18 @@
     <RLOAD>1</RLOAD>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
-   <TPOOL>
+   <I18N_TPOOL>
     <item>
-     <ID>R</ID>
-     <ENTRY>Include ZSQLEXPLORERI02</ENTRY>
-     <LENGTH>23</LENGTH>
+     <LANGUAGE>1</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>R</ID>
+       <ENTRY>Include ZSQLEXPLORERI02</ENTRY>
+       <LENGTH>23</LENGTH>
+      </item>
+     </TEXTPOOL>
     </item>
-   </TPOOL>
+   </I18N_TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

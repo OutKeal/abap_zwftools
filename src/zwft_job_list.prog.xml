@@ -9,61 +9,66 @@
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
-   <TPOOL>
+   <I18N_TPOOL>
     <item>
-     <ID>R</ID>
-     <ENTRY>后台JOB清单</ENTRY>
-     <LENGTH>7</LENGTH>
+     <LANGUAGE>1</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>R</ID>
+       <ENTRY>后台JOB清单</ENTRY>
+       <LENGTH>7</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>PERIODIC</KEY>
+       <ENTRY>Periodic</ENTRY>
+       <LENGTH>16</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>ZCDATE</KEY>
+       <ENTRY>Last Change Date (From)</ENTRY>
+       <LENGTH>31</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>ZCLASS</KEY>
+       <ENTRY>Job Class</ENTRY>
+       <LENGTH>17</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>ZCLIENT</KEY>
+       <ENTRY>Client</ENTRY>
+       <LENGTH>14</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>ZJOBNAME</KEY>
+       <ENTRY>Job Name</ENTRY>
+       <LENGTH>16</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>ZPRGNAME</KEY>
+       <ENTRY>Program Name</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>ZSERVER</KEY>
+       <ENTRY>Server</ENTRY>
+       <LENGTH>14</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>ZUSER</KEY>
+       <ENTRY>User</ENTRY>
+       <LENGTH>12</LENGTH>
+      </item>
+     </TEXTPOOL>
     </item>
-    <item>
-     <ID>S</ID>
-     <KEY>PERIODIC</KEY>
-     <ENTRY>Periodic</ENTRY>
-     <LENGTH>16</LENGTH>
-    </item>
-    <item>
-     <ID>S</ID>
-     <KEY>ZCDATE</KEY>
-     <ENTRY>Last Change Date (From)</ENTRY>
-     <LENGTH>31</LENGTH>
-    </item>
-    <item>
-     <ID>S</ID>
-     <KEY>ZCLASS</KEY>
-     <ENTRY>Job Class</ENTRY>
-     <LENGTH>17</LENGTH>
-    </item>
-    <item>
-     <ID>S</ID>
-     <KEY>ZCLIENT</KEY>
-     <ENTRY>Client</ENTRY>
-     <LENGTH>14</LENGTH>
-    </item>
-    <item>
-     <ID>S</ID>
-     <KEY>ZJOBNAME</KEY>
-     <ENTRY>Job Name</ENTRY>
-     <LENGTH>16</LENGTH>
-    </item>
-    <item>
-     <ID>S</ID>
-     <KEY>ZPRGNAME</KEY>
-     <ENTRY>Program Name</ENTRY>
-     <LENGTH>20</LENGTH>
-    </item>
-    <item>
-     <ID>S</ID>
-     <KEY>ZSERVER</KEY>
-     <ENTRY>Server</ENTRY>
-     <LENGTH>14</LENGTH>
-    </item>
-    <item>
-     <ID>S</ID>
-     <KEY>ZUSER</KEY>
-     <ENTRY>User</ENTRY>
-     <LENGTH>12</LENGTH>
-    </item>
-   </TPOOL>
+   </I18N_TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

@@ -65,7 +65,7 @@ TOP-OF-PAGE.
 START-OF-SELECTION.
   PERFORM select_data.
   PERFORM modify_data.
-  DATA(falv) = zcl_falv=>create( CHANGING ct_table = dtab[] ).
+  DATA(falv) = zwft_falv=>create( CHANGING ct_table = dtab[] ).
   falv->layout->set_cwidth_opt( abap_true ).
   falv->layout->set_zebra( abap_true ).
   falv->layout->set_sel_mode( 'A' ).

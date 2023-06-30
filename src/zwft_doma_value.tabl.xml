@@ -4,9 +4,7 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZWFT_DOMA_VALUE</TABNAME>
-    <DDLANGUAGE>1</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
-    <DDTEXT>数据元素描述返回</DDTEXT>
    </DD02V>
    <DD03P_TABLE>
     <DD03P>
@@ -24,7 +22,6 @@
      <DATATYPE>CHAR</DATATYPE>
      <LENG>000050</LENG>
      <MASK>  CHAR</MASK>
-     <DDTEXT>域值</DDTEXT>
     </DD03P>
     <DD03P>
      <FIELDNAME>DDTEXT</FIELDNAME>
@@ -33,6 +30,15 @@
      <COMPTYPE>E</COMPTYPE>
     </DD03P>
    </DD03P_TABLE>
+   <I18N_LANGS>
+    <LANGU>1</LANGU>
+   </I18N_LANGS>
+   <DD02_TEXTS>
+    <item>
+     <DDLANGUAGE>1</DDLANGUAGE>
+     <DDTEXT>数据元素描述返回</DDTEXT>
+    </item>
+   </DD02_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

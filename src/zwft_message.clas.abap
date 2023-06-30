@@ -1,4 +1,4 @@
-class ZWFT_MSG definition
+class ZWFT_MESSAGE definition
   public
   final
   create public .
@@ -39,10 +39,10 @@ ENDCLASS.
 
 
 
-CLASS ZWFT_MSG IMPLEMENTATION.
+CLASS ZWFT_MESSAGE IMPLEMENTATION.
 
 
-  METHOD add_line.
+  METHOD ADD_LINE.
     APPEND is_return TO t_return.
   ENDMETHOD.
 
@@ -59,14 +59,14 @@ CLASS ZWFT_MSG IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD add_table.
+  METHOD ADD_TABLE.
     LOOP AT it_return INTO DATA(is_return).
       APPEND is_return TO me->t_return.
     ENDLOOP.
   ENDMETHOD.
 
 
-  METHOD constructor.
+  METHOD CONSTRUCTOR.
     CLEAR t_return.
   ENDMETHOD.
 
@@ -76,7 +76,7 @@ CLASS ZWFT_MSG IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD get_error.
+  METHOD GET_ERROR.
     error = abap_false.
     LOOP AT t_return TRANSPORTING NO FIELDS WHERE type CA 'EAX'.
       error = abap_true.
@@ -85,12 +85,12 @@ CLASS ZWFT_MSG IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD get_return.
+  METHOD GET_RETURN.
     et_return = t_return.
   ENDMETHOD.
 
 
-  METHOD pop_msg.
+  METHOD POP_MSG.
 
     DATA:lt_message TYPE TABLE OF esp1_message_wa_type .
     DATA:it_message TYPE TABLE OF esp1_message_wa_type .

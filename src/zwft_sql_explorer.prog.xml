@@ -550,13 +550,18 @@
      </RSMPE_ATRT>
     </DOC>
    </CUA>
-   <TPOOL>
+   <I18N_TPOOL>
     <item>
-     <ID>R</ID>
-     <ENTRY>SQL浏览</ENTRY>
-     <LENGTH>5</LENGTH>
+     <LANGUAGE>1</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>R</ID>
+       <ENTRY>SQL浏览</ENTRY>
+       <LENGTH>5</LENGTH>
+      </item>
+     </TEXTPOOL>
     </item>
-   </TPOOL>
+   </I18N_TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

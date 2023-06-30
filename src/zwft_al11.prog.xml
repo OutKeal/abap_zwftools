@@ -228,13 +228,13 @@
     <item>
      <ID>I</ID>
      <KEY>C01</KEY>
-     <ENTRY>本地PC</ENTRY>
+     <ENTRY>Local PC</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C02</KEY>
-     <ENTRY>本地磁盘</ENTRY>
+     <ENTRY>Local Disk (#:)</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
@@ -246,1128 +246,1128 @@
     <item>
      <ID>I</ID>
      <KEY>C04</KEY>
-     <ENTRY>远程磁盘</ENTRY>
+     <ENTRY>Remote Drive (#:)</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C05</KEY>
-     <ENTRY>远程磁盘</ENTRY>
+     <ENTRY>Removable Drive (#:)</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C06</KEY>
-     <ENTRY>未知磁盘</ENTRY>
+     <ENTRY>Unknown (#:)</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C07</KEY>
-     <ENTRY>目录</ENTRY>
+     <ENTRY>Directory</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C08</KEY>
-     <ENTRY>文本文档</ENTRY>
+     <ENTRY>Text Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C09</KEY>
-     <ENTRY>配置设置</ENTRY>
+     <ENTRY>Configuration Settings</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C10</KEY>
-     <ENTRY>SAP 图形用户界面快捷方式</ENTRY>
+     <ENTRY>SAP GUI Shortcut</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C11</KEY>
-     <ENTRY>CFG 文件</ENTRY>
+     <ENTRY>CFG File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C12</KEY>
-     <ENTRY>日志文件</ENTRY>
+     <ENTRY>Log File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C13</KEY>
-     <ENTRY>微软 Word 文档</ENTRY>
+     <ENTRY>MS Word Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C14</KEY>
-     <ENTRY>互联网文档集</ENTRY>
+     <ENTRY>Internet Document Set</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C15</KEY>
-     <ENTRY>设置信息</ENTRY>
+     <ENTRY>Setup Information</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C16</KEY>
-     <ENTRY>网页文档</ENTRY>
+     <ENTRY>HTML Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C17</KEY>
-     <ENTRY>超文本模板</ENTRY>
+     <ENTRY>HyperText Template</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C18</KEY>
-     <ENTRY>互联网快捷方式</ENTRY>
+     <ENTRY>Internet Shortcut</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C19</KEY>
-     <ENTRY>XML 文档</ENTRY>
+     <ENTRY>XML Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C20</KEY>
-     <ENTRY>帮助文件</ENTRY>
+     <ENTRY>Help File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C21</KEY>
-     <ENTRY>系统文件</ENTRY>
+     <ENTRY>System file</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C22</KEY>
-     <ENTRY>窗口命令脚本</ENTRY>
+     <ENTRY>Windows Command Script</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C23</KEY>
-     <ENTRY>安全目录</ENTRY>
+     <ENTRY>Security Catalog</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C24</KEY>
-     <ENTRY>应用程序扩展</ENTRY>
+     <ENTRY>Application Extension</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C25</KEY>
-     <ENTRY>驱动程序</ENTRY>
+     <ENTRY>Device driver</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C26</KEY>
-     <ENTRY>正确类型字体</ENTRY>
+     <ENTRY>TrueType Font</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C27</KEY>
-     <ENTRY>旧文件</ENTRY>
+     <ENTRY>OLD File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C28</KEY>
-     <ENTRY>PKCS 证书</ENTRY>
+     <ENTRY>PKCS Certificates</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C29</KEY>
-     <ENTRY>应用</ENTRY>
+     <ENTRY>Application</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C30</KEY>
-     <ENTRY>MS-DOS 批处理文件</ENTRY>
+     <ENTRY>MS-DOS Batch File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C31</KEY>
-     <ENTRY>微软幻灯片演示文稿</ENTRY>
+     <ENTRY>MS PowerPoint Presentation</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C32</KEY>
-     <ENTRY>微软单词模板</ENTRY>
+     <ENTRY>MS Word Template</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C33</KEY>
-     <ENTRY>展望邮件消息</ENTRY>
+     <ENTRY>Outlook Mail Message</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C34</KEY>
-     <ENTRY>富文本格式</ENTRY>
+     <ENTRY>Rich Text Format</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C35</KEY>
-     <ENTRY>Adobe Acrobat 文档</ENTRY>
+     <ENTRY>Adobe Acrobat Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C36</KEY>
-     <ENTRY>TIF图像文档</ENTRY>
+     <ENTRY>TIF Image Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C37</KEY>
-     <ENTRY>图标</ENTRY>
+     <ENTRY>Icon</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C38</KEY>
-     <ENTRY>动图图片</ENTRY>
+     <ENTRY>GIF Image</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C39</KEY>
-     <ENTRY>编写文档</ENTRY>
+     <ENTRY>Write Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C40</KEY>
-     <ENTRY>OTF 文档</ENTRY>
+     <ENTRY>OTF Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C41</KEY>
-     <ENTRY>MS Visio 文档</ENTRY>
+     <ENTRY>MS Visio Document</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C42</KEY>
-     <ENTRY>位图图像</ENTRY>
+     <ENTRY>Bitmap Image</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C43</KEY>
-     <ENTRY>巴布亚新几内亚图片</ENTRY>
+     <ENTRY>PNG Image</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C44</KEY>
-     <ENTRY>微软Excel工作表</ENTRY>
+     <ENTRY>MS Excel Worksheet</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C45</KEY>
-     <ENTRY>微软 Excel CSV</ENTRY>
+     <ENTRY>MS Excel CSV</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C46</KEY>
-     <ENTRY>JPEG 图像</ENTRY>
+     <ENTRY>JPEG Image</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C47</KEY>
-     <ENTRY>压缩文件夹</ENTRY>
+     <ENTRY>Compressed Folder</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C48</KEY>
-     <ENTRY>视频剪辑</ENTRY>
+     <ENTRY>Video Clip</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C49</KEY>
-     <ENTRY>波浪声</ENTRY>
+     <ENTRY>Wave Sound</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C50</KEY>
-     <ENTRY>AU 格式声音</ENTRY>
+     <ENTRY>AU Format Sound</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C51</KEY>
-     <ENTRY>MP3 格式声音</ENTRY>
+     <ENTRY>MP3 Format Sound</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C52</KEY>
-     <ENTRY>可执行的 jar 文件</ENTRY>
+     <ENTRY>Executable Jar File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C53</KEY>
-     <ENTRY>巴克文件</ENTRY>
+     <ENTRY>BAK File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C54</KEY>
-     <ENTRY># 文件</ENTRY>
+     <ENTRY># File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C55</KEY>
-     <ENTRY>垃圾桶</ENTRY>
+     <ENTRY>Trash bin</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>C56</KEY>
-     <ENTRY>目录参数</ENTRY>
+     <ENTRY>Directory Parameters</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E01</KEY>
-     <ENTRY>请选择要下载的远程文件</ENTRY>
+     <ENTRY>Please choose a remote file to download</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E02</KEY>
-     <ENTRY>找不到目标...</ENTRY>
+     <ENTRY>Cannot find target...</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E03</KEY>
-     <ENTRY>请选择要上传的本地文件</ENTRY>
+     <ENTRY>Please choose a local file to upload</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E04</KEY>
-     <ENTRY>计算目标时出错...</ENTRY>
+     <ENTRY>Error when calculate target...</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E05</KEY>
-     <ENTRY>请选择远程项目</ENTRY>
+     <ENTRY>Please choose a remote item</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E06</KEY>
-     <ENTRY>请选择当地商品</ENTRY>
+     <ENTRY>Please choose a local item</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E07</KEY>
-     <ENTRY>无法读取 tmp 目录</ENTRY>
+     <ENTRY>Cannot read tmp directory</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E08</KEY>
-     <ENTRY>请选择要下载的本地文件夹</ENTRY>
+     <ENTRY>Please choose a local folder to download</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E09</KEY>
-     <ENTRY>无法读取远程文件</ENTRY>
+     <ENTRY>Cannot read remote file</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E10</KEY>
-     <ENTRY>请选择要上传的远程文件夹</ENTRY>
+     <ENTRY>Please choose a remote folder to upload</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E11</KEY>
-     <ENTRY>无法创建本地文件</ENTRY>
+     <ENTRY>Cannot create local file</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E12</KEY>
-     <ENTRY>操作已取消</ENTRY>
+     <ENTRY>Action cancelled</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E14</KEY>
-     <ENTRY>剪贴板内容不是有效路径</ENTRY>
+     <ENTRY>Clipboard content is not a valid path</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E15</KEY>
-     <ENTRY>存在太多副本。删除或重命名旧副本</ENTRY>
+     <ENTRY>Too many copy exists. Delete or rename old copies</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E16</KEY>
-     <ENTRY>禁止字符，操作已取消</ENTRY>
+     <ENTRY>Forbidden character, operation cancelled</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E17</KEY>
-     <ENTRY>远程文件已存在，无法上传</ENTRY>
+     <ENTRY>Remote file already exist, cannot upload</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E18</KEY>
-     <ENTRY>无法读取本地文件</ENTRY>
+     <ENTRY>Cannot read local file</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E19</KEY>
-     <ENTRY>无法创建远程文件</ENTRY>
+     <ENTRY>Cannot create remote file</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E20</KEY>
-     <ENTRY>请选择要上传的本地文件/文件夹</ENTRY>
+     <ENTRY>Please choose a local file/folder to upload</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E21</KEY>
-     <ENTRY>不允许您执行此操作</ENTRY>
+     <ENTRY>You are not allowed to perform this action</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E22</KEY>
-     <ENTRY>此快捷方式已存在</ENTRY>
+     <ENTRY>This shortcut already exists</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E24</KEY>
-     <ENTRY>请允许 SAP 访问您的本地文件</ENTRY>
+     <ENTRY>Please allow SAP to access to your local files</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E25</KEY>
-     <ENTRY>没有删除快捷方式</ENTRY>
+     <ENTRY>There is no shortcut to delete</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E26</KEY>
-     <ENTRY>尚未管理解压缩</ENTRY>
+     <ENTRY>Uncompression not yet managed</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E27</KEY>
-     <ENTRY>无法打开本地文件/文件夹</ENTRY>
+     <ENTRY>Cannot open the local file/folder</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H01</KEY>
-     <ENTRY>路径</ENTRY>
+     <ENTRY>Path</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H02</KEY>
-     <ENTRY>文件名</ENTRY>
+     <ENTRY>FileName</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H03</KEY>
-     <ENTRY>图标</ENTRY>
+     <ENTRY>Icon</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H04</KEY>
-     <ENTRY>文件类型</ENTRY>
+     <ENTRY>FileType</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H05</KEY>
-     <ENTRY>大小</ENTRY>
+     <ENTRY>Size</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H06</KEY>
-     <ENTRY>创建日期</ENTRY>
+     <ENTRY>Creation Date</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H07</KEY>
-     <ENTRY>创建时间</ENTRY>
+     <ENTRY>Creation Time</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H08</KEY>
-     <ENTRY>修改日期</ENTRY>
+     <ENTRY>Modification Date</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H09</KEY>
-     <ENTRY>修改时间</ENTRY>
+     <ENTRY>Modification Time</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H10</KEY>
-     <ENTRY>访问日期</ENTRY>
+     <ENTRY>Access Date</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H11</KEY>
-     <ENTRY>访问时间</ENTRY>
+     <ENTRY>Access Time</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H12</KEY>
-     <ENTRY>模式</ENTRY>
+     <ENTRY>Mode</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H13</KEY>
-     <ENTRY>读</ENTRY>
+     <ENTRY>Read</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H14</KEY>
-     <ENTRY>写</ENTRY>
+     <ENTRY>Write</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H15</KEY>
-     <ENTRY>执行</ENTRY>
+     <ENTRY>Execute</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H16</KEY>
-     <ENTRY>财产</ENTRY>
+     <ENTRY>Property</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H17</KEY>
-     <ENTRY>价值</ENTRY>
+     <ENTRY>Value</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H18</KEY>
-     <ENTRY>所有者</ENTRY>
+     <ENTRY>Owner</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H19</KEY>
-     <ENTRY>文件组</ENTRY>
+     <ENTRY>File group</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H20</KEY>
-     <ENTRY>别人</ENTRY>
+     <ENTRY>Others</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H21</KEY>
-     <ENTRY>属性</ENTRY>
+     <ENTRY>Attributes</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H22</KEY>
-     <ENTRY>路径</ENTRY>
+     <ENTRY>Path</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H23</KEY>
-     <ENTRY>文件属性</ENTRY>
+     <ENTRY>File Attributes</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H24</KEY>
-     <ENTRY>只读</ENTRY>
+     <ENTRY>Read-Only</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H25</KEY>
-     <ENTRY>档案</ENTRY>
+     <ENTRY>Archive</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H26</KEY>
-     <ENTRY>系统文件</ENTRY>
+     <ENTRY>System File</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H27</KEY>
-     <ENTRY>隐藏文件</ENTRY>
+     <ENTRY>Hidden File</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H28</KEY>
-     <ENTRY>未编入内容索引</ENTRY>
+     <ENTRY>Not Content Indexed</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H29</KEY>
-     <ENTRY>压缩</ENTRY>
+     <ENTRY>Compressed</ENTRY>
      <LENGTH>29</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H30</KEY>
-     <ENTRY>离线</ENTRY>
+     <ENTRY>Offline</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H31</KEY>
-     <ENTRY>新文件夹</ENTRY>
+     <ENTRY>newfolder</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H32</KEY>
-     <ENTRY>桌面</ENTRY>
+     <ENTRY>Desktop</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H33</KEY>
-     <ENTRY>我的文档</ENTRY>
+     <ENTRY>My Documents</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H34</KEY>
-     <ENTRY>描述</ENTRY>
+     <ENTRY>Description</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H35</KEY>
-     <ENTRY>选择</ENTRY>
+     <ENTRY>Selection</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H36</KEY>
-     <ENTRY>名字</ENTRY>
+     <ENTRY>Name</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>H37</KEY>
-     <ENTRY>路径</ENTRY>
+     <ENTRY>Path</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M01</KEY>
-     <ENTRY>打开</ENTRY>
+     <ENTRY>Open</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M02</KEY>
-     <ENTRY>在资源管理器中打开文件夹</ENTRY>
+     <ENTRY>Open folder in Explorer</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M03</KEY>
-     <ENTRY>将路径复制到剪贴板</ENTRY>
+     <ENTRY>Copy path to clipboard</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M04</KEY>
-     <ENTRY>以文本形式打开</ENTRY>
+     <ENTRY>Open as text</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M05</KEY>
-     <ENTRY>压缩</ENTRY>
+     <ENTRY>Compress</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M06</KEY>
-     <ENTRY>重命名文件</ENTRY>
+     <ENTRY>Rename File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M07</KEY>
-     <ENTRY>重复文件</ENTRY>
+     <ENTRY>Duplicate File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M08</KEY>
-     <ENTRY>删除文件</ENTRY>
+     <ENTRY>Delete File</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M09</KEY>
-     <ENTRY>重命名文件夹</ENTRY>
+     <ENTRY>Rename Folder</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M10</KEY>
-     <ENTRY>重复文件夹</ENTRY>
+     <ENTRY>Duplicate Folder</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M11</KEY>
-     <ENTRY>删除文件夹</ENTRY>
+     <ENTRY>Delete Folder</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M12</KEY>
-     <ENTRY>解压缩</ENTRY>
+     <ENTRY>Uncompress</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M13</KEY>
-     <ENTRY>传输模式</ENTRY>
+     <ENTRY>Transfer Mode</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M14</KEY>
-     <ENTRY>选择传输模式（自动/ASC/bin）</ENTRY>
+     <ENTRY>Choose Transfer Mode (Auto/asc/bin)</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M15</KEY>
-     <ENTRY>刷新</ENTRY>
+     <ENTRY>Refresh</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M16</KEY>
-     <ENTRY>刷新当前文件夹</ENTRY>
+     <ENTRY>Refresh current folder</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M17</KEY>
-     <ENTRY>快捷方式</ENTRY>
+     <ENTRY>Shortcuts</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M18</KEY>
-     <ENTRY>从剪贴板打开路径</ENTRY>
+     <ENTRY>Open path from clipboard</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M19</KEY>
-     <ENTRY>创建文件夹</ENTRY>
+     <ENTRY>Create folder</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M20</KEY>
-     <ENTRY>下载</ENTRY>
+     <ENTRY>Download</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M21</KEY>
-     <ENTRY>上传</ENTRY>
+     <ENTRY>Upload</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M22</KEY>
-     <ENTRY>自动</ENTRY>
+     <ENTRY>Auto</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M23</KEY>
-     <ENTRY>ASCII（文本模式）</ENTRY>
+     <ENTRY>Ascii (text mode)</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M24</KEY>
-     <ENTRY>二进制模式</ENTRY>
+     <ENTRY>Binary mode</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M25</KEY>
-     <ENTRY>更改属性</ENTRY>
+     <ENTRY>Change Attributes</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M26</KEY>
-     <ENTRY>显示属性</ENTRY>
+     <ENTRY>Display Attributes</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M27</KEY>
-     <ENTRY>创建快捷方式</ENTRY>
+     <ENTRY>Create shortcut</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M28</KEY>
-     <ENTRY>文件夹大小</ENTRY>
+     <ENTRY>Folders size</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M29</KEY>
-     <ENTRY>记住服务器连接</ENTRY>
+     <ENTRY>Remember server connexion</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M30</KEY>
-     <ENTRY>忘记服务器连接</ENTRY>
+     <ENTRY>Forget server connexion</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M31</KEY>
-     <ENTRY>文件</ENTRY>
+     <ENTRY>files</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M32</KEY>
-     <ENTRY>删除快捷方式</ENTRY>
+     <ENTRY>Delete shortcut</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M33</KEY>
-     <ENTRY>网格选项</ENTRY>
+     <ENTRY>Grid options</ENTRY>
      <LENGTH>40</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>M34</KEY>
-     <ENTRY>打开方式...</ENTRY>
+     <ENTRY>Open as...</ENTRY>
      <LENGTH>40</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T01</KEY>
-     <ENTRY>将 # 复制到 # ？</ENTRY>
+     <ENTRY>Copy # to # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T02</KEY>
-     <ENTRY>将 # 移动到 # ？</ENTRY>
+     <ENTRY>Move # to # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T03</KEY>
-     <ENTRY>解压缩 # ？</ENTRY>
+     <ENTRY>Uncompress # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T04</KEY>
-     <ENTRY>上传 # 到 # ？</ENTRY>
+     <ENTRY>Upload # to # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T05</KEY>
-     <ENTRY>将 # 重命名为 # ？</ENTRY>
+     <ENTRY>Rename # to # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T06</KEY>
-     <ENTRY>输入新名称</ENTRY>
+     <ENTRY>Enter new name</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T07</KEY>
-     <ENTRY>复制 # 到 # ？</ENTRY>
+     <ENTRY>Duplicate # to # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T08</KEY>
-     <ENTRY>发送到剪贴栏的路径</ENTRY>
+     <ENTRY>Path sent to clipbard</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T09</KEY>
-     <ENTRY>创建文件夹 # ？</ENTRY>
+     <ENTRY>Create folder # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T10</KEY>
-     <ENTRY>警告：关键操作</ENTRY>
+     <ENTRY>Warning : critical operation</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T11</KEY>
-     <ENTRY>删除文件夹#和所有内容？</ENTRY>
+     <ENTRY>Delete folder # and all there content ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T12</KEY>
-     <ENTRY>删除文件 # ？</ENTRY>
+     <ENTRY>Delete file # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T13</KEY>
-     <ENTRY>压缩 # ？</ENTRY>
+     <ENTRY>Compress # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T14</KEY>
-     <ENTRY>下载 # 到 # ？</ENTRY>
+     <ENTRY>Download # to # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T15</KEY>
-     <ENTRY>输入名称和服务器路径</ENTRY>
+     <ENTRY>Enter name and server path</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T16</KEY>
-     <ENTRY>已创建快捷方式</ENTRY>
+     <ENTRY>Shortcut created</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T17</KEY>
-     <ENTRY>将文件 # 的 CHMOD 从 # 更改为 # ？</ENTRY>
+     <ENTRY>Change CHMOD for file # from # to # ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T18</KEY>
-     <ENTRY># 已存在于 # 中。改写？</ENTRY>
+     <ENTRY># already exist in #. Overwrite ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T19</KEY>
-     <ENTRY>输入新文件夹名称</ENTRY>
+     <ENTRY>Enter new folder name</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T20</KEY>
-     <ENTRY>选择要删除的快捷方式</ENTRY>
+     <ENTRY>Choose shortcuts to delete</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T21</KEY>
-     <ENTRY>删除路径 # 的快捷方式 # ？</ENTRY>
+     <ENTRY>Delete shortcut # for path # ?</ENTRY>
      <LENGTH>100</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T22</KEY>
-     <ENTRY># 中已存在文件 #。改写？</ENTRY>
+     <ENTRY>File # already exists in #. Overwrite ?</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T23</KEY>
-     <ENTRY>改写</ENTRY>
+     <ENTRY>Overwrite</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T24</KEY>
-     <ENTRY>下载</ENTRY>
+     <ENTRY>Download</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T25</KEY>
-     <ENTRY>上传</ENTRY>
+     <ENTRY>Upload</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T26</KEY>
-     <ENTRY>删除</ENTRY>
+     <ENTRY>Delete</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T27</KEY>
-     <ENTRY>压缩</ENTRY>
+     <ENTRY>Compress</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T28</KEY>
-     <ENTRY>创造</ENTRY>
+     <ENTRY>Create</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T29</KEY>
-     <ENTRY>重复</ENTRY>
+     <ENTRY>Duplicate</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T30</KEY>
-     <ENTRY>重命名</ENTRY>
+     <ENTRY>Rename</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T31</KEY>
-     <ENTRY>解压缩</ENTRY>
+     <ENTRY>Uncompress</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T32</KEY>
-     <ENTRY>复制</ENTRY>
+     <ENTRY>Copy</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T33</KEY>
-     <ENTRY>移动</ENTRY>
+     <ENTRY>Move</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T34</KEY>
-     <ENTRY>已删除快捷方式</ENTRY>
+     <ENTRY>shortcuts deleted</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T35</KEY>
-     <ENTRY>改变</ENTRY>
+     <ENTRY>Change</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T36</KEY>
-     <ENTRY>取消</ENTRY>
+     <ENTRY>Cancel</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>1</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>C01</KEY>
-       <ENTRY>Local PC</ENTRY>
+       <ENTRY>本地PC</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C02</KEY>
-       <ENTRY>Local Disk (#:)</ENTRY>
+       <ENTRY>本地磁盘</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
@@ -1379,1111 +1379,1111 @@
       <item>
        <ID>I</ID>
        <KEY>C04</KEY>
-       <ENTRY>Remote Drive (#:)</ENTRY>
+       <ENTRY>远程磁盘</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C05</KEY>
-       <ENTRY>Removable Drive (#:)</ENTRY>
+       <ENTRY>远程磁盘</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C06</KEY>
-       <ENTRY>Unknown (#:)</ENTRY>
+       <ENTRY>未知磁盘</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C07</KEY>
-       <ENTRY>Directory</ENTRY>
+       <ENTRY>目录</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C08</KEY>
-       <ENTRY>Text Document</ENTRY>
+       <ENTRY>文本文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C09</KEY>
-       <ENTRY>Configuration Settings</ENTRY>
+       <ENTRY>配置设置</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C10</KEY>
-       <ENTRY>SAP GUI Shortcut</ENTRY>
+       <ENTRY>SAP 图形用户界面快捷方式</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C11</KEY>
-       <ENTRY>CFG File</ENTRY>
+       <ENTRY>CFG 文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C12</KEY>
-       <ENTRY>Log File</ENTRY>
+       <ENTRY>日志文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C13</KEY>
-       <ENTRY>MS Word Document</ENTRY>
+       <ENTRY>微软 Word 文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C14</KEY>
-       <ENTRY>Internet Document Set</ENTRY>
+       <ENTRY>互联网文档集</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C15</KEY>
-       <ENTRY>Setup Information</ENTRY>
+       <ENTRY>设置信息</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C16</KEY>
-       <ENTRY>HTML Document</ENTRY>
+       <ENTRY>网页文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C17</KEY>
-       <ENTRY>HyperText Template</ENTRY>
+       <ENTRY>超文本模板</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C18</KEY>
-       <ENTRY>Internet Shortcut</ENTRY>
+       <ENTRY>互联网快捷方式</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C19</KEY>
-       <ENTRY>XML Document</ENTRY>
+       <ENTRY>XML 文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C20</KEY>
-       <ENTRY>Help File</ENTRY>
+       <ENTRY>帮助文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C21</KEY>
-       <ENTRY>System file</ENTRY>
+       <ENTRY>系统文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C22</KEY>
-       <ENTRY>Windows Command Script</ENTRY>
+       <ENTRY>窗口命令脚本</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C23</KEY>
-       <ENTRY>Security Catalog</ENTRY>
+       <ENTRY>安全目录</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C24</KEY>
-       <ENTRY>Application Extension</ENTRY>
+       <ENTRY>应用程序扩展</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C25</KEY>
-       <ENTRY>Device driver</ENTRY>
+       <ENTRY>驱动程序</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C26</KEY>
-       <ENTRY>TrueType Font</ENTRY>
+       <ENTRY>正确类型字体</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C27</KEY>
-       <ENTRY>OLD File</ENTRY>
+       <ENTRY>旧文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C28</KEY>
-       <ENTRY>PKCS Certificates</ENTRY>
+       <ENTRY>PKCS 证书</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C29</KEY>
-       <ENTRY>Application</ENTRY>
+       <ENTRY>应用</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C30</KEY>
-       <ENTRY>MS-DOS Batch File</ENTRY>
+       <ENTRY>MS-DOS 批处理文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C31</KEY>
-       <ENTRY>MS PowerPoint Presentation</ENTRY>
+       <ENTRY>微软幻灯片演示文稿</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C32</KEY>
-       <ENTRY>MS Word Template</ENTRY>
+       <ENTRY>微软单词模板</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C33</KEY>
-       <ENTRY>Outlook Mail Message</ENTRY>
+       <ENTRY>展望邮件消息</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C34</KEY>
-       <ENTRY>Rich Text Format</ENTRY>
+       <ENTRY>富文本格式</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C35</KEY>
-       <ENTRY>Adobe Acrobat Document</ENTRY>
+       <ENTRY>Adobe Acrobat 文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C36</KEY>
-       <ENTRY>TIF Image Document</ENTRY>
+       <ENTRY>TIF图像文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C37</KEY>
-       <ENTRY>Icon</ENTRY>
+       <ENTRY>图标</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C38</KEY>
-       <ENTRY>GIF Image</ENTRY>
+       <ENTRY>动图图片</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C39</KEY>
-       <ENTRY>Write Document</ENTRY>
+       <ENTRY>编写文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C40</KEY>
-       <ENTRY>OTF Document</ENTRY>
+       <ENTRY>OTF 文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C41</KEY>
-       <ENTRY>MS Visio Document</ENTRY>
+       <ENTRY>MS Visio 文档</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C42</KEY>
-       <ENTRY>Bitmap Image</ENTRY>
+       <ENTRY>位图图像</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C43</KEY>
-       <ENTRY>PNG Image</ENTRY>
+       <ENTRY>巴布亚新几内亚图片</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C44</KEY>
-       <ENTRY>MS Excel Worksheet</ENTRY>
+       <ENTRY>微软Excel工作表</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C45</KEY>
-       <ENTRY>MS Excel CSV</ENTRY>
+       <ENTRY>微软 Excel CSV</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C46</KEY>
-       <ENTRY>JPEG Image</ENTRY>
+       <ENTRY>JPEG 图像</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C47</KEY>
-       <ENTRY>Compressed Folder</ENTRY>
+       <ENTRY>压缩文件夹</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C48</KEY>
-       <ENTRY>Video Clip</ENTRY>
+       <ENTRY>视频剪辑</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C49</KEY>
-       <ENTRY>Wave Sound</ENTRY>
+       <ENTRY>波浪声</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C50</KEY>
-       <ENTRY>AU Format Sound</ENTRY>
+       <ENTRY>AU 格式声音</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C51</KEY>
-       <ENTRY>MP3 Format Sound</ENTRY>
+       <ENTRY>MP3 格式声音</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C52</KEY>
-       <ENTRY>Executable Jar File</ENTRY>
+       <ENTRY>可执行的 jar 文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C53</KEY>
-       <ENTRY>BAK File</ENTRY>
+       <ENTRY>巴克文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C54</KEY>
-       <ENTRY># File</ENTRY>
+       <ENTRY># 文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C55</KEY>
-       <ENTRY>Trash bin</ENTRY>
+       <ENTRY>垃圾桶</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>C56</KEY>
-       <ENTRY>Directory Parameters</ENTRY>
+       <ENTRY>目录参数</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E01</KEY>
-       <ENTRY>Please choose a remote file to download</ENTRY>
+       <ENTRY>请选择要下载的远程文件</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E02</KEY>
-       <ENTRY>Cannot find target...</ENTRY>
+       <ENTRY>找不到目标...</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E03</KEY>
-       <ENTRY>Please choose a local file to upload</ENTRY>
+       <ENTRY>请选择要上传的本地文件</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E04</KEY>
-       <ENTRY>Error when calculate target...</ENTRY>
+       <ENTRY>计算目标时出错...</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E05</KEY>
-       <ENTRY>Please choose a remote item</ENTRY>
+       <ENTRY>请选择远程项目</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E06</KEY>
-       <ENTRY>Please choose a local item</ENTRY>
+       <ENTRY>请选择当地商品</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E07</KEY>
-       <ENTRY>Cannot read tmp directory</ENTRY>
+       <ENTRY>无法读取 tmp 目录</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E08</KEY>
-       <ENTRY>Please choose a local folder to download</ENTRY>
+       <ENTRY>请选择要下载的本地文件夹</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E09</KEY>
-       <ENTRY>Cannot read remote file</ENTRY>
+       <ENTRY>无法读取远程文件</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E10</KEY>
-       <ENTRY>Please choose a remote folder to upload</ENTRY>
+       <ENTRY>请选择要上传的远程文件夹</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E11</KEY>
-       <ENTRY>Cannot create local file</ENTRY>
+       <ENTRY>无法创建本地文件</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E12</KEY>
-       <ENTRY>Action cancelled</ENTRY>
+       <ENTRY>操作已取消</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E14</KEY>
-       <ENTRY>Clipboard content is not a valid path</ENTRY>
+       <ENTRY>剪贴板内容不是有效路径</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E15</KEY>
-       <ENTRY>Too many copy exists. Delete or rename old copies</ENTRY>
+       <ENTRY>存在太多副本。删除或重命名旧副本</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E16</KEY>
-       <ENTRY>Forbidden character, operation cancelled</ENTRY>
+       <ENTRY>禁止字符，操作已取消</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E17</KEY>
-       <ENTRY>Remote file already exist, cannot upload</ENTRY>
+       <ENTRY>远程文件已存在，无法上传</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E18</KEY>
-       <ENTRY>Cannot read local file</ENTRY>
+       <ENTRY>无法读取本地文件</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E19</KEY>
-       <ENTRY>Cannot create remote file</ENTRY>
+       <ENTRY>无法创建远程文件</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E20</KEY>
-       <ENTRY>Please choose a local file/folder to upload</ENTRY>
+       <ENTRY>请选择要上传的本地文件/文件夹</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E21</KEY>
-       <ENTRY>You are not allowed to perform this action</ENTRY>
+       <ENTRY>不允许您执行此操作</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E22</KEY>
-       <ENTRY>This shortcut already exists</ENTRY>
+       <ENTRY>此快捷方式已存在</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E24</KEY>
-       <ENTRY>Please allow SAP to access to your local files</ENTRY>
+       <ENTRY>请允许 SAP 访问您的本地文件</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E25</KEY>
-       <ENTRY>There is no shortcut to delete</ENTRY>
+       <ENTRY>没有删除快捷方式</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E26</KEY>
-       <ENTRY>Uncompression not yet managed</ENTRY>
+       <ENTRY>尚未管理解压缩</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>E27</KEY>
-       <ENTRY>Cannot open the local file/folder</ENTRY>
+       <ENTRY>无法打开本地文件/文件夹</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H01</KEY>
-       <ENTRY>Path</ENTRY>
+       <ENTRY>路径</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H02</KEY>
-       <ENTRY>FileName</ENTRY>
+       <ENTRY>文件名</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H03</KEY>
-       <ENTRY>Icon</ENTRY>
+       <ENTRY>图标</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H04</KEY>
-       <ENTRY>FileType</ENTRY>
+       <ENTRY>文件类型</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H05</KEY>
-       <ENTRY>Size</ENTRY>
+       <ENTRY>大小</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H06</KEY>
-       <ENTRY>Creation Date</ENTRY>
+       <ENTRY>创建日期</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H07</KEY>
-       <ENTRY>Creation Time</ENTRY>
+       <ENTRY>创建时间</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H08</KEY>
-       <ENTRY>Modification Date</ENTRY>
+       <ENTRY>修改日期</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H09</KEY>
-       <ENTRY>Modification Time</ENTRY>
+       <ENTRY>修改时间</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H10</KEY>
-       <ENTRY>Access Date</ENTRY>
+       <ENTRY>访问日期</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H11</KEY>
-       <ENTRY>Access Time</ENTRY>
+       <ENTRY>访问时间</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H12</KEY>
-       <ENTRY>Mode</ENTRY>
+       <ENTRY>模式</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H13</KEY>
-       <ENTRY>Read</ENTRY>
+       <ENTRY>读</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H14</KEY>
-       <ENTRY>Write</ENTRY>
+       <ENTRY>写</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H15</KEY>
-       <ENTRY>Execute</ENTRY>
+       <ENTRY>执行</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H16</KEY>
-       <ENTRY>Property</ENTRY>
+       <ENTRY>财产</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H17</KEY>
-       <ENTRY>Value</ENTRY>
+       <ENTRY>价值</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H18</KEY>
-       <ENTRY>Owner</ENTRY>
+       <ENTRY>所有者</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H19</KEY>
-       <ENTRY>File group</ENTRY>
+       <ENTRY>文件组</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H20</KEY>
-       <ENTRY>Others</ENTRY>
+       <ENTRY>别人</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H21</KEY>
-       <ENTRY>Attributes</ENTRY>
+       <ENTRY>属性</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H22</KEY>
-       <ENTRY>Path</ENTRY>
+       <ENTRY>路径</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H23</KEY>
-       <ENTRY>File Attributes</ENTRY>
+       <ENTRY>文件属性</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H24</KEY>
-       <ENTRY>Read-Only</ENTRY>
+       <ENTRY>只读</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H25</KEY>
-       <ENTRY>Archive</ENTRY>
+       <ENTRY>档案</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H26</KEY>
-       <ENTRY>System File</ENTRY>
+       <ENTRY>系统文件</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H27</KEY>
-       <ENTRY>Hidden File</ENTRY>
+       <ENTRY>隐藏文件</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H28</KEY>
-       <ENTRY>Not Content Indexed</ENTRY>
+       <ENTRY>未编入内容索引</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H29</KEY>
-       <ENTRY>Compressed</ENTRY>
+       <ENTRY>压缩</ENTRY>
        <LENGTH>29</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H30</KEY>
-       <ENTRY>Offline</ENTRY>
+       <ENTRY>离线</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H31</KEY>
-       <ENTRY>newfolder</ENTRY>
+       <ENTRY>新文件夹</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H32</KEY>
-       <ENTRY>Desktop</ENTRY>
+       <ENTRY>桌面</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H33</KEY>
-       <ENTRY>My Documents</ENTRY>
+       <ENTRY>我的文档</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H34</KEY>
-       <ENTRY>Description</ENTRY>
+       <ENTRY>描述</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H35</KEY>
-       <ENTRY>Selection</ENTRY>
+       <ENTRY>选择</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H36</KEY>
-       <ENTRY>Name</ENTRY>
+       <ENTRY>名字</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>H37</KEY>
-       <ENTRY>Path</ENTRY>
+       <ENTRY>路径</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M01</KEY>
-       <ENTRY>Open</ENTRY>
+       <ENTRY>打开</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M02</KEY>
-       <ENTRY>Open folder in Explorer</ENTRY>
+       <ENTRY>在资源管理器中打开文件夹</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M03</KEY>
-       <ENTRY>Copy path to clipboard</ENTRY>
+       <ENTRY>将路径复制到剪贴板</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M04</KEY>
-       <ENTRY>Open as text</ENTRY>
+       <ENTRY>以文本形式打开</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M05</KEY>
-       <ENTRY>Compress</ENTRY>
+       <ENTRY>压缩</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M06</KEY>
-       <ENTRY>Rename File</ENTRY>
+       <ENTRY>重命名文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M07</KEY>
-       <ENTRY>Duplicate File</ENTRY>
+       <ENTRY>重复文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M08</KEY>
-       <ENTRY>Delete File</ENTRY>
+       <ENTRY>删除文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M09</KEY>
-       <ENTRY>Rename Folder</ENTRY>
+       <ENTRY>重命名文件夹</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M10</KEY>
-       <ENTRY>Duplicate Folder</ENTRY>
+       <ENTRY>重复文件夹</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M11</KEY>
-       <ENTRY>Delete Folder</ENTRY>
+       <ENTRY>删除文件夹</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M12</KEY>
-       <ENTRY>Uncompress</ENTRY>
+       <ENTRY>解压缩</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M13</KEY>
-       <ENTRY>Transfer Mode</ENTRY>
+       <ENTRY>传输模式</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M14</KEY>
-       <ENTRY>Choose Transfer Mode (Auto/asc/bin)</ENTRY>
+       <ENTRY>选择传输模式（自动/ASC/bin）</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M15</KEY>
-       <ENTRY>Refresh</ENTRY>
+       <ENTRY>刷新</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M16</KEY>
-       <ENTRY>Refresh current folder</ENTRY>
+       <ENTRY>刷新当前文件夹</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M17</KEY>
-       <ENTRY>Shortcuts</ENTRY>
+       <ENTRY>快捷方式</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M18</KEY>
-       <ENTRY>Open path from clipboard</ENTRY>
+       <ENTRY>从剪贴板打开路径</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M19</KEY>
-       <ENTRY>Create folder</ENTRY>
+       <ENTRY>创建文件夹</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M20</KEY>
-       <ENTRY>Download</ENTRY>
+       <ENTRY>下载</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M21</KEY>
-       <ENTRY>Upload</ENTRY>
+       <ENTRY>上传</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M22</KEY>
-       <ENTRY>Auto</ENTRY>
+       <ENTRY>自动</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M23</KEY>
-       <ENTRY>Ascii (text mode)</ENTRY>
+       <ENTRY>ASCII（文本模式）</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M24</KEY>
-       <ENTRY>Binary mode</ENTRY>
+       <ENTRY>二进制模式</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M25</KEY>
-       <ENTRY>Change Attributes</ENTRY>
+       <ENTRY>更改属性</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M26</KEY>
-       <ENTRY>Display Attributes</ENTRY>
+       <ENTRY>显示属性</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M27</KEY>
-       <ENTRY>Create shortcut</ENTRY>
+       <ENTRY>创建快捷方式</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M28</KEY>
-       <ENTRY>Folders size</ENTRY>
+       <ENTRY>文件夹大小</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M29</KEY>
-       <ENTRY>Remember server connexion</ENTRY>
+       <ENTRY>记住服务器连接</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M30</KEY>
-       <ENTRY>Forget server connexion</ENTRY>
+       <ENTRY>忘记服务器连接</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M31</KEY>
-       <ENTRY>files</ENTRY>
+       <ENTRY>文件</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M32</KEY>
-       <ENTRY>Delete shortcut</ENTRY>
+       <ENTRY>删除快捷方式</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M33</KEY>
-       <ENTRY>Grid options</ENTRY>
+       <ENTRY>网格选项</ENTRY>
        <LENGTH>40</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>M34</KEY>
-       <ENTRY>Open as...</ENTRY>
+       <ENTRY>打开方式...</ENTRY>
        <LENGTH>40</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T01</KEY>
-       <ENTRY>Copy # to # ?</ENTRY>
+       <ENTRY>将 # 复制到 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T02</KEY>
-       <ENTRY>Move # to # ?</ENTRY>
+       <ENTRY>将 # 移动到 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T03</KEY>
-       <ENTRY>Uncompress # ?</ENTRY>
+       <ENTRY>解压缩 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T04</KEY>
-       <ENTRY>Upload # to # ?</ENTRY>
+       <ENTRY>上传 # 到 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T05</KEY>
-       <ENTRY>Rename # to # ?</ENTRY>
+       <ENTRY>将 # 重命名为 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T06</KEY>
-       <ENTRY>Enter new name</ENTRY>
+       <ENTRY>输入新名称</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T07</KEY>
-       <ENTRY>Duplicate # to # ?</ENTRY>
+       <ENTRY>复制 # 到 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T08</KEY>
-       <ENTRY>Path sent to clipbard</ENTRY>
+       <ENTRY>发送到剪贴栏的路径</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T09</KEY>
-       <ENTRY>Create folder # ?</ENTRY>
+       <ENTRY>创建文件夹 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T10</KEY>
-       <ENTRY>Warning : critical operation</ENTRY>
+       <ENTRY>警告：关键操作</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T11</KEY>
-       <ENTRY>Delete folder # and all there content ?</ENTRY>
+       <ENTRY>删除文件夹#和所有内容？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T12</KEY>
-       <ENTRY>Delete file # ?</ENTRY>
+       <ENTRY>删除文件 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T13</KEY>
-       <ENTRY>Compress # ?</ENTRY>
+       <ENTRY>压缩 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T14</KEY>
-       <ENTRY>Download # to # ?</ENTRY>
+       <ENTRY>下载 # 到 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T15</KEY>
-       <ENTRY>Enter name and server path</ENTRY>
+       <ENTRY>输入名称和服务器路径</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T16</KEY>
-       <ENTRY>Shortcut created</ENTRY>
+       <ENTRY>已创建快捷方式</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T17</KEY>
-       <ENTRY>Change CHMOD for file # from # to # ?</ENTRY>
+       <ENTRY>将文件 # 的 CHMOD 从 # 更改为 # ？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T18</KEY>
-       <ENTRY># already exist in #. Overwrite ?</ENTRY>
+       <ENTRY># 已存在于 # 中。改写？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T19</KEY>
-       <ENTRY>Enter new folder name</ENTRY>
+       <ENTRY>输入新文件夹名称</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T20</KEY>
-       <ENTRY>Choose shortcuts to delete</ENTRY>
+       <ENTRY>选择要删除的快捷方式</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T21</KEY>
-       <ENTRY>Delete shortcut # for path # ?</ENTRY>
+       <ENTRY>删除路径 # 的快捷方式 # ？</ENTRY>
        <LENGTH>100</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T22</KEY>
-       <ENTRY>File # already exists in #. Overwrite ?</ENTRY>
+       <ENTRY># 中已存在文件 #。改写？</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T23</KEY>
-       <ENTRY>Overwrite</ENTRY>
+       <ENTRY>改写</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T24</KEY>
-       <ENTRY>Download</ENTRY>
+       <ENTRY>下载</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T25</KEY>
-       <ENTRY>Upload</ENTRY>
+       <ENTRY>上传</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T26</KEY>
-       <ENTRY>Delete</ENTRY>
+       <ENTRY>删除</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T27</KEY>
-       <ENTRY>Compress</ENTRY>
+       <ENTRY>压缩</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T28</KEY>
-       <ENTRY>Create</ENTRY>
+       <ENTRY>创造</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T29</KEY>
-       <ENTRY>Duplicate</ENTRY>
+       <ENTRY>重复</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T30</KEY>
-       <ENTRY>Rename</ENTRY>
+       <ENTRY>重命名</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T31</KEY>
-       <ENTRY>Uncompress</ENTRY>
+       <ENTRY>解压缩</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T32</KEY>
-       <ENTRY>Copy</ENTRY>
+       <ENTRY>复制</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T33</KEY>
-       <ENTRY>Move</ENTRY>
+       <ENTRY>移动</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T34</KEY>
-       <ENTRY>shortcuts deleted</ENTRY>
+       <ENTRY>已删除快捷方式</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T35</KEY>
-       <ENTRY>Change</ENTRY>
+       <ENTRY>改变</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T36</KEY>
-       <ENTRY>Cancel</ENTRY>
+       <ENTRY>取消</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
      </TEXTPOOL>

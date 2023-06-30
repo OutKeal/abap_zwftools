@@ -5,10 +5,8 @@
    <DD25V>
     <VIEWNAME>ZWFT_USER</VIEWNAME>
     <AS4LOCAL>A</AS4LOCAL>
-    <DDLANGUAGE>1</DDLANGUAGE>
     <AGGTYPE>V</AGGTYPE>
     <ROOTTAB>ADRP</ROOTTAB>
-    <DDTEXT>SAP用户ID对应的姓名</DDTEXT>
     <VIEWCLASS>D</VIEWCLASS>
     <VIEWGRANT>R</VIEWGRANT>
     <MANKEY>X</MANKEY>
@@ -79,6 +77,15 @@
      <SOURCE>S</SOURCE>
     </DD28J>
    </DD28J_TABLE>
+   <I18N_LANGS>
+    <LANGU>1</LANGU>
+   </I18N_LANGS>
+   <DD25_TEXTS>
+    <item>
+     <DDLANGUAGE>1</DDLANGUAGE>
+     <DDTEXT>SAP用户ID对应的姓名</DDTEXT>
+    </item>
+   </DD25_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

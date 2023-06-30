@@ -9,19 +9,24 @@
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
-   <TPOOL>
+   <I18N_TPOOL>
     <item>
-     <ID>R</ID>
-     <ENTRY>ABAP应急使用程序</ENTRY>
-     <LENGTH>10</LENGTH>
+     <LANGUAGE>1</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>R</ID>
+       <ENTRY>ABAP应急使用程序</ENTRY>
+       <LENGTH>10</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>P_REPORT</KEY>
+       <ENTRY>报表名称</ENTRY>
+       <LENGTH>12</LENGTH>
+      </item>
+     </TEXTPOOL>
     </item>
-    <item>
-     <ID>S</ID>
-     <KEY>P_REPORT</KEY>
-     <ENTRY>报表名称</ENTRY>
-     <LENGTH>12</LENGTH>
-    </item>
-   </TPOOL>
+   </I18N_TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>
