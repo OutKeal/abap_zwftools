@@ -111,6 +111,10 @@ public section.
       value(KEY1) type ANY
       value(KEY2) type ANY optional
       value(KEY3) type ANY optional .
+  class-methods CALL_TRANSATION_BY_LINE
+    importing
+      value(LINE) type ANY
+      value(FIELDNAME) type FIELDNAME .
   class-methods FILE_DOWNLOAD_TO_CSV
     importing
       !DATA type TABLE .
@@ -230,16 +234,16 @@ public section.
       !CT_DATA type ref to DATA
     returning
       value(RV_OK) type ABAP_BOOL .
-  class-methods CREATE_TABLE_FCAT
+  class-methods CREATE_TABLE_COMPO
     importing
-      !IT_FCAT type LVC_T_FCAT
+      !IT_COMPO type CL_ABAP_STRUCTDESCR=>COMPONENT_TABLE
     changing
       !CT_DATA type ref to DATA
     returning
       value(RV_OK) type ABAP_BOOL .
-  class-methods CREATE_TABLE_COMPO
+  class-methods CREATE_TABLE_FCAT
     importing
-      !IT_COMPO type CL_ABAP_STRUCTDESCR=>COMPONENT_TABLE
+      !IT_FCAT type LVC_T_FCAT
     changing
       !CT_DATA type ref to DATA
     returning
@@ -409,6 +413,114 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
       AND RETURN.
     ENDCASE.
   ENDMETHOD.
+
+
+METHOD call_transation_by_line.
+
+  ASSIGN COMPONENT fieldname OF STRUCTURE LINE TO FIELD-SYMBOL(<value>).
+  CHECK sy-subrc EQ 0.
+
+  CASE fieldname.
+  WHEN 'BANFN' ."采购申请
+    SET PARAMETER ID 'BAN' FIELD <value>.
+    CALL TRANSACTION 'ME53N' AND SKIP FIRST SCREEN.
+
+  WHEN 'EBELN' .  "采购订单
+    SET PARAMETER ID 'BES' FIELD <value>.
+    CALL TRANSACTION  'ME23N' AND SKIP FIRST SCREEN.
+
+  WHEN 'VBELN_ASN' . "内向交货单"
+    SET PARAMETER ID 'VL' FIELD <value>.
+    CALL TRANSACTION 'VL33N' AND SKIP FIRST SCREEN.
+
+  WHEN 'VBELN_VA'. "销售订单"
+    SET PARAMETER ID 'AUN' FIELD <value>.
+    CALL TRANSACTION 'VA03' AND SKIP FIRST SCREEN.
+
+  WHEN 'VBELN_VL'. "交货单"
+    SET PARAMETER ID 'VL' FIELD <value>.
+    CALL TRANSACTION 'VL03N' AND SKIP FIRST SCREEN.
+
+  WHEN 'VBELN_VF'. "发票"
+    SET PARAMETER ID 'VF' FIELD <value>.
+    CALL TRANSACTION 'VF03' AND SKIP FIRST SCREEN.
+
+  WHEN 'RSNUM'. "预留"
+    SET PARAMETER ID 'RES' FIELD <value>.
+    CALL TRANSACTION  'MB23' AND SKIP FIRST SCREEN.
+
+  WHEN 'MBLNR'. "商品凭证"
+    ASSIGN COMPONENT 'MJAHR' OF STRUCTURE LINE TO FIELD-SYMBOL(<mjahr>).
+    CHECK sy-subrc EQ 0.
+    CALL FUNCTION 'MIGO_DIALOG'
+    EXPORTING
+      i_action = 'A04'
+      i_refdoc = 'R02'
+      i_mblnr  = <value>
+      i_mjahr  = <mjahr>.
+
+  WHEN 'BELNR_R' .            "发票校验"
+    ASSIGN COMPONENT 'GJAHR_R' OF STRUCTURE LINE TO FIELD-SYMBOL(<gjahr_r>).
+    CHECK sy-subrc EQ 0.
+    SET PARAMETER ID 'RBN' FIELD <value>.
+    SET PARAMETER ID 'GJR' FIELD <gjahr_r>.
+    CALL TRANSACTION 'MIR4' AND SKIP FIRST SCREEN.
+
+  WHEN 'BELNR' .  "会计凭证
+    ASSIGN COMPONENT 'GJAHR' OF STRUCTURE LINE TO FIELD-SYMBOL(<gjahr>).
+    CHECK sy-subrc EQ 0.
+    ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs>).
+    CHECK sy-subrc EQ 0.
+    SET PARAMETER ID 'BLN' FIELD <value>.
+    SET PARAMETER ID 'GJR' FIELD <gjahr>.
+    SET PARAMETER ID 'BUK' FIELD <bukrs>.
+    CALL TRANSACTION 'FB03' AND SKIP FIRST SCREEN.
+
+  WHEN 'MATNR' OR 'STANR'. "商品"
+    SET PARAMETER ID 'MAT' FIELD <value>.
+    CALL TRANSACTION 'MM43' AND SKIP FIRST SCREEN.
+
+
+  WHEN 'LIFNR' OR 'KUNNR' . "客户/供应商"
+    SET PARAMETER ID 'BPA' FIELD <value>.
+    SUBMIT r_ftr_display_bp WITH p_bp = <value> AND RETURN.
+
+  WHEN 'AUFNR_U' .  "内部订单"
+    SET PARAMETER ID 'ANR' FIELD <value>.
+    CALL TRANSACTION 'KO03' AND SKIP FIRST SCREEN.
+
+  WHEN 'SAKNR' OR 'HKONT' . "科目"
+    ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs_skb1>).
+    CHECK sy-subrc EQ 0.
+    SET PARAMETER ID 'SAK' FIELD <value>.
+    SET PARAMETER ID 'BUK' FIELD <bukrs_skb1>.
+    CALL TRANSACTION 'FS00' AND SKIP FIRST SCREEN.
+
+
+  WHEN 'ANLA' OR 'ANLN1' OR 'BUS1022'.   "固定资产
+    ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs_as03>).
+    CHECK sy-subrc EQ 0.
+    SET PARAMETER ID 'AN1' FIELD <value>.
+    SET PARAMETER ID 'BUK' FIELD <bukrs_as03>.
+    CALL TRANSACTION 'AS03' AND SKIP FIRST SCREEN.
+
+  WHEN 'WERKS'  OR 'UMWRK'. "地点
+    SET PARAMETER ID 'WRK' FIELD <value>.
+    CALL TRANSACTION 'WB03' AND SKIP FIRST SCREEN.
+
+  WHEN 'AUFNR' ."生产订单
+    SET PARAMETER ID 'ANR' FIELD <value>.
+    CALL TRANSACTION 'CO03' AND SKIP FIRST SCREEN.
+
+  WHEN 'DOCNUM' ."IDOC
+    SUBMIT idoc_tree_control WITH docnum = <value> AND RETURN.
+
+  WHEN 'XML' OR 'PROXY'.
+    SUBMIT rsxmb_display_msg_vers_new WITH msgguid = <value>
+    AND RETURN.
+  ENDCASE.
+
+ENDMETHOD.
 
 
   METHOD confirm.
@@ -809,7 +921,7 @@ ENDMETHOD.
     AND   objid EQ @iv_objid
     INTO CORRESPONDING FIELDS OF @ls_key.
     IF sy-subrc NE 0.
-      MESSAGE s015(zsd001) WITH iv_objid.
+      MESSAGE s899(mm) WITH |{ iv_objid }不存在| .
       RETURN.
     ENDIF.
 

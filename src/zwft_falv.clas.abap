@@ -1059,9 +1059,9 @@ CLASS ZWFT_FALV IMPLEMENTATION.
     rv_falv->layout = NEW zwft_falv_layout( rv_falv ).
 
     rv_falv->gui_status = NEW zwft_falv_dynamic_status( ).
-
     rv_falv->screen = SWITCH #( i_popup WHEN abap_true THEN c_screen_popup
     WHEN abap_false THEN c_screen_full ).
+
     IF built_in_screen EQ abap_true AND rv_falv->screen EQ c_screen_full.
       "default in full screen
       rv_falv->layout->set_no_toolbar( abap_true ).
@@ -1499,10 +1499,10 @@ CLASS ZWFT_FALV IMPLEMENTATION.
     FIELD-SYMBOLS: <outtab> TYPE STANDARD TABLE.
     r_falv = me.
     IF me->title_v1 IS INITIAL.
-      me->title_v1 = sy-TITLE. " for lazy people who wants to have alv title to be equal one from report.
+      me->title_v1 = sy-title. " for lazy people who wants to have alv title to be equal one from report.
     ENDIF.
     IF built_in_screen EQ abap_true AND iv_force_grid EQ abap_false.
-      IF SCREEN EQ c_screen_popup AND iv_start_row IS INITIAL
+      IF screen EQ c_screen_popup AND iv_start_row IS INITIAL
       AND iv_start_column IS INITIAL
       AND iv_end_row IS INITIAL
       AND iv_end_column IS INITIAL.
@@ -1512,12 +1512,12 @@ CLASS ZWFT_FALV IMPLEMENTATION.
         iv_end_column = 150.
       ENDIF.
       CALL FUNCTION 'ZWFT_FALV_DISPLAY'
-      EXPORTING
-        io_falv         = me
-        iv_start_row    = iv_start_row
-        iv_start_column = iv_start_column
-        iv_end_row      = iv_end_row
-        iv_end_column   = iv_end_column.
+        EXPORTING
+          io_falv         = me
+          iv_start_row    = iv_start_row
+          iv_start_column = iv_start_column
+          iv_end_row      = iv_end_row
+          iv_end_column   = iv_end_column.
       .
     ELSE.
       ASSIGN outtab->* TO <outtab>.
@@ -1541,7 +1541,7 @@ CLASS ZWFT_FALV IMPLEMENTATION.
       CHANGING
         it_outtab                     = <outtab> " Output Table
         it_fieldcatalog               = fcat
-        it_sort                       = SORT " Sort Criteria
+        it_sort                       = sort " Sort Criteria
         it_filter                     = filter " Filter Criteria
       EXCEPTIONS
         invalid_parameter_combination = 1
@@ -1555,7 +1555,7 @@ CLASS ZWFT_FALV IMPLEMENTATION.
         IF split_container IS NOT INITIAL.
           split_container->set_focus(
           EXPORTING
-            CONTROL           = me
+            control           = me
           EXCEPTIONS
             cntl_error        = 0
             cntl_system_error = 0
@@ -1564,7 +1564,7 @@ CLASS ZWFT_FALV IMPLEMENTATION.
         ELSE.
           me->parent->set_focus(
           EXPORTING
-            CONTROL           = me
+            control           = me
           EXCEPTIONS
             cntl_error        = 0
             cntl_system_error = 0
@@ -2752,8 +2752,6 @@ CLASS ZWFT_FALV IMPLEMENTATION.
     iv_falv->cb_context_menu_request = iv_falv->cb_context_menu_request && iv_falv->suffix.
     iv_falv->cb_toolbar_menu_selected = iv_falv->cb_toolbar_menu_selected && iv_falv->suffix.
     iv_falv->cb_request_data = iv_falv->cb_request_data && iv_falv->suffix.
-
-
 
   ENDMETHOD.
 
