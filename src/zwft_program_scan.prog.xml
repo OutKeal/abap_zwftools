@@ -156,114 +156,109 @@
      </RSMPE_ATRT>
     </DOC>
    </CUA>
-   <I18N_TPOOL>
+   <TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>R</ID>
-       <ENTRY>Program Scan</ENTRY>
-       <LENGTH>12</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>APPL</KEY>
-       <ENTRY>Application</ENTRY>
-       <LENGTH>19</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>CNAM</KEY>
-       <ENTRY>Created by</ENTRY>
-       <LENGTH>18</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>COMMENT</KEY>
-       <ENTRY>Ignore comment lines</ENTRY>
-       <LENGTH>28</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>DEVCLASS</KEY>
-       <ENTRY>Development class</ENTRY>
-       <LENGTH>25</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>DYNNR</KEY>
-       <ENTRY>Screen</ENTRY>
-       <LENGTH>14</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>INCLU</KEY>
-       <ENTRY>Expand INCLUDEs</ENTRY>
-       <LENGTH>23</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>MASK</KEY>
-       <ENTRY>Masked search</ENTRY>
-       <LENGTH>21</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>MODIASS</KEY>
-       <ENTRY>Change modification assistent</ENTRY>
-       <LENGTH>37</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>PLUSMINU</KEY>
-       <ENTRY>Found location +/- x lines</ENTRY>
-       <LENGTH>34</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RB_ALL</KEY>
-       <ENTRY>ABAP and screen</ENTRY>
-       <LENGTH>23</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RB_CODE</KEY>
-       <ENTRY>ABAP program(s)</ENTRY>
-       <LENGTH>23</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RB_DYN</KEY>
-       <ENTRY>Screen flow logic</ENTRY>
-       <LENGTH>25</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>REPNAME</KEY>
-       <ENTRY>Program name</ENTRY>
-       <LENGTH>20</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>SSTRING</KEY>
-       <ENTRY>Find string</ENTRY>
-       <LENGTH>19</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>SUBC</KEY>
-       <ENTRY>Program type</ENTRY>
-       <LENGTH>20</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>UNAM</KEY>
-       <ENTRY>Last changed by</ENTRY>
-       <LENGTH>23</LENGTH>
-      </item>
-     </TEXTPOOL>
+     <ID>R</ID>
+     <ENTRY>Program Scan</ENTRY>
+     <LENGTH>12</LENGTH>
     </item>
-   </I18N_TPOOL>
+    <item>
+     <ID>S</ID>
+     <KEY>APPL</KEY>
+     <ENTRY>应用</ENTRY>
+     <LENGTH>19</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>CNAM</KEY>
+     <ENTRY>创建人</ENTRY>
+     <LENGTH>18</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>COMMENT</KEY>
+     <ENTRY>忽略注释行</ENTRY>
+     <LENGTH>28</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>DEVCLASS</KEY>
+     <ENTRY>开发类</ENTRY>
+     <LENGTH>25</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>DYNNR</KEY>
+     <ENTRY>屏幕</ENTRY>
+     <LENGTH>14</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>INCLU</KEY>
+     <ENTRY>INCLUDE程序</ENTRY>
+     <LENGTH>23</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>MASK</KEY>
+     <ENTRY>掩码查询</ENTRY>
+     <LENGTH>21</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>MODIASS</KEY>
+     <ENTRY>更改修改辅助工具</ENTRY>
+     <LENGTH>37</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>PLUSMINU</KEY>
+     <ENTRY>找到位置+/-x行</ENTRY>
+     <LENGTH>34</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_ALL</KEY>
+     <ENTRY>ABAP和屏幕</ENTRY>
+     <LENGTH>23</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_CODE</KEY>
+     <ENTRY>ABAP程序</ENTRY>
+     <LENGTH>23</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_DYN</KEY>
+     <ENTRY>屏幕逻辑流</ENTRY>
+     <LENGTH>25</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>REPNAME</KEY>
+     <ENTRY>报表程序</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>SSTRING</KEY>
+     <ENTRY>查找字符串</ENTRY>
+     <LENGTH>19</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>SUBC</KEY>
+     <ENTRY>程序类型</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>UNAM</KEY>
+     <ENTRY>上次修改人</ENTRY>
+     <LENGTH>23</LENGTH>
+    </item>
+   </TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

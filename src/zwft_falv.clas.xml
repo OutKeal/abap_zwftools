@@ -11,27 +11,6 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
-   <DESCRIPTIONS>
-    <SEOCOMPOTX>
-     <CMPNAME>SUFFIX</CMPNAME>
-     <LANGU>1</LANGU>
-     <DESCRIPT>Suffix for Generated Objects</DESCRIPT>
-    </SEOCOMPOTX>
-   </DESCRIPTIONS>
-   <DESCRIPTIONS_SUB>
-    <SEOSUBCOTX>
-     <CMPNAME>CREATE</CMPNAME>
-     <SCONAME>I_SUFFIX</SCONAME>
-     <LANGU>1</LANGU>
-     <DESCRIPT>Suffix for Generated Objects</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>SET_EVENTS_SUFFIX</CMPNAME>
-     <SCONAME>IV_FALV</SCONAME>
-     <LANGU>1</LANGU>
-     <DESCRIPT>R/2 table</DESCRIPT>
-    </SEOSUBCOTX>
-   </DESCRIPTIONS_SUB>
   </asx:values>
  </asx:abap>
 </abapGit>

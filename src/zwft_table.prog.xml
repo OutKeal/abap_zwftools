@@ -9,54 +9,48 @@
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
-   <I18N_TPOOL>
+   <TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>R</ID>
-       <ENTRY>维护表内容</ENTRY>
-       <LENGTH>5</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>P_TABLE</KEY>
-       <ENTRY>表名</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RB_ALV</KEY>
-       <ENTRY>ALV显示</ENTRY>
-       <LENGTH>13</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RB_CSV</KEY>
-       <ENTRY>CSV下载</ENTRY>
-       <LENGTH>13</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RB_DOWN</KEY>
-       <ENTRY>下载模板</ENTRY>
-       <LENGTH>12</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RB_EXCEL</KEY>
-       <ENTRY>EXCEL下载</ENTRY>
-       <LENGTH>15</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RB_UP</KEY>
-       <ENTRY>上载模板</ENTRY>
-       <LENGTH>12</LENGTH>
-      </item>
-     </TEXTPOOL>
+     <ID>R</ID>
+     <LENGTH>5</LENGTH>
     </item>
-   </I18N_TPOOL>
+    <item>
+     <ID>S</ID>
+     <KEY>P_TABLE</KEY>
+     <ENTRY>表名</ENTRY>
+     <LENGTH>10</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_ALV</KEY>
+     <ENTRY>ALV显示</ENTRY>
+     <LENGTH>13</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_CSV</KEY>
+     <ENTRY>CSV下载</ENTRY>
+     <LENGTH>13</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_DOWN</KEY>
+     <ENTRY>下载模板</ENTRY>
+     <LENGTH>12</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_EXCEL</KEY>
+     <ENTRY>EXCEL下载</ENTRY>
+     <LENGTH>15</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_UP</KEY>
+     <ENTRY>上载模板</ENTRY>
+     <LENGTH>12</LENGTH>
+    </item>
+   </TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

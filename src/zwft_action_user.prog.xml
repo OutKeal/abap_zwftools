@@ -1746,54 +1746,49 @@
      </RSMPE_ATRT>
     </DOC>
    </CUA>
-   <I18N_TPOOL>
+   <TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>R</ID>
-       <ENTRY>用户操作事务记录</ENTRY>
-       <LENGTH>8</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RD1</KEY>
-       <ENTRY>最近两周汇总记录</ENTRY>
-       <LENGTH>16</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RD2</KEY>
-       <ENTRY>按月份汇总</ENTRY>
-       <LENGTH>13</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>RD3</KEY>
-       <ENTRY>按月份和用户汇总</ENTRY>
-       <LENGTH>16</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>S_PERIOD</KEY>
-       <ENTRY>时间</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>S_TCODE</KEY>
-       <ENTRY>TCODE</ENTRY>
-       <LENGTH>13</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>S_USER</KEY>
-       <ENTRY>用户</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-     </TEXTPOOL>
+     <ID>R</ID>
+     <ENTRY>用户操作事务记录</ENTRY>
+     <LENGTH>8</LENGTH>
     </item>
-   </I18N_TPOOL>
+    <item>
+     <ID>S</ID>
+     <KEY>RD1</KEY>
+     <ENTRY>最近两周汇总记录</ENTRY>
+     <LENGTH>16</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RD2</KEY>
+     <ENTRY>按月份汇总</ENTRY>
+     <LENGTH>13</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RD3</KEY>
+     <ENTRY>按月份和用户汇总</ENTRY>
+     <LENGTH>16</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>S_PERIOD</KEY>
+     <ENTRY>时间</ENTRY>
+     <LENGTH>10</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>S_TCODE</KEY>
+     <ENTRY>TCODE</ENTRY>
+     <LENGTH>13</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>S_USER</KEY>
+     <ENTRY>用户</ENTRY>
+     <LENGTH>10</LENGTH>
+    </item>
+   </TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

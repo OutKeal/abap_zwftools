@@ -1041,19 +1041,19 @@
     <item>
      <ID>I</ID>
      <KEY>001</KEY>
-     <ENTRY>Select Options</ENTRY>
+     <ENTRY>选择选项</ENTRY>
      <LENGTH>14</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>002</KEY>
-     <ENTRY>Etc. Options</ENTRY>
+     <ENTRY>等。选项</ENTRY>
      <LENGTH>12</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>003</KEY>
-     <ENTRY>Object Types</ENTRY>
+     <ENTRY>对象类型</ENTRY>
      <LENGTH>12</LENGTH>
     </item>
     <item>
@@ -1065,49 +1065,49 @@
     <item>
      <ID>I</ID>
      <KEY>102</KEY>
-     <ENTRY>Download</ENTRY>
+     <ENTRY>下载</ENTRY>
      <LENGTH>8</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>103</KEY>
-     <ENTRY>Translate</ENTRY>
+     <ENTRY>翻译</ENTRY>
      <LENGTH>9</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>104</KEY>
-     <ENTRY>Only Moving</ENTRY>
+     <ENTRY>只移动</ENTRY>
      <LENGTH>11</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>T02</KEY>
-     <ENTRY>Object Name</ENTRY>
+     <ENTRY>对象名称</ENTRY>
      <LENGTH>11</LENGTH>
     </item>
     <item>
      <ID>R</ID>
-     <ENTRY>ABAP Text Translation</ENTRY>
+     <ENTRY>ABAP文本翻译</ENTRY>
      <LENGTH>70</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>PM_SLANG</KEY>
-     <ENTRY>Source Language</ENTRY>
-     <LENGTH>23</LENGTH>
+     <ENTRY>源语言</ENTRY>
+     <LENGTH>38</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>PM_TLANG</KEY>
-     <ENTRY>Target Language</ENTRY>
-     <LENGTH>23</LENGTH>
+     <ENTRY>目标语言</ENTRY>
+     <LENGTH>38</LENGTH>
     </item>
     <item>
      <ID>S</ID>
      <KEY>SO_MSAG</KEY>
-     <ENTRY>Message Class</ENTRY>
-     <LENGTH>21</LENGTH>
+     <ENTRY>消息类</ENTRY>
+     <LENGTH>38</LENGTH>
     </item>
     <item>
      <ID>S</ID>
@@ -1154,24 +1154,24 @@
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
+     <LANGUAGE>E</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>001</KEY>
-       <ENTRY>选择选项</ENTRY>
+       <ENTRY>Select Options</ENTRY>
        <LENGTH>14</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>002</KEY>
-       <ENTRY>等。选项</ENTRY>
+       <ENTRY>Etc. Options</ENTRY>
        <LENGTH>12</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>003</KEY>
-       <ENTRY>对象类型</ENTRY>
+       <ENTRY>Object Types</ENTRY>
        <LENGTH>12</LENGTH>
       </item>
       <item>
@@ -1183,49 +1183,49 @@
       <item>
        <ID>I</ID>
        <KEY>102</KEY>
-       <ENTRY>下载</ENTRY>
+       <ENTRY>Download</ENTRY>
        <LENGTH>8</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>103</KEY>
-       <ENTRY>翻译</ENTRY>
+       <ENTRY>Translate</ENTRY>
        <LENGTH>9</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>104</KEY>
-       <ENTRY>只移动</ENTRY>
+       <ENTRY>Only Moving</ENTRY>
        <LENGTH>11</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>T02</KEY>
-       <ENTRY>对象名称</ENTRY>
+       <ENTRY>Object Name</ENTRY>
        <LENGTH>11</LENGTH>
       </item>
       <item>
        <ID>R</ID>
-       <ENTRY>ABAP文本翻译</ENTRY>
+       <ENTRY>ABAP Text Translation</ENTRY>
        <LENGTH>70</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>PM_SLANG</KEY>
-       <ENTRY>源语言</ENTRY>
-       <LENGTH>38</LENGTH>
+       <ENTRY>Source Language</ENTRY>
+       <LENGTH>23</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>PM_TLANG</KEY>
-       <ENTRY>目标语言</ENTRY>
-       <LENGTH>38</LENGTH>
+       <ENTRY>Target Language</ENTRY>
+       <LENGTH>23</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>SO_MSAG</KEY>
-       <ENTRY>消息类</ENTRY>
-       <LENGTH>38</LENGTH>
+       <ENTRY>Message Class</ENTRY>
+       <LENGTH>21</LENGTH>
       </item>
       <item>
        <ID>S</ID>

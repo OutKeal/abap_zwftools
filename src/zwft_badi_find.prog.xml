@@ -9,18 +9,13 @@
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
-   <I18N_TPOOL>
+   <TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>R</ID>
-       <ENTRY>寻找事务码对应的出口清单及BADI</ENTRY>
-       <LENGTH>17</LENGTH>
-      </item>
-     </TEXTPOOL>
+     <ID>R</ID>
+     <ENTRY>寻找事务码对应的出口清单及BADI</ENTRY>
+     <LENGTH>17</LENGTH>
     </item>
-   </I18N_TPOOL>
+   </TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

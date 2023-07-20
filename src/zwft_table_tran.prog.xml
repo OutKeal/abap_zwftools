@@ -9,18 +9,31 @@
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
-   <I18N_TPOOL>
+   <TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>R</ID>
-       <ENTRY>传输表功能</ENTRY>
-       <LENGTH>5</LENGTH>
-      </item>
-     </TEXTPOOL>
+     <ID>R</ID>
+     <ENTRY>传输表功能</ENTRY>
+     <LENGTH>5</LENGTH>
     </item>
-   </I18N_TPOOL>
+    <item>
+     <ID>S</ID>
+     <KEY>L_DELETE</KEY>
+     <ENTRY>删除后覆盖</ENTRY>
+     <LENGTH>13</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RFCDEST</KEY>
+     <ENTRY>RFC目标</ENTRY>
+     <LENGTH>13</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>S_TAB</KEY>
+     <ENTRY>表名</ENTRY>
+     <LENGTH>10</LENGTH>
+    </item>
+   </TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>
