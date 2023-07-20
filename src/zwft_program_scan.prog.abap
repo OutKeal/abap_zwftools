@@ -6,7 +6,7 @@
 *&
 *&---------------------------------------------------------------------*
 
-REPORT  ZWFT_PROGRAM_SCAN  MESSAGE-ID 00 NO STANDARD PAGE HEADING LINE-SIZE 150.
+REPORT  zwft_program_scan  MESSAGE-ID 00 NO STANDARD PAGE HEADING LINE-SIZE 150.
 
 TABLES: d020s,         " System table D020S (screen sources)
         tadir,         " Directory of R/3 Repository Objects
@@ -14,27 +14,27 @@ TABLES: d020s,         " System table D020S (screen sources)
         tuchk3.        " Information on the CHECK Index
 
 * Variable
-TYPES:  BEGIN OF result_ln,
-          repname    LIKE sy-repid,
-          dynnr      LIKE sy-dynnr,
-          line_no(6) TYPE n,
-          text       type rstxp-tdline,
-          sstring,
-        END OF result_ln,
+TYPES: BEGIN OF result_ln,
+         repname    LIKE sy-repid,
+         dynnr      LIKE sy-dynnr,
+         line_no(6) TYPE n,
+         text       TYPE rstxp-tdline,
+         sstring,
+       END OF result_ln,
 
-        result_tab TYPE result_ln OCCURS 0.
+       result_tab TYPE result_ln OCCURS 0.
 
-DATA: disptype   VALUE 'A',
-      dtab       TYPE result_tab WITH HEADER LINE,
-      ftab       TYPE result_tab WITH HEADER LINE,
-      hit_count  TYPE i,
-      tabix      LIKE sy-tabix,
-      text_line  TYPE rstxp-tdline,
+DATA: disptype  VALUE 'A',
+      dtab      TYPE result_tab WITH HEADER LINE,
+      ftab      TYPE result_tab WITH HEADER LINE,
+      hit_count TYPE i,
+      tabix     LIKE sy-tabix,
+      text_line TYPE rstxp-tdline,
       top_flag.
 
 DATA: BEGIN OF dyn OCCURS 0,
-        prog  LIKE d020s-prog,
-        dnum  LIKE d020s-dnum,
+        prog LIKE d020s-prog,
+        dnum LIKE d020s-dnum,
       END OF dyn,
 
       BEGIN OF fm OCCURS 0,
@@ -69,18 +69,18 @@ SELECT-OPTIONS:   repname  FOR trdir-name MEMORY ID zre,
                   unam     FOR trdir-unam,
                   devclass FOR tadir-devclass.
 SELECTION-SCREEN: END OF BLOCK a10,
-                  BEGIN OF BLOCK a20 WITH FRAME TITLE a20.
+BEGIN OF BLOCK a20 WITH FRAME TITLE a20.
 SELECT-OPTIONS:   sstring     FOR tuchk3-text1 NO INTERVALS.
-PARAMETERS:       plusminu(2) TYPE n DEFAULT 2,
-                  inclu       AS CHECKBOX DEFAULT 'X',
-                  modiass     AS CHECKBOX,
-                  comment     AS CHECKBOX,
-                  mask        AS CHECKBOX.
+PARAMETERS: plusminu(2) TYPE n DEFAULT 2,
+            inclu       AS CHECKBOX DEFAULT 'X',
+            modiass     AS CHECKBOX,
+            comment     AS CHECKBOX,
+            mask        AS CHECKBOX.
 SELECTION-SCREEN: END OF BLOCK a20,
-                  BEGIN OF BLOCK a30 WITH FRAME TITLE a30.
-PARAMETERS:       rb_code  RADIOBUTTON GROUP r10,
-                  rb_dyn   RADIOBUTTON GROUP r10,
-                  rb_all   RADIOBUTTON GROUP r10.
+BEGIN OF BLOCK a30 WITH FRAME TITLE a30.
+PARAMETERS: rb_code RADIOBUTTON GROUP r10,
+            rb_dyn  RADIOBUTTON GROUP r10,
+            rb_all  RADIOBUTTON GROUP r10.
 SELECTION-SCREEN: END OF BLOCK a30.
 
 DATA: string LIKE sstring-low.
@@ -551,8 +551,8 @@ ENDFORM.                    "display_dtab_alt
 *----------------------------------------------------------------------*
 *       Get x lines before the found string and x lines after
 *----------------------------------------------------------------------*
-FORM get_hit_set USING value(ctext)   LIKE rtab_lcase
-                       value(line_no) LIKE sy-tabix
+FORM get_hit_set USING VALUE(ctext)   LIKE rtab_lcase
+                       VALUE(line_no) LIKE sy-tabix
                        srce_type      TYPE c.
 
   DATA: end    TYPE i,
@@ -645,7 +645,7 @@ FORM get_dynpro_flow_logic.
         BEGIN OF dynp_id,
           prog LIKE d020s-prog,
           dnum LIKE d020s-dnum,
-       END OF dynp_id.
+        END OF dynp_id.
 
   dynp_id-prog = dyn-prog.
   dynp_id-dnum = dyn-dnum.

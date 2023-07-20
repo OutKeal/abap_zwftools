@@ -1,12 +1,12 @@
-CLASS ZWFT_COMMON DEFINITION
-PUBLIC
-final
-CREATE PUBLIC .
+class ZWFT_COMMON definition
+  public
+  final
+  create public .
 
-  PUBLIC SECTION.
+public section.
 
-  TYPES:
-  BEGIN OF ty_fcat,
+  types:
+    BEGIN OF ty_fcat,
     col_pos   TYPE col_pos,
     fieldname TYPE fieldname,
     EDIT      TYPE lvc_edit,
@@ -15,241 +15,247 @@ CREATE PUBLIC .
     coltext   TYPE lvc_txtcol,
     tech      TYPE lvc_tech,
   END OF ty_fcat .
-  TYPES:
-  BEGIN OF ty_doma_list,
+  types:
+    BEGIN OF ty_doma_list,
     rollname      TYPE rollname,
     def_fieldname TYPE fieldname,
   END OF ty_doma_list .
-  TYPES:
-  BEGIN OF ty_doma_value,
+  types:
+    BEGIN OF ty_doma_value,
     rollname TYPE rollname,
     domval   TYPE char50,
     ddtext   TYPE val_text,
   END OF ty_doma_value .
 
-  DATA:
-        doma_list TYPE TABLE OF ty_doma_list .
-  DATA:
-        doma_value TYPE TABLE OF ty_doma_value .
+  data:
+    doma_list TYPE TABLE OF ty_doma_list .
+  data:
+    doma_value TYPE TABLE OF ty_doma_value .
 
-  CLASS-METHODS GET_GUID32
-  returning
-  VALUE(RV_GUID32) TYPE SYSUUID_C32 .
-  CLASS-METHODS GET_GUID16
-  returning
-  VALUE(RV_GUID16) TYPE SYSUUID_X16 .
-  CLASS-METHODS GET_LOGSYS
-  returning
-  VALUE(RV_LOGSYS) TYPE LOGSYS .
-  CLASS-METHODS GET_ENCODING
-  IMPORTING
-    VALUE(I_EXTERNAL_NAME) TYPE CSEQUENCE
+  class-methods GET_GUID32
     returning
-    VALUE(R_ENCODING) TYPE ABAP_ENCODING .
-  CLASS-METHODS GET_NR_NUMBER
-  IMPORTING
-    !IV_NR TYPE NRNR
-    !IV_OBJECT TYPE NROBJ
-    !IV_YEAR TYPE INRI-TOYEAR OPTIONAL
-    !IV_NO_BUFFER TYPE ABAP_BOOL OPTIONAL
+      value(RV_GUID32) type SYSUUID_C32 .
+  class-methods GET_GUID16
     returning
-  VALUE(RV_NUMBER) TYPE REF TO DATA .
-  CLASS-METHODS BUILD_MESSAGE_TEXT
-  CHANGING
-    !CS_RETURN TYPE BAPIRET2 OPTIONAL
-    !CT_RETURN TYPE BAPIRET2_TAB OPTIONAL .
-  CLASS-METHODS SEARCH_VENDOR
-  CHANGING
-    !LIFNR TYPE ANY .
-  CLASS-METHODS SEARCH_CUSTOMER
-  CHANGING
-    !KUNNR TYPE ANY .
-  CLASS-METHODS ADD_GOS_RELATIONSHIP
-  IMPORTING
-    VALUE(OBJKEY1) TYPE ANY OPTIONAL
-    VALUE(OBJTYPE1) TYPE SWO_OBJTYP OPTIONAL
-    VALUE(OBJKEY2) TYPE ANY OPTIONAL
-    VALUE(OBJTYPE2) TYPE SWO_OBJTYP OPTIONAL
-    VALUE(RELATION) TYPE OBLRELTYPE DEFAULT 'OB' .
-  CLASS-METHODS CONFIRM
-  IMPORTING
-    VALUE(IV_TEXT) TYPE CLIKE OPTIONAL
+      value(RV_GUID16) type SYSUUID_X16 .
+  class-methods GET_LOGSYS
     returning
-    VALUE(EV_RESULT) TYPE ABAP_BOOL .
-  CLASS-METHODS GET_USER_NAME
-  IMPORTING
-    VALUE(IV_USER_ID) TYPE CHAR12 OPTIONAL
+      value(RV_LOGSYS) type LOGSYS .
+  class-methods GET_ENCODING
+    importing
+      value(I_EXTERNAL_NAME) type CSEQUENCE
     returning
-    VALUE(EV_USER_FULL_NAME) TYPE STRING .
-  CLASS-METHODS NUMBER_CHECK
-  IMPORTING
-    VALUE(IV_STRING) TYPE ANY
+      value(R_ENCODING) type ABAP_ENCODING .
+  class-methods GET_NR_NUMBER
+    importing
+      !IV_NR type NRNR
+      !IV_OBJECT type NROBJ
+      !IV_YEAR type INRI-TOYEAR optional
+      !IV_NO_BUFFER type ABAP_BOOL optional
     returning
-    VALUE(RV_OK) TYPE ABAP_BOOL .
-  CLASS-METHODS NUMBER_INPUT
-  CHANGING
-    !VALUE TYPE ANY OPTIONAL
-    !NUMBER TYPE ANY OPTIONAL
+      value(RV_NUMBER) type ref to DATA .
+  class-methods BUILD_MESSAGE_TEXT
+    changing
+      !CS_RETURN type BAPIRET2 optional
+      !CT_RETURN type BAPIRET2_TAB optional .
+  class-methods SEARCH_VENDOR
+    changing
+      !LIFNR type ANY .
+  class-methods SEARCH_CUSTOMER
+    changing
+      !KUNNR type ANY .
+  class-methods ADD_GOS_RELATIONSHIP
+    importing
+      value(OBJKEY1) type ANY optional
+      value(OBJTYPE1) type SWO_OBJTYP optional
+      value(OBJKEY2) type ANY optional
+      value(OBJTYPE2) type SWO_OBJTYP optional
+      value(RELATION) type OBLRELTYPE default 'OB' .
+  class-methods CONFIRM
+    importing
+      value(IV_TEXT) type CLIKE optional
     returning
-    VALUE(RV_OK) TYPE ABAP_BOOL .
-  CLASS-METHODS DATE_OUTPUT
-  IMPORTING
-    VALUE(DATE) TYPE DATUM
-    VALUE(SPLITER) TYPE CHAR1 OPTIONAL
+      value(EV_RESULT) type ABAP_BOOL .
+  class-methods GET_USER_NAME
+    importing
+      value(IV_USER_ID) type CHAR12 optional
     returning
-    VALUE(RV_DATE) TYPE CHAR10 .
-  CLASS-METHODS DATE_INPUT
-  IMPORTING
-    !VALUE TYPE ANY
-  CHANGING
-    VALUE(DATE) TYPE DATUM
+      value(EV_USER_FULL_NAME) type STRING .
+  class-methods NUMBER_CHECK
+    importing
+      value(IV_STRING) type ANY
     returning
-    VALUE(RV_OK) TYPE ABAP_BOOL .
-  CLASS-METHODS CALL_TRANSATION
-  IMPORTING
-    VALUE(TYPE) TYPE CHAR10
-    VALUE(KEY1) TYPE ANY
-    VALUE(KEY2) TYPE ANY OPTIONAL
-    VALUE(KEY3) TYPE ANY OPTIONAL .
-  CLASS-METHODS CALL_TRANSATION_BY_LINE
-  IMPORTING
-    VALUE(LINE) TYPE ANY
-    VALUE(FIELDNAME) TYPE FIELDNAME .
-  CLASS-METHODS FILE_DOWNLOAD_TO_CSV
-  IMPORTING
-  !DATA TYPE TABLE .
-  CLASS-METHODS FILE_DOWNLOAD_TO_EXCEL
-  IMPORTING
-  VALUE(DATA) TYPE TABLE .
-  CLASS-METHODS FILE_UPLOAD_FROM_EXCEL
-  IMPORTING
-    VALUE(BEGIN_COL) TYPE I DEFAULT 1
-    VALUE(BEGIN_ROW) TYPE I DEFAULT 1
-    VALUE(END_COL) TYPE I DEFAULT 100
-    VALUE(END_ROW) TYPE I DEFAULT 9999
-  CHANGING
-  VALUE(DATA) TYPE TABLE .
-  CLASS-METHODS FILE_GET_READ_PATH
-  IMPORTING
-    VALUE(EXTNAME) TYPE STRING DEFAULT 'XLSX'
+      value(RV_OK) type ABAP_BOOL .
+  class-methods NUMBER_INPUT
+    changing
+      !VALUE type ANY optional
+      !NUMBER type ANY optional
     returning
-    VALUE(RV_FILE) TYPE RLGRAP-FILENAME .
-  CLASS-METHODS FILE_GET_SAVE_PATH
-  IMPORTING
-    VALUE(EXTNAME) TYPE STRING DEFAULT 'XLSX'
+      value(RV_OK) type ABAP_BOOL .
+  class-methods DATE_OUTPUT
+    importing
+      value(DATE) type DATUM
+      value(SPLITER) type CHAR1 optional
     returning
-    VALUE(RV_FILE) TYPE RLGRAP-FILENAME .
-  CLASS-METHODS FILE_DOWNLOAD_TEMPLATE
-  IMPORTING
-    !IV_OBJID TYPE W3OBJID
-    !IV_FILENAME TYPE RLGRAP-FILENAME .
-  CLASS-METHODS PROGRESSBAR_SHOW
-  IMPORTING
-    !IV_CURRENT TYPE I
-    !IV_TOTAL TYPE I
-    !IV_MSG TYPE STRING OPTIONAL .
-  CLASS-METHODS DOMA_VALUE_CHECK
-  IMPORTING
-    VALUE(I_DOMA) TYPE DOMNAME
-    VALUE(I_VALUE) TYPE ANY
-    VALUE(I_LANGU) TYPE SYLANGU DEFAULT SY-LANGU
-  EXPORTING
-    VALUE(E_TEXT) TYPE ANY
-    VALUE(E_DOMA) TYPE DD01V
+      value(RV_DATE) type CHAR10 .
+  class-methods DATE_INPUT
+    importing
+      !VALUE type ANY
+    changing
+      value(DATE) type DATUM
     returning
-    VALUE(RV_OK) TYPE ABAP_BOOL
-  EXCEPTIONS
-    ERROR .
-  CLASS-METHODS DOMA_VALUE_GET_MULTIPLE
-  IMPORTING
-    VALUE(DOMA_LIST) LIKE DOMA_LIST
-    VALUE(REF_DATA) TYPE TABLE OPTIONAL
+      value(RV_OK) type ABAP_BOOL .
+  class-methods CALL_TRANSATION
+    importing
+      value(TYPE) type CHAR10
+      value(KEY1) type ANY
+      value(KEY2) type ANY optional
+      value(KEY3) type ANY optional .
+  class-methods CALL_TRANSATION_BY_LINE
+    importing
+      value(LINE) type ANY
+      value(FIELDNAME) type FIELDNAME .
+  class-methods FILE_DOWNLOAD_TO_CSV
+    importing
+      !DATA type TABLE .
+  class-methods FILE_DOWNLOAD_TO_EXCEL
+    importing
+      value(DATA) type TABLE .
+  class-methods FILE_UPLOAD_FROM_EXCEL
+    importing
+      value(BEGIN_COL) type I default 1
+      value(BEGIN_ROW) type I default 1
+      value(END_COL) type I default 100
+      value(END_ROW) type I default 9999
+    changing
+      value(DATA) type TABLE .
+  class-methods FILE_GET_READ_PATH
+    importing
+      value(EXTNAME) type STRING default 'XLSX'
     returning
-    VALUE(DOMA_VALUE) LIKE DOMA_VALUE .
-  CLASS-METHODS DOMA_VALUE_GET_SINGLE
-  IMPORTING
-    VALUE(ROLLNAME) TYPE ROLLNAME
+      value(RV_FILE) type RLGRAP-FILENAME .
+  class-methods FILE_GET_SAVE_PATH
+    importing
+      value(EXTNAME) type STRING default 'XLSX'
     returning
-    VALUE(DOMA_VALUE) LIKE DOMA_VALUE .
-  CLASS-METHODS SET_DEFAULT_VALUE_LINE
-  IMPORTING
-  VALUE(IT_CONFIG) TYPE REF TO DATA
-  CHANGING
-  VALUE(IS_DATA) TYPE REF TO DATA .
-  CLASS-METHODS SET_DEFAULT_VALUE_TABLE
-  IMPORTING
-  VALUE(IT_CONFIG) TYPE REF TO DATA
-  CHANGING
-  VALUE(IT_DATA) TYPE REF TO DATA .
-  CLASS-METHODS SET_ADMIN_VALUE_CREATE
-  CHANGING
-  VALUE(IS_DATA) TYPE REF TO DATA .
-  CLASS-METHODS SET_ADMIN_VALUE_MODIFY
-  CHANGING
-  VALUE(IS_DATA) TYPE REF TO DATA .
-  CLASS-METHODS SET_INIT_SDATE
-  IMPORTING
-    VALUE(DAYS) TYPE INT2 DEFAULT 15
-  CHANGING
-  VALUE(SDATE) TYPE REF TO DATA .
-  CLASS-METHODS SET_INIT_ICON
-  IMPORTING
-    VALUE(STATUS) TYPE CHAR1
+      value(RV_FILE) type RLGRAP-FILENAME .
+  class-methods FILE_DOWNLOAD_TEMPLATE
+    importing
+      !IV_OBJID type W3OBJID
+      !IV_FILENAME type RLGRAP-FILENAME .
+  class-methods PROGRESSBAR_SHOW
+    importing
+      !IV_CURRENT type I
+      !IV_TOTAL type I
+      !IV_MSG type STRING optional .
+  class-methods DOMA_VALUE_CHECK
+    importing
+      value(I_DOMA) type DOMNAME
+      value(I_VALUE) type ANY
+      value(I_LANGU) type SYLANGU default SY-LANGU
+    exporting
+      value(E_TEXT) type ANY
+      value(E_DOMA) type DD01V
     returning
-    VALUE(ICON) TYPE ICON_D .
-  CLASS-METHODS FCAT_SET_VALUE
-  IMPORTING
-  VALUE(CONFIG) TYPE DATA
-  CHANGING
-    VALUE(FCAT) TYPE LVC_T_FCAT .
-  CLASS-METHODS GET_FCAT
-  IMPORTING
-  !IT_TABLE TYPE DATA
-        returning
-        VALUE(RT_FCAT) TYPE LVC_T_FCAT .
-  CLASS-METHODS GET_FCAT_BY_NAME
-  IMPORTING
-    !IV_TABNAME TYPE CHAR30
+      value(RV_OK) type ABAP_BOOL
+    exceptions
+      ERROR .
+  class-methods DOMA_VALUE_GET_MULTIPLE
+    importing
+      value(DOMA_LIST) like DOMA_LIST
+      value(REF_DATA) type TABLE optional
     returning
-    VALUE(RT_FCAT) TYPE LVC_T_FCAT .
-  CLASS-METHODS GET_TABLE_FIELDS
-  IMPORTING
-    VALUE(IV_TABNAME) TYPE TABNAME
+      value(DOMA_VALUE) like DOMA_VALUE .
+  class-methods DOMA_VALUE_GET_SINGLE
+    importing
+      value(ROLLNAME) type ROLLNAME
     returning
-    VALUE(RT_X031L) TYPE DDX031LTAB .
-  CLASS-METHODS GET_FIELDS
-  IMPORTING
-    VALUE(IV_TABNAME) TYPE TABNAME
+      value(DOMA_VALUE) like DOMA_VALUE .
+  class-methods SET_DEFAULT_VALUE_LINE
+    importing
+      value(IT_CONFIG) type ref to DATA
+    changing
+      value(IS_DATA) type ref to DATA .
+  class-methods SET_DEFAULT_VALUE_TABLE
+    importing
+      value(IT_CONFIG) type ref to DATA
+    changing
+      value(IT_DATA) type ref to DATA .
+  class-methods SET_ADMIN_VALUE_CREATE
+    changing
+      value(IS_DATA) type ref to DATA .
+  class-methods SET_ADMIN_VALUE_MODIFY
+    changing
+      value(IS_DATA) type ref to DATA .
+  class-methods SET_INIT_SDATE
+    importing
+      value(DAYS) type INT2 default 15
+    changing
+      value(SDATE) type ref to DATA .
+  class-methods SET_INIT_ICON
+    importing
+      value(STATUS) type CHAR1
     returning
-    VALUE(RT_X031L) TYPE DDX031LTAB .
-  CLASS-METHODS GET_FIELDS_DFIES
-  IMPORTING
-    VALUE(IV_TABNAME) TYPE TABNAME
+      value(ICON) type ICON_D .
+  class-methods FCAT_SET_VALUE
+    importing
+      value(CONFIG) type DATA
+    changing
+      value(FCAT) type LVC_T_FCAT .
+  class-methods FCAT_FROM_DATA
+    importing
+      !IT_TABLE type DATA
     returning
-    VALUE(RT_DFIES) TYPE DFIES_TAB .
-  CLASS-METHODS CREATE_TABLE_DFIES
-  IMPORTING
-    !IT_DFIES TYPE DFIES_TAB
-  CHANGING
-  !CT_DATA TYPE REF TO DATA
-        returning
-        VALUE(RV_OK) TYPE ABAP_BOOL .
-  CLASS-METHODS CREATE_TABLE_COMPO
-  IMPORTING
-    !IT_COMPO TYPE CL_ABAP_STRUCTDESCR=>COMPONENT_TABLE
-  CHANGING
-  !CT_DATA TYPE REF TO DATA
-        returning
-        VALUE(RV_OK) TYPE ABAP_BOOL .
-  CLASS-METHODS CREATE_TABLE_FCAT
-  IMPORTING
-    !IT_FCAT TYPE LVC_T_FCAT
-  CHANGING
-  !CT_DATA TYPE REF TO DATA
-        returning
-        VALUE(RV_OK) TYPE ABAP_BOOL .
+      value(RT_FCAT) type LVC_T_FCAT .
+  class-methods FCAT_FROM_NAME
+    importing
+      !IV_TABNAME type CHAR30
+    returning
+      value(RT_FCAT) type LVC_T_FCAT .
+  class-methods GET_TABLE_FIELDS
+    importing
+      value(IV_TABNAME) type TABNAME
+    returning
+      value(RT_X031L) type DDX031LTAB .
+  class-methods GET_FIELDS
+    importing
+      value(IV_TABNAME) type TABNAME
+    returning
+      value(RT_X031L) type DDX031LTAB .
+  class-methods GET_FIELDS_DFIES
+    importing
+      value(IV_TABNAME) type TABNAME
+    returning
+      value(RT_DFIES) type DFIES_TAB .
+  class-methods CREATE_TABLE_DFIES
+    importing
+      !IT_DFIES type DFIES_TAB
+    changing
+      !CT_DATA type ref to DATA
+    returning
+      value(RV_OK) type ABAP_BOOL .
+  class-methods CREATE_TABLE_COMPO
+    importing
+      !IT_COMPO type CL_ABAP_STRUCTDESCR=>COMPONENT_TABLE
+    changing
+      !CT_DATA type ref to DATA
+    returning
+      value(RV_OK) type ABAP_BOOL .
+  class-methods CREATE_TABLE_FCAT
+    importing
+      !IT_FCAT type LVC_T_FCAT
+    changing
+      !CT_DATA type ref to DATA
+    returning
+      value(RV_OK) type ABAP_BOOL .
+  class-methods GET_USER_PARAMETER
+    importing
+      value(PARID) type MEMORYID
+      value(UNAME) type SY-UNAME default SY-UNAME
+    returning
+      value(R_PARAMETER_VALUE) type XUVALUE .
   PROTECTED SECTION.
-  PRIVATE SECTION.
+private section.
 ENDCLASS.
 
 
@@ -798,13 +804,13 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
   METHOD file_download_to_csv.
     TYPES:BEGIN OF fieldnames,
-      name TYPE char30,
-    END OF fieldnames.
+            name TYPE char30,
+          END OF fieldnames.
     DATA:fieldnames TYPE TABLE OF fieldnames.
     DATA filename TYPE string.
 
-    CHECK DATA IS NOT INITIAL.
-    DATA(fcat) = GET_FCAT( DATA ).
+    CHECK data IS NOT INITIAL.
+    DATA(fcat) = fcat_from_data( data ).
     filename = file_get_save_path( 'CSV' ).
     CHECK filename IS NOT INITIAL.
 
@@ -816,40 +822,40 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     ENDIF.
 
     CALL FUNCTION 'GUI_DOWNLOAD'
-    EXPORTING
+      EXPORTING
 *       BIN_FILESIZE            =
-      filename                = filename
-      filetype                = 'ASC'
-      write_field_separator   = 'X'
-      HEADER                  = '00'
-      trunc_trailing_blanks   = 'X'
-      codepage                = get_encoding( 'UTF-8' )
-    TABLES
-    data_tab                = DATA
-          fieldnames              = fieldnames
-    EXCEPTIONS
-      file_write_error        = 1
-      no_batch                = 2
-      gui_refuse_filetransfer = 3
-      invalid_type            = 4
-      no_authority            = 5
-      unknown_error           = 6
-      header_not_allowed      = 7
-      separator_not_allowed   = 8
-      filesize_not_allowed    = 9
-      header_too_long         = 10
-      dp_error_create         = 11
-      dp_error_send           = 12
-      dp_error_write          = 13
-      unknown_dp_error        = 14
-      access_denied           = 15
-      dp_out_of_memory        = 16
-      disk_full               = 17
-      dp_timeout              = 18
-      file_not_found          = 19
-      dataprovider_exception  = 20
-      control_flush_error     = 21
-      OTHERS                  = 22.
+        filename                = filename
+        filetype                = 'ASC'
+        write_field_separator   = 'X'
+        header                  = '00'
+        trunc_trailing_blanks   = 'X'
+        codepage                = get_encoding( 'UTF-8' )
+      TABLES
+        data_tab                = data
+        fieldnames              = fieldnames
+      EXCEPTIONS
+        file_write_error        = 1
+        no_batch                = 2
+        gui_refuse_filetransfer = 3
+        invalid_type            = 4
+        no_authority            = 5
+        unknown_error           = 6
+        header_not_allowed      = 7
+        separator_not_allowed   = 8
+        filesize_not_allowed    = 9
+        header_too_long         = 10
+        dp_error_create         = 11
+        dp_error_send           = 12
+        dp_error_write          = 13
+        unknown_dp_error        = 14
+        access_denied           = 15
+        dp_out_of_memory        = 16
+        disk_full               = 17
+        dp_timeout              = 18
+        file_not_found          = 19
+        dataprovider_exception  = 20
+        control_flush_error     = 21
+        OTHERS                  = 22.
     IF sy-subrc <> 0.
 * Implement suitable error handling here
     ENDIF.
@@ -1397,72 +1403,6 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD GET_FCAT_BY_NAME.
-    CLEAR rt_fcat.
-    DATA lv_tabname TYPE tabname.
-    lv_tabname = |{ iv_tabname CASE = UPPER }|.
-    CONDENSE lv_tabname NO-GAPS.
-    DATA(lt_dfies) = get_fields_dfies( lv_tabname ).
-    IF lt_dfies IS INITIAL.
-      MESSAGE '给定的DDIC表名或者结构名不存在' TYPE 'S' DISPLAY LIKE 'E'.
-      RETURN.
-    ENDIF.
-    DATA lds_structure TYPE REF TO DATA.
-    CREATE DATA lds_structure TYPE (lv_tabname).
-    ASSIGN lds_structure->* TO FIELD-SYMBOL(<lds_structure>).
-    rt_fcat = get_fcat( <lds_structure> ).
-  ENDMETHOD.
-
-
-  METHOD get_fcat.
-    CLEAR rt_fcat.
-    DATA lo_type TYPE REF TO cl_abap_typedescr.
-    lo_type ?= cl_abap_typedescr=>describe_by_data( it_table ).
-    DATA t_data TYPE REF TO DATA.
-    FIELD-SYMBOLS <t_data> TYPE ANY .
-    CASE lo_type->type_kind.
-    WHEN cl_abap_typedescr=>typekind_table. "内表
-      CREATE DATA t_data LIKE it_table.
-      ASSIGN t_data->* TO <t_data>.
-    WHEN cl_abap_typedescr=>typekind_struct1."结构
-      CREATE DATA t_data LIKE TABLE OF it_table.
-      ASSIGN t_data->* TO <t_data>.
-    WHEN cl_abap_typedescr=>typekind_struct2."结构
-      CREATE DATA t_data LIKE TABLE OF it_table.
-      ASSIGN t_data->* TO <t_data>.
-    WHEN cl_abap_typedescr=>typekind_dref. "type ref to data
-      ASSIGN it_table->* TO <t_data> .
-      get_fcat( <t_data> ).
-    WHEN OTHERS.
-      RETURN.
-    ENDCASE.
-    "//---------------------------------------------------------------
-    FIELD-SYMBOLS <t_table> TYPE ANY TABLE.
-    ASSIGN <t_data> TO <t_table>.
-    TRY.
-      cl_salv_table=>factory( IMPORTING r_salv_table = DATA(salv_table)
-      CHANGING  t_table      = <t_table> ).
-      rt_fcat = cl_salv_controller_metadata=>get_lvc_fieldcatalog(
-      r_columns      = salv_table->get_columns( )
-      r_aggregations = salv_table->get_aggregations( )
-      ).
-    CATCH cx_root.
-      RETURN.
-    ENDTRY.
-    "//---------------------------------------------------------------
-    LOOP AT rt_fcat ASSIGNING FIELD-SYMBOL(<fcat>) .
-      <fcat>-tooltip = <fcat>-fieldname.
-      IF <fcat>-scrtext_s IS INITIAL .
-        <fcat>-scrtext_s  = <fcat>-fieldname.
-    ELSEIF <fcat>-scrtext_m IS INITIAL .
-        <fcat>-scrtext_m  = <fcat>-fieldname.
-    ELSEIF <fcat>-scrtext_l IS INITIAL.
-        <fcat>-scrtext_l  = <fcat>-fieldname.
-      ENDIF.
-    ENDLOOP.
-  ENDMETHOD.
-
-
   METHOD call_transation_by_line.
 
     ASSIGN COMPONENT fieldname OF STRUCTURE LINE TO FIELD-SYMBOL(<value>).
@@ -1595,7 +1535,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     ENDIF.
 
     CLEAR DATA.
-    DATA(fcat) = get_fcat( DATA ).
+    DATA(fcat) = fcat_from_data( DATA ).
 
 
     LOOP AT lt_excel INTO DATA(ls_excel).
@@ -1714,5 +1654,88 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
 
     ENDIF.
+  ENDMETHOD.
+
+
+METHOD get_user_parameter.
+  DATA:PARAMETER TYPE TABLE OF bapiparam.
+  DATA:RETURN TYPE TABLE OF bapiret2 .
+  CALL FUNCTION 'BAPI_USER_GET_DETAIL'
+  EXPORTING
+    username  = uname
+  TABLES
+    PARAMETER = PARAMETER
+    RETURN    = RETURN.
+  READ TABLE PARAMETER INTO DATA(l_parameter) WITH KEY parid = parid.
+  IF sy-subrc EQ 0.
+    r_parameter_value = l_parameter-parva.
+  ENDIF.
+
+ENDMETHOD.
+
+
+  METHOD FCAT_FROM_NAME.
+    CLEAR rt_fcat.
+    DATA lv_tabname TYPE tabname.
+    lv_tabname = |{ iv_tabname CASE = UPPER }|.
+    CONDENSE lv_tabname NO-GAPS.
+    DATA(lt_dfies) = get_fields_dfies( lv_tabname ).
+    IF lt_dfies IS INITIAL.
+      MESSAGE '给定的DDIC表名或者结构名不存在' TYPE 'S' DISPLAY LIKE 'E'.
+      RETURN.
+    ENDIF.
+    DATA lds_structure TYPE REF TO DATA.
+    CREATE DATA lds_structure TYPE (lv_tabname).
+    ASSIGN lds_structure->* TO FIELD-SYMBOL(<lds_structure>).
+    rt_fcat = fcat_from_data( <lds_structure> ).
+  ENDMETHOD.
+
+
+  METHOD fcat_from_data.
+    CLEAR rt_fcat.
+    DATA lo_type TYPE REF TO cl_abap_typedescr.
+    lo_type ?= cl_abap_typedescr=>describe_by_data( it_table ).
+    DATA t_data TYPE REF TO data.
+    FIELD-SYMBOLS <t_data> TYPE any .
+    CASE lo_type->type_kind.
+      WHEN cl_abap_typedescr=>typekind_table. "内表
+        CREATE DATA t_data LIKE it_table.
+        ASSIGN t_data->* TO <t_data>.
+      WHEN cl_abap_typedescr=>typekind_struct1."结构
+        CREATE DATA t_data LIKE TABLE OF it_table.
+        ASSIGN t_data->* TO <t_data>.
+      WHEN cl_abap_typedescr=>typekind_struct2."结构
+        CREATE DATA t_data LIKE TABLE OF it_table.
+        ASSIGN t_data->* TO <t_data>.
+      WHEN cl_abap_typedescr=>typekind_dref. "type ref to data
+        ASSIGN it_table->* TO <t_data> .
+        fcat_from_data( <t_data> ).
+      WHEN OTHERS.
+        RETURN.
+    ENDCASE.
+    "//---------------------------------------------------------------
+    FIELD-SYMBOLS <t_table> TYPE ANY TABLE.
+    ASSIGN <t_data> TO <t_table>.
+    TRY.
+        cl_salv_table=>factory( IMPORTING r_salv_table = DATA(salv_table)
+        CHANGING  t_table      = <t_table> ).
+        rt_fcat = cl_salv_controller_metadata=>get_lvc_fieldcatalog(
+        r_columns      = salv_table->get_columns( )
+        r_aggregations = salv_table->get_aggregations( )
+        ).
+      CATCH cx_root.
+        RETURN.
+    ENDTRY.
+    "//---------------------------------------------------------------
+    LOOP AT rt_fcat ASSIGNING FIELD-SYMBOL(<fcat>) .
+      <fcat>-tooltip = <fcat>-fieldname.
+      IF <fcat>-scrtext_s IS INITIAL .
+        <fcat>-scrtext_s  = <fcat>-fieldname.
+      ELSEIF <fcat>-scrtext_m IS INITIAL .
+        <fcat>-scrtext_m  = <fcat>-fieldname.
+      ELSEIF <fcat>-scrtext_l IS INITIAL.
+        <fcat>-scrtext_l  = <fcat>-fieldname.
+      ENDIF.
+    ENDLOOP.
   ENDMETHOD.
 ENDCLASS.
