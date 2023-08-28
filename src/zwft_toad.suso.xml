@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SUSO" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOBJ>
+    <OBJCT>ZWFT_TOAD</OBJCT>
+    <FIEL1>ACTVT</FIEL1>
+    <FIEL2>TABLE</FIEL2>
+    <OCLSS>BC_Z</OCLSS>
+   </TOBJ>
+   <TOBJT>
+    <LANGU>1</LANGU>
+    <OBJECT>ZWFT_TOAD</OBJECT>
+    <TTEXT>&lt; Shorttext for Object &gt;</TTEXT>
+   </TOBJT>
+   <TACTZ>
+    <TACTZ>
+     <BROBJ>ZWFT_TOAD</BROBJ>
+     <ACTVT>01</ACTVT>
+    </TACTZ>
+    <TACTZ>
+     <BROBJ>ZWFT_TOAD</BROBJ>
+     <ACTVT>02</ACTVT>
+    </TACTZ>
+    <TACTZ>
+     <BROBJ>ZWFT_TOAD</BROBJ>
+     <ACTVT>03</ACTVT>
+    </TACTZ>
+    <TACTZ>
+     <BROBJ>ZWFT_TOAD</BROBJ>
+     <ACTVT>06</ACTVT>
+    </TACTZ>
+   </TACTZ>
+  </asx:values>
+ </asx:abap>
+</abapGit>
