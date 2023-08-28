@@ -2,182 +2,182 @@
 *&  Include           ZLJW_ALV
 *&---------------------------------------------------------------------*
 
-DATA: GV_REPID LIKE SY-CPROG.
+DATA: gv_repid LIKE sy-cprog.
 
 *----------------------------------------------------------------------*
 * LOCAL CLASSES: Definition
 *----------------------------------------------------------------------*
-CLASS LCL_EVENT_REC_GRID DEFINITION.
+CLASS lcl_event_rec_grid DEFINITION.
 
   PUBLIC SECTION.
 
-  DATA: G_OBJECT_TEXT TYPE CHAR30.
+    DATA: g_object_text TYPE char30.
 
-  METHODS: CONSTRUCTOR
-  IMPORTING E_OBJECT_TEXT TYPE C.
+    METHODS: constructor
+      IMPORTING e_object_text TYPE c.
 
-  METHODS: HANDLE_DATA_CHANGED
-  FOR EVENT DATA_CHANGED OF CL_GUI_ALV_GRID
-  IMPORTING ER_DATA_CHANGED
-    E_ONF4
-    E_ONF4_BEFORE
-    E_ONF4_AFTER
-    E_UCOMM.
+    METHODS: handle_data_changed
+      FOR EVENT data_changed OF cl_gui_alv_grid
+      IMPORTING er_data_changed
+                e_onf4
+                e_onf4_before
+                e_onf4_after
+                e_ucomm.
 
-  METHODS: HANDLE_DATA_CHANGED_FINISHED
-  FOR EVENT DATA_CHANGED_FINISHED OF CL_GUI_ALV_GRID
-  IMPORTING E_MODIFIED
-    ET_GOOD_CELLS.
+    METHODS: handle_data_changed_finished
+      FOR EVENT data_changed_finished OF cl_gui_alv_grid
+      IMPORTING e_modified
+                et_good_cells.
 
-  METHODS: HANDLE_DOUBLE_CLICK
-  FOR EVENT DOUBLE_CLICK OF CL_GUI_ALV_GRID
-  IMPORTING E_ROW
-    E_COLUMN.
+    METHODS: handle_double_click
+      FOR EVENT double_click OF cl_gui_alv_grid
+      IMPORTING e_row
+                e_column.
 
-  METHODS: HANDLE_HOTSPOT_CLICK
-  FOR EVENT HOTSPOT_CLICK OF CL_GUI_ALV_GRID
-  IMPORTING E_ROW_ID
-    E_COLUMN_ID.
+    METHODS: handle_hotspot_click
+      FOR EVENT hotspot_click OF cl_gui_alv_grid
+      IMPORTING e_row_id
+                e_column_id.
 
-  METHODS: PRINT_TOP_OF_PAGE
-  FOR EVENT PRINT_TOP_OF_PAGE OF CL_GUI_ALV_GRID.
+    METHODS: print_top_of_page
+        FOR EVENT print_top_of_page OF cl_gui_alv_grid.
 
-  METHODS: HANDLE_ON_F4
-  FOR EVENT ONF4 OF CL_GUI_ALV_GRID
-  IMPORTING SENDER
-    E_FIELDNAME
-    E_FIELDVALUE
-    ES_ROW_NO
-    ER_EVENT_DATA
-    ET_BAD_CELLS
-    E_DISPLAY.
+    METHODS: handle_on_f4
+      FOR EVENT onf4 OF cl_gui_alv_grid
+      IMPORTING sender
+                e_fieldname
+                e_fieldvalue
+                es_row_no
+                er_event_data
+                et_bad_cells
+                e_display.
 
-  METHODS: HANDLE_TOOLBAR
-  FOR EVENT TOOLBAR OF CL_GUI_ALV_GRID
-  IMPORTING E_OBJECT
-    E_INTERACTIVE.
+    METHODS: handle_toolbar
+      FOR EVENT toolbar OF cl_gui_alv_grid
+      IMPORTING e_object
+                e_interactive.
 
-  METHODS: HANDLE_BEFORE_USER_COMMAND
-  FOR EVENT BEFORE_USER_COMMAND OF CL_GUI_ALV_GRID
-  IMPORTING E_UCOMM.
+    METHODS: handle_before_user_command
+      FOR EVENT before_user_command OF cl_gui_alv_grid
+      IMPORTING e_ucomm.
 
-  METHODS: HANDLE_USER_COMMAND
-  FOR EVENT USER_COMMAND OF CL_GUI_ALV_GRID
-  IMPORTING E_UCOMM.
+    METHODS: handle_user_command
+      FOR EVENT user_command OF cl_gui_alv_grid
+      IMPORTING e_ucomm.
 
-  METHODS: HANDLE_AFTER_USER_COMMAND
-  FOR EVENT AFTER_USER_COMMAND OF CL_GUI_ALV_GRID
-  IMPORTING E_UCOMM
-    E_SAVED
-    E_NOT_PROCESSED.
+    METHODS: handle_after_user_command
+      FOR EVENT after_user_command OF cl_gui_alv_grid
+      IMPORTING e_ucomm
+                e_saved
+                e_not_processed.
 
-  METHODS: HANDLE_BUTTON_CLICK
-  FOR EVENT BUTTON_CLICK OF CL_GUI_ALV_GRID
-  IMPORTING ES_COL_ID
-    ES_ROW_NO.
+    METHODS: handle_button_click
+      FOR EVENT button_click OF cl_gui_alv_grid
+      IMPORTING es_col_id
+                es_row_no.
 
-  METHODS: HANDLE_CONTEXT_MENU
-  FOR EVENT CONTEXT_MENU_REQUEST OF CL_GUI_ALV_GRID
-  IMPORTING E_OBJECT.
+    METHODS: handle_context_menu
+      FOR EVENT context_menu_request OF cl_gui_alv_grid
+      IMPORTING e_object.
 
 ENDCLASS.  "(LCL_EVENT_REC_GRID DEFINITION)
 
 *----------------------------------------------------------------------*
 * LOCAL CLASSES: Implementation
 *----------------------------------------------------------------------*
-CLASS LCL_EVENT_REC_GRID IMPLEMENTATION.
+CLASS lcl_event_rec_grid IMPLEMENTATION.
 
-  METHOD CONSTRUCTOR.
-    CALL METHOD SUPER->CONSTRUCTOR.
-    G_OBJECT_TEXT = E_OBJECT_TEXT.
+  METHOD constructor.
+    CALL METHOD super->constructor.
+    g_object_text = e_object_text.
   ENDMETHOD.                    "constructor
 
-  METHOD HANDLE_DATA_CHANGED.
-    PERFORM ALV_DATA_CHANGED IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          ER_DATA_CHANGED
-          E_ONF4
-          E_ONF4_BEFORE
-          E_ONF4_AFTER
-          E_UCOMM.
+  METHOD handle_data_changed.
+    PERFORM alv_data_changed IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          er_data_changed
+          e_onf4
+          e_onf4_before
+          e_onf4_after
+          e_ucomm.
   ENDMETHOD.                    "handle_data_changed
 
-  METHOD HANDLE_DATA_CHANGED_FINISHED.
-    PERFORM ALV_DATA_CHANGED_FINISHED IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          E_MODIFIED
-          ET_GOOD_CELLS.
+  METHOD handle_data_changed_finished.
+    PERFORM alv_data_changed_finished IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          e_modified
+          et_good_cells.
   ENDMETHOD.                    "HANDLE_DATA_CHANGED_FINISHED
 
-  METHOD HANDLE_DOUBLE_CLICK.
-    PERFORM ALV_DOUBLE_CLICK IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          E_ROW
-          E_COLUMN.
+  METHOD handle_double_click.
+    PERFORM alv_double_click IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          e_row
+          e_column.
   ENDMETHOD.    "HANDLE_DOUBLE_CLICK
 
-  METHOD HANDLE_HOTSPOT_CLICK.
-    PERFORM ALV_DOUBLE_CLICK IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          E_ROW_ID
-          E_COLUMN_ID.
+  METHOD handle_hotspot_click.
+    PERFORM alv_double_click IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          e_row_id
+          e_column_id.
   ENDMETHOD.                    "HANDLE_HOTSPOT_CLICK
 
-  METHOD PRINT_TOP_OF_PAGE.
-    PERFORM ALV_TOP_OF_PAGE IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT.
+  METHOD print_top_of_page.
+    PERFORM alv_top_of_page IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text.
   ENDMETHOD.                    "print_top_of_page
 
-  METHOD HANDLE_ON_F4.
-    PERFORM ALV_ON_F4 IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          SENDER
-          E_FIELDNAME
-          E_FIELDVALUE
-          ES_ROW_NO
-          ER_EVENT_DATA
-          ET_BAD_CELLS
-          E_DISPLAY.
+  METHOD handle_on_f4.
+    PERFORM alv_on_f4 IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          sender
+          e_fieldname
+          e_fieldvalue
+          es_row_no
+          er_event_data
+          et_bad_cells
+          e_display.
   ENDMETHOD.                                                "on_f4
 
-  METHOD HANDLE_TOOLBAR.
-    PERFORM ALV_TOOLBAR IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          E_OBJECT
-          E_INTERACTIVE.
+  METHOD handle_toolbar.
+    PERFORM alv_toolbar IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          e_object
+          e_interactive.
   ENDMETHOD.                    "handle_toolbar
 
-  METHOD HANDLE_BEFORE_USER_COMMAND.
-    PERFORM ALV_BEFORE_USER_COMMAND IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          E_UCOMM.
+  METHOD handle_before_user_command.
+    PERFORM alv_before_user_command IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          e_ucomm.
   ENDMETHOD.                    "HANDLE_BEFORE_USER_COMMAND
 
-  METHOD HANDLE_USER_COMMAND.
-    PERFORM ALV_USER_COMMAND IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          E_UCOMM.
+  METHOD handle_user_command.
+    PERFORM alv_user_command IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          e_ucomm.
   ENDMETHOD.                    "HANDLE_USER_COMMAND
 
-  METHOD HANDLE_AFTER_USER_COMMAND.
-    PERFORM ALV_AFTER_USER_COMMAND IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          E_UCOMM
-          E_SAVED
-          E_NOT_PROCESSED.
+  METHOD handle_after_user_command.
+    PERFORM alv_after_user_command IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          e_ucomm
+          e_saved
+          e_not_processed.
   ENDMETHOD.                    "HANDLE_AFTER_USER_COMMAND
 
-  METHOD HANDLE_BUTTON_CLICK.
-    PERFORM ALV_BUTTON_CLICK IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          ES_COL_ID
-          ES_ROW_NO.
+  METHOD handle_button_click.
+    PERFORM alv_button_click IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          es_col_id
+          es_row_no.
   ENDMETHOD.    "HANDLE_BUTTON_CLICK
 
-  METHOD HANDLE_CONTEXT_MENU.
-    PERFORM ALV_CONTEXT_MENU IN PROGRAM (GV_REPID) IF FOUND
-    USING G_OBJECT_TEXT
-          E_OBJECT.
+  METHOD handle_context_menu.
+    PERFORM alv_context_menu IN PROGRAM (gv_repid) IF FOUND
+    USING g_object_text
+          e_object.
   ENDMETHOD.    "HANDLE_CONTEXT_MENU
 
 ENDCLASS. "LCL_EVENT_REC_GRID IMPLEMENTATION
@@ -185,70 +185,70 @@ ENDCLASS. "LCL_EVENT_REC_GRID IMPLEMENTATION
 *----------------------------------------------------------------------*
 * ALV
 *----------------------------------------------------------------------*
-DATA: GO_GUI_CONT      TYPE REF TO CL_GUI_CONTAINER,
-      GO_CONT          TYPE REF TO CL_GUI_CUSTOM_CONTAINER,
-      GO_CONT1         TYPE REF TO CL_GUI_CUSTOM_CONTAINER,
-      GO_CONT2         TYPE REF TO CL_GUI_CUSTOM_CONTAINER,
-      GO_DOCK          TYPE REF TO CL_GUI_DOCKING_CONTAINER,
-      GO_SPLT          TYPE REF TO CL_GUI_SPLITTER_CONTAINER,
-      GO_SPLT1         TYPE REF TO CL_GUI_SPLITTER_CONTAINER,
-      GO_SPCONT        TYPE REF TO CL_GUI_CONTAINER,
-      GO_SPCONT0       TYPE REF TO CL_GUI_CONTAINER,
-      GO_SPCONT1       TYPE REF TO CL_GUI_CONTAINER,
-      GO_SPCONT2       TYPE REF TO CL_GUI_CONTAINER,
-      GO_DOCUMENT      TYPE REF TO CL_DD_DOCUMENT,
-      GO_GRID          TYPE REF TO CL_GUI_ALV_GRID,
-      GO_GRID1         TYPE REF TO CL_GUI_ALV_GRID,
-      GO_GRID2         TYPE REF TO CL_GUI_ALV_GRID,
-      GO_EDITOR        TYPE REF TO CL_GUI_TEXTEDIT,
-      GO_EVT_GRID      TYPE REF TO LCL_EVENT_REC_GRID,
-      GS_LAYOUT        TYPE LVC_S_LAYO,
-      GS_LAYOUT1       TYPE LVC_S_LAYO,
-      GS_LAYOUT2       TYPE LVC_S_LAYO,
-      GT_FCAT          TYPE LVC_T_FCAT WITH HEADER LINE,
-      GT_FCAT1         TYPE LVC_T_FCAT WITH HEADER LINE,
-      GT_FCAT2         TYPE LVC_T_FCAT WITH HEADER LINE,
-      GT_SORT          TYPE LVC_T_SORT WITH HEADER LINE,
-      GT_SORT1         TYPE LVC_T_SORT WITH HEADER LINE,
-      GT_SORT2         TYPE LVC_T_SORT WITH HEADER LINE,
-      GT_ALV_F4        TYPE LVC_T_F4   WITH HEADER LINE,
-      GS_STABLE        TYPE LVC_S_STBL,
-      GS_VARIANT       TYPE DISVARIANT,
-      GT_EXCLUDE       TYPE UI_FUNCTIONS WITH HEADER LINE,
-      GT_EX_UCOMM      TYPE TABLE OF SY-UCOMM WITH HEADER LINE.
+DATA: go_gui_cont TYPE REF TO cl_gui_container,
+      go_cont     TYPE REF TO cl_gui_custom_container,
+      go_cont1    TYPE REF TO cl_gui_custom_container,
+      go_cont2    TYPE REF TO cl_gui_custom_container,
+      go_dock     TYPE REF TO cl_gui_docking_container,
+      go_splt     TYPE REF TO cl_gui_splitter_container,
+      go_splt1    TYPE REF TO cl_gui_splitter_container,
+      go_spcont   TYPE REF TO cl_gui_container,
+      go_spcont0  TYPE REF TO cl_gui_container,
+      go_spcont1  TYPE REF TO cl_gui_container,
+      go_spcont2  TYPE REF TO cl_gui_container,
+      go_document TYPE REF TO cl_dd_document,
+      go_grid     TYPE REF TO cl_gui_alv_grid,
+      go_grid1    TYPE REF TO cl_gui_alv_grid,
+      go_grid2    TYPE REF TO cl_gui_alv_grid,
+      go_editor   TYPE REF TO cl_gui_textedit,
+      go_evt_grid TYPE REF TO lcl_event_rec_grid,
+      gs_layout   TYPE lvc_s_layo,
+      gs_layout1  TYPE lvc_s_layo,
+      gs_layout2  TYPE lvc_s_layo,
+      gt_fcat     TYPE lvc_t_fcat WITH HEADER LINE,
+      gt_fcat1    TYPE lvc_t_fcat WITH HEADER LINE,
+      gt_fcat2    TYPE lvc_t_fcat WITH HEADER LINE,
+      gt_sort     TYPE lvc_t_sort WITH HEADER LINE,
+      gt_sort1    TYPE lvc_t_sort WITH HEADER LINE,
+      gt_sort2    TYPE lvc_t_sort WITH HEADER LINE,
+      gt_alv_f4   TYPE lvc_t_f4   WITH HEADER LINE,
+      gs_stable   TYPE lvc_s_stbl,
+      gs_variant  TYPE disvariant,
+      gt_exclude  TYPE ui_functions WITH HEADER LINE,
+      gt_ex_ucomm TYPE TABLE OF sy-ucomm WITH HEADER LINE.
 
 *&---------------------------------------------------------------------*
 *&      Form  ALV_EX_TOOLBAR
 *&---------------------------------------------------------------------*
 *  ###### ##ư## ##Ÿ#### ### ##ư# ####Ѵ#.
 *----------------------------------------------------------------------*
-FORM ALV_EX_TOOLBAR USING P_TB_NAME.
+FORM alv_ex_toolbar USING p_tb_name.
 
-  FIELD-SYMBOLS: <TABLE> TYPE UI_FUNCTIONS.
+  FIELD-SYMBOLS: <table> TYPE ui_functions.
 
-  DATA: L_TB_NAME  LIKE FELD-NAME.
+  DATA: l_tb_name  LIKE feld-name.
 
-  GV_REPID = SY-CPROG.
+  gv_repid = sy-cprog.
 
-  CONCATENATE P_TB_NAME '[]' INTO  L_TB_NAME.
-  ASSIGN     (L_TB_NAME)    TO <TABLE>.
+  CONCATENATE p_tb_name '[]' INTO  l_tb_name.
+  ASSIGN     (l_tb_name)    TO <table>.
 
-  REFRESH: <TABLE>.
+  REFRESH: <table>.
 
-  PERFORM ALV_EXCLUDE_TB_1
-  TABLES <TABLE>
+  PERFORM alv_exclude_tb_1
+  TABLES <table>
 *   USING: CL_GUI_ALV_GRID=>mc_fc_excl_all.      "#### #######
   USING:
 *      CL_GUI_ALV_GRID=>mc_fc_detail,            "#######
-        CL_GUI_ALV_GRID=>MC_FC_REFRESH,           "Refresh
-        CL_GUI_ALV_GRID=>MC_FC_CHECK,
+        cl_gui_alv_grid=>mc_fc_refresh,           "Refresh
+        cl_gui_alv_grid=>mc_fc_check,
 
-        CL_GUI_ALV_GRID=>MC_FC_LOC_CUT,           "####Ÿ #߶󳻱#
+        cl_gui_alv_grid=>mc_fc_loc_cut,           "####Ÿ #߶󳻱#
 *      CL_GUI_ALV_GRID=>MC_FC_LOC_COPY,          "####Ÿ ####
 *      CL_GUI_ALV_GRID=>MC_MB_PASTE
 *      CL_GUI_ALV_GRID=>MC_FC_LOC_PASTE,         "####Ÿ #ٿ##ֱ#
-        CL_GUI_ALV_GRID=>MC_FC_LOC_PASTE_NEW_ROW, "Paste new Row
-        CL_GUI_ALV_GRID=>MC_FC_LOC_UNDO,          "########
+        cl_gui_alv_grid=>mc_fc_loc_paste_new_row, "Paste new Row
+        cl_gui_alv_grid=>mc_fc_loc_undo,          "########
 
 *      CL_GUI_ALV_GRID=>MC_FG_EDIT,              "edit###### ##ư# #### ###
 *      CL_GUI_ALV_GRID=>MC_FC_LOC_APPEND_ROW,    "## ####
@@ -256,8 +256,8 @@ FORM ALV_EX_TOOLBAR USING P_TB_NAME.
 *      CL_GUI_ALV_GRID=>MC_FC_LOC_DELETE_ROW,    "## ###
 *      CL_GUI_ALV_GRID=>MC_FC_LOC_COPY_ROW,      "## ī##
 
-        CL_GUI_ALV_GRID=>MC_FC_GRAPH,             "#׷###
-        CL_GUI_ALV_GRID=>MC_FC_INFO.              "Info
+        cl_gui_alv_grid=>mc_fc_graph,             "#׷###
+        cl_gui_alv_grid=>mc_fc_info.              "Info
 
 *      CL_GUI_ALV_GRID=>MC_MB_VIEW,              "
 *      CL_GUI_ALV_GRID=>MC_FC_VIEWS,             "####Ʈ####    '&VIEW'
@@ -340,35 +340,35 @@ ENDFORM.                    " ALV_EX_TOOLBAR
 *&---------------------------------------------------------------------*
 *  ###### ##ư## ##Ÿ#### ### ##ư# ####Ѵ#.
 *----------------------------------------------------------------------*
-FORM ALV_EX_TOOLBAR_NO USING P_TB_NAME.
+FORM alv_ex_toolbar_no USING p_tb_name.
 
-  FIELD-SYMBOLS: <TABLE> TYPE UI_FUNCTIONS.
+  FIELD-SYMBOLS: <table> TYPE ui_functions.
 
-  DATA: L_TB_NAME  LIKE FELD-NAME.
+  DATA: l_tb_name  LIKE feld-name.
 
-  GV_REPID = SY-CPROG.
+  gv_repid = sy-cprog.
 
-  CONCATENATE P_TB_NAME '[]' INTO  L_TB_NAME.
-  ASSIGN     (L_TB_NAME)    TO <TABLE>.
+  CONCATENATE p_tb_name '[]' INTO  l_tb_name.
+  ASSIGN     (l_tb_name)    TO <table>.
 
-  REFRESH: <TABLE>.
+  REFRESH: <table>.
 
-  PERFORM ALV_EXCLUDE_TB_1
-  TABLES <TABLE>
-  USING  CL_GUI_ALV_GRID=>MC_FC_EXCL_ALL.      "#### #######
+  PERFORM alv_exclude_tb_1
+  TABLES <table>
+  USING  cl_gui_alv_grid=>mc_fc_excl_all.      "#### #######
 
 ENDFORM.                    " ALV_EX_TOOLBAR_NO
 
 *&---------------------------------------------------------------------*
 *&      Form  ALV_EXCLUDE_TB_1
 *&---------------------------------------------------------------------*
-FORM ALV_EXCLUDE_TB_1  TABLES   PT_EX TYPE UI_FUNCTIONS
-USING    PV_VALUE.
+FORM alv_exclude_tb_1  TABLES   pt_ex TYPE ui_functions
+USING    pv_value.
 
-  DATA: LS_EXCLUDE TYPE UI_FUNC.
+  DATA: ls_exclude TYPE ui_func.
 
-  LS_EXCLUDE = PV_VALUE.
-  APPEND LS_EXCLUDE TO PT_EX.
+  ls_exclude = pv_value.
+  APPEND ls_exclude TO pt_ex.
 
 ENDFORM.                    " ALV_EXCLUDE_TB_1
 
@@ -377,32 +377,32 @@ ENDFORM.                    " ALV_EXCLUDE_TB_1
 *&---------------------------------------------------------------------*
 *  #### #޴### ######Ų##
 *&---------------------------------------------------------------------*
-FORM ALV_EXEC_TOOLBAR_FCODE USING PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-      P_LVC_FCODE.
+FORM alv_exec_toolbar_fcode USING po_grid TYPE REF TO cl_gui_alv_grid
+      p_lvc_fcode.
 
-  DATA: L_SLIS_FCODE LIKE SY-UCOMM.
+  DATA: l_slis_fcode LIKE sy-ucomm.
 
 *  P_LVC_FCODE = '&PRINT_BACK_PREVIEW'.   " '&RNT'  '%SC' '&PRINT_BACK_PREVIEW' '&VIEW'
 
-  CALL METHOD CL_GUI_ALV_GRID=>TRANSFER_FCODE_LVC_TO_SLIS
-  EXPORTING
-*      IT_FCODES_LVC  =
-    I_FCODE_LVC    = P_LVC_FCODE
-  IMPORTING
-*      ET_FCODES_SLIS =
-    E_FCODE_SLIS   = L_SLIS_FCODE
-  EXCEPTIONS
-    NO_MATCH_FOUND = 1
-    OTHERS         = 2          .
+  CALL METHOD cl_gui_alv_grid=>transfer_fcode_lvc_to_slis
+    EXPORTING
+*     IT_FCODES_LVC  =
+      i_fcode_lvc    = p_lvc_fcode
+    IMPORTING
+*     ET_FCODES_SLIS =
+      e_fcode_slis   = l_slis_fcode
+    EXCEPTIONS
+      no_match_found = 1
+      OTHERS         = 2.
 
-  IF SY-SUBRC <> 0.
-    MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-    WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  IF sy-subrc <> 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   ENDIF.
 
-  CALL METHOD PO_GRID->SET_FUNCTION_CODE
-  CHANGING
-    C_UCOMM = L_SLIS_FCODE.
+  CALL METHOD po_grid->set_function_code
+    CHANGING
+      c_ucomm = l_slis_fcode.
 
 
 ENDFORM.                    " ALV_EXEC_TOOLBAR_FCODE
@@ -410,64 +410,64 @@ ENDFORM.                    " ALV_EXEC_TOOLBAR_FCODE
 *&---------------------------------------------------------------------*
 *&      Form  ALV_FIELDCAT_MERGE
 *&---------------------------------------------------------------------*
-FORM ALV_FIELDCAT_MERGE TABLES PT_M     TYPE TABLE
-  PT_FCAT  TYPE LVC_T_FCAT
-USING  P_IT_NAME.
+FORM alv_fieldcat_merge TABLES pt_m     TYPE table
+  pt_fcat  TYPE lvc_t_fcat
+USING  p_it_name.
 
-  CLEAR: PT_FCAT, PT_FCAT[].
+  CLEAR: pt_fcat, pt_fcat[].
 
-  DATA: LT_FCAT     TYPE SLIS_T_FIELDCAT_ALV WITH HEADER LINE.
-  DATA: LV_IT_NAME  TYPE SLIS_TABNAME.
+  DATA: lt_fcat     TYPE slis_t_fieldcat_alv WITH HEADER LINE.
+  DATA: lv_it_name  TYPE slis_tabname.
 
-  GV_REPID   = SY-CPROG.
-  LV_IT_NAME = P_IT_NAME.
+  gv_repid   = sy-cprog.
+  lv_it_name = p_it_name.
 
 * IT ##### ###### ###
   CALL FUNCTION 'REUSE_ALV_FIELDCATALOG_MERGE'
-  EXPORTING
-    I_PROGRAM_NAME     = GV_REPID
-    I_INTERNAL_TABNAME = LV_IT_NAME
-    I_INCLNAME         = GV_REPID
+    EXPORTING
+      i_program_name     = gv_repid
+      i_internal_tabname = lv_it_name
+      i_inclname         = gv_repid
 *     I_BYPASSING_BUFFER = ' '
-  CHANGING
-    CT_FIELDCAT        = LT_FCAT[].
+    CHANGING
+      ct_fieldcat        = lt_fcat[].
 
 * ALV Control##### ##ȯ
   CALL FUNCTION 'LVC_TRANSFER_FROM_SLIS'
-  EXPORTING
-    IT_FIELDCAT_ALV = LT_FCAT[]
-  IMPORTING
-    ET_FIELDCAT_LVC = PT_FCAT[]
-  TABLES
-    IT_DATA         = PT_M.
+    EXPORTING
+      it_fieldcat_alv = lt_fcat[]
+    IMPORTING
+      et_fieldcat_lvc = pt_fcat[]
+    TABLES
+      it_data         = pt_m.
 
 ENDFORM.                    " ALV_FIELDCAT_MERGE
 
 *&---------------------------------------------------------------------*
 *&      Form  ALV_FCAT_MERGE_LVC
 *&---------------------------------------------------------------------*
-FORM ALV_FCAT_MERGE_LVC TABLES PT_FIELDCAT TYPE LVC_T_FCAT
-USING  P_STR_NAME.
+FORM alv_fcat_merge_lvc TABLES pt_fieldcat TYPE lvc_t_fcat
+USING  p_str_name.
 
-  GV_REPID = SY-CPROG.
+  gv_repid = sy-cprog.
 
   CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
-  EXPORTING
-*     I_BUFFER_ACTIVE              =
-    I_STRUCTURE_NAME             = P_STR_NAME
-*     I_CLIENT_NEVER_DISPLAY       = 'X'
-*     I_BYPASSING_BUFFER           =
-*     I_INTERNAL_TABNAME           =
-  CHANGING
-    CT_FIELDCAT                  = PT_FIELDCAT[]
-  EXCEPTIONS
-    INCONSISTENT_INTERFACE       = 1
-    PROGRAM_ERROR                = 2
-    OTHERS                       = 3            .
+    EXPORTING
+*     I_BUFFER_ACTIVE        =
+      i_structure_name       = p_str_name
+*     I_CLIENT_NEVER_DISPLAY = 'X'
+*     I_BYPASSING_BUFFER     =
+*     I_INTERNAL_TABNAME     =
+    CHANGING
+      ct_fieldcat            = pt_fieldcat[]
+    EXCEPTIONS
+      inconsistent_interface = 1
+      program_error          = 2
+      OTHERS                 = 3.
 
-  IF SY-SUBRC <> 0.
-    MESSAGE ID SY-MSGID TYPE 'I' NUMBER SY-MSGNO DISPLAY LIKE SY-MSGTY
-    WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  IF sy-subrc <> 0.
+    MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno DISPLAY LIKE sy-msgty
+    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   ENDIF.
 
 ENDFORM.                    " ALV_FCAT_MERGE_LVC
@@ -475,63 +475,63 @@ ENDFORM.                    " ALV_FCAT_MERGE_LVC
 *&---------------------------------------------------------------------*
 *&      Form  ALV_GET_CURSOR
 *&---------------------------------------------------------------------*
-FORM ALV_GET_CURSOR USING    PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-CHANGING P_ROW_ID    "LVC_S_ROW-INDEX
-  P_COL_NM.   "LVC_S_COL-FIELDNAME
+FORM alv_get_cursor USING    po_grid TYPE REF TO cl_gui_alv_grid
+CHANGING p_row_id    "LVC_S_ROW-INDEX
+  p_col_nm.   "LVC_S_COL-FIELDNAME
 
-  DATA: L_ROW TYPE I,
-        L_VALUE(255),
-        L_COL TYPE I,
-        LS_ROW TYPE LVC_S_ROW,
-        LS_COL TYPE LVC_S_COL,
-        LS_ROW_NO TYPE LVC_S_ROID.
+  DATA: l_row        TYPE i,
+        l_value(255),
+        l_col        TYPE i,
+        ls_row       TYPE lvc_s_row,
+        ls_col       TYPE lvc_s_col,
+        ls_row_no    TYPE lvc_s_roid.
 
-  CLEAR: P_ROW_ID, P_COL_NM.
+  CLEAR: p_row_id, p_col_nm.
 
-  CALL METHOD PO_GRID->GET_CURRENT_CELL
-  IMPORTING
-    E_ROW     = L_ROW
-    E_VALUE   = L_VALUE
-    E_COL     = L_COL
-    ES_ROW_ID = LS_ROW
-    ES_COL_ID = LS_COL
-    ES_ROW_NO = LS_ROW_NO.
+  CALL METHOD po_grid->get_current_cell
+    IMPORTING
+      e_row     = l_row
+      e_value   = l_value
+      e_col     = l_col
+      es_row_id = ls_row
+      es_col_id = ls_col
+      es_row_no = ls_row_no.
 
-  IF LS_ROW-ROWTYPE IS INITIAL.
-    P_ROW_ID = LS_ROW-INDEX.
+  IF ls_row-rowtype IS INITIAL.
+    p_row_id = ls_row-index.
   ENDIF.
 
-  P_COL_NM = LS_COL-FIELDNAME.
+  p_col_nm = ls_col-fieldname.
 
 ENDFORM.                    " ALV_GET_CURSOR
 
 *&---------------------------------------------------------------------*
 *&      Form  ALV_LAYOUT_INIT
 *&---------------------------------------------------------------------*
-FORM ALV_LAYOUT_INIT USING    P_EDIT    "####### ###뿩##
-      P_COLOR   "######## ###뿩##
-CHANGING PS_LAYOUT TYPE LVC_S_LAYO.
+FORM alv_layout_init USING    p_edit    "####### ###뿩##
+      p_color   "######## ###뿩##
+CHANGING ps_layout TYPE lvc_s_layo.
 
-  CLEAR PS_LAYOUT.
+  CLEAR ps_layout.
 
-  PS_LAYOUT-DETAILINIT = 'X'.        "Detail#### NULL#̶### ######
-  PS_LAYOUT-SEL_MODE   = 'D'.        "CELL #### ####
-  PS_LAYOUT-NO_ROWINS  = 'X'.
-  PS_LAYOUT-NO_ROWMOVE = 'X'.
-  PS_LAYOUT-SMALLTITLE = 'X'.
-  PS_LAYOUT-FRONTEND   = 'X'.        "ALV ###: #### #Ǵ# ũ###### #Ǵ# ALV
+*  ps_layout-detailinit = 'X'.        "Detail#### NULL#̶### ######
+  ps_layout-sel_mode   = 'D'.        "CELL #### ####
+*  ps_layout-no_rowins  = 'X'.
+*  ps_layout-no_rowmove = 'X'.
+*  ps_layout-smalltitle = 'X'.
+*  ps_layout-frontend   = 'X'.        "ALV ###: #### #Ǵ# ũ###### #Ǵ# ALV
 
-  IF P_EDIT = 'X'.
-    PS_LAYOUT-STYLEFNAME = 'CELLTAB'.  "Input/Output ####
+  IF p_edit = 'X'.
+    ps_layout-stylefname = 'CELLTAB'.  "Input/Output ####
   ENDIF.
 
-  IF P_COLOR = 'X'.
-    PS_LAYOUT-CTAB_FNAME = 'CELLCOL'.  "Color ####
+  IF p_color = 'X'.
+    ps_layout-ctab_fname = 'CELLCOL'.  "Color ####
   ENDIF.
 
-  PS_LAYOUT-INFO_FNAME = 'ROW_COLOR'.  "###### ####
+  ps_layout-info_fname = 'ROW_COLOR'.  "###### ####
 
-  GS_VARIANT-REPORT    = SY-CPROG.     "Default Variant Set
+  gs_variant-report    = sy-cprog.     "Default Variant Set
 
 *  PS_LAYOUT-EDIT       = 'X'.         "##ü ########ϰ#
 *  PS_LAYOUT-ZEBRA      = 'X'.         "#Ѷ##ξ# ###ϰ#,###### ####, SORT#ϸ# #### #ʴ°# ###.
@@ -553,85 +553,85 @@ ENDFORM.                    " ALV_LAYOUT_INIT
 *         'S' : Sort, SUMMARY ## #### REFRESH ####
 *         'A' : Fieldcat #### + Sort, SUMMARY ####
 *----------------------------------------------------------------------*
-FORM ALV_REFRESH USING PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-      PT_FCAT TYPE LVC_T_FCAT
-      P_GB.
+FORM alv_refresh USING po_grid TYPE REF TO cl_gui_alv_grid
+      pt_fcat TYPE lvc_t_fcat
+      p_gb.
 
-  IF PO_GRID IS INITIAL. EXIT. ENDIF.
+  IF po_grid IS INITIAL. EXIT. ENDIF.
 
-  DATA: LS_STBL TYPE LVC_S_STBL,
-        L_SOFT_REFRESH.
+  DATA: ls_stbl        TYPE lvc_s_stbl,
+        l_soft_refresh.
 
 * Fieldcat ###̰# #####ǰų# #Ͽ## ####
-  CASE P_GB.
-  WHEN 'F' OR 'A'.
-    CALL METHOD PO_GRID->SET_FRONTEND_FIELDCATALOG
-    EXPORTING
-      IT_FIELDCATALOG = PT_FCAT[].
+  CASE p_gb.
+    WHEN 'F' OR 'A'.
+      CALL METHOD po_grid->set_frontend_fieldcatalog
+        EXPORTING
+          it_fieldcatalog = pt_fcat[].
   ENDCASE.
 
 * Sort, SUMMARY#### REFRESH
-  CASE P_GB.
-  WHEN 'S' OR 'A'.
-    L_SOFT_REFRESH = ''.
-  WHEN OTHERS.
-    L_SOFT_REFRESH = 'X'.
+  CASE p_gb.
+    WHEN 'S' OR 'A'.
+      l_soft_refresh = ''.
+    WHEN OTHERS.
+      l_soft_refresh = 'X'.
   ENDCASE.
 
-  LS_STBL-ROW = 'X'.
-  LS_STBL-COL = 'X'.
+  ls_stbl-row = 'X'.
+  ls_stbl-col = 'X'.
 
-  CALL METHOD PO_GRID->REFRESH_TABLE_DISPLAY
-  EXPORTING
-    IS_STABLE      = LS_STBL
-    I_SOFT_REFRESH = L_SOFT_REFRESH.
+  CALL METHOD po_grid->refresh_table_display
+    EXPORTING
+      is_stable      = ls_stbl
+      i_soft_refresh = l_soft_refresh.
 
 ENDFORM.                    " ALV_REFRESH
 
 *&---------------------------------------------------------------------*
 *&      Form  ALV_MODI_CELL
 *&---------------------------------------------------------------------*
-FORM ALV_MODI_CELL USING PR_DATA_CHANGED  TYPE REF TO CL_ALV_CHANGED_DATA_PROTOCOL
-      P_ROW
-      P_FIELDNAME
-      P_VALUE.
+FORM alv_modi_cell USING pr_data_changed  TYPE REF TO cl_alv_changed_data_protocol
+      p_row
+      p_fieldname
+      p_value.
 
-  CALL METHOD PR_DATA_CHANGED->MODIFY_CELL
-  EXPORTING
-    I_ROW_ID    = P_ROW
-    I_FIELDNAME = P_FIELDNAME
-    I_VALUE     = P_VALUE.
+  CALL METHOD pr_data_changed->modify_cell
+    EXPORTING
+      i_row_id    = p_row
+      i_fieldname = p_fieldname
+      i_value     = p_value.
 
 ENDFORM.                    " ALV_MODI_CELL
 
 *&---------------------------------------------------------------------*
 *&      Form  ALV_RELOAD
 *&---------------------------------------------------------------------*
-FORM ALV_RELOAD.
+FORM alv_reload.
 
-  IF GO_GRID    IS NOT INITIAL. CALL METHOD GO_GRID->FREE.    ENDIF.
+  IF go_grid    IS NOT INITIAL. CALL METHOD go_grid->free.    ENDIF.
 *  IF GO_GRID1   IS NOT INITIAL. CALL METHOD GO_GRID1->FREE.   ENDIF.
 *  IF GO_GRID2   IS NOT INITIAL. CALL METHOD GO_GRID2->FREE.   ENDIF.
 
 *  IF GO_DOCUMENT IS NOT INITIAL. CALL METHOD GO_DOCUMENT->INITIALIZE_DOCUMENT. ENDIF.
 
-  IF GO_SPCONT  IS NOT INITIAL. CALL METHOD GO_SPCONT->FREE.  ENDIF.
+  IF go_spcont  IS NOT INITIAL. CALL METHOD go_spcont->free.  ENDIF.
 *  IF GO_SPCONT1 IS NOT INITIAL. CALL METHOD GO_SPCONT1->FREE. ENDIF.
 *  IF GO_SPCONT2 IS NOT INITIAL. CALL METHOD GO_SPCONT2->FREE. ENDIF.
 *  IF GO_SPLT    IS NOT INITIAL. CALL METHOD GO_SPLT->FREE.    ENDIF.
 *  IF GO_SPLT1   IS NOT INITIAL. CALL METHOD GO_SPLT1->FREE.   ENDIF.
 
-  IF GO_DOCK    IS NOT INITIAL. CALL METHOD GO_DOCK->FREE.    ENDIF.
-  IF GO_CONT    IS NOT INITIAL. CALL METHOD GO_CONT->FREE.    ENDIF.
+  IF go_dock    IS NOT INITIAL. CALL METHOD go_dock->free.    ENDIF.
+  IF go_cont    IS NOT INITIAL. CALL METHOD go_cont->free.    ENDIF.
 *  IF GO_CONT1   IS NOT INITIAL. CALL METHOD GO_CONT1->FREE.   ENDIF.
 *  IF GO_CONT2   IS NOT INITIAL. CALL METHOD GO_CONT2->FREE.   ENDIF.
 
-  CLEAR: GO_DOCK,
-  GO_CONT,    "GO_CONT1,   GO_CONT2,   GO_CONT3,   GO_CONT4,
-  GO_SPLT,                                           "GO_SPLT1,
-  GO_SPCONT,  "GO_SPCONT1, GO_SPCONT2, GO_SPCONT3, GO_SPCONT4,
+  CLEAR: go_dock,
+  go_cont,    "GO_CONT1,   GO_CONT2,   GO_CONT3,   GO_CONT4,
+  go_splt,                                           "GO_SPLT1,
+  go_spcont,  "GO_SPCONT1, GO_SPCONT2, GO_SPCONT3, GO_SPCONT4,
   "GO_SPCONT5, GO_SPCONT6, GO_SPCONT7, GO_SPCONT8,
-  GO_GRID.    "GO_GRID1,   GO_GRID2,   GO_GRID3,   GO_GRID4,
+  go_grid.    "GO_GRID1,   GO_GRID2,   GO_GRID3,   GO_GRID4,
   "GO_GRID5,   GO_GRID6,   GO_GRID7,   GO_GRID8,
   "GO_DOCUMENT.
 
@@ -642,43 +642,43 @@ ENDFORM.                    " ALV_RELOAD
 *&---------------------------------------------------------------------*
 *&      Form  ALV_SET_CURSOR
 *&---------------------------------------------------------------------*
-FORM ALV_SET_CURSOR USING PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-      P_ROWID
-      P_COLNM.
+FORM alv_set_cursor USING po_grid TYPE REF TO cl_gui_alv_grid
+      p_rowid
+      p_colnm.
 
-  DATA: LS_ROW TYPE LVC_S_ROW,
-        LS_COL TYPE LVC_S_COL.
+  DATA: ls_row TYPE lvc_s_row,
+        ls_col TYPE lvc_s_col.
 
-  LS_ROW-INDEX     = P_ROWID.
-  LS_COL-FIELDNAME = P_COLNM.
+  ls_row-index     = p_rowid.
+  ls_col-fieldname = p_colnm.
 
 *  CALL METHOD PO_GRID->SET_SCROLL_INFO_VIA_ID
 *    EXPORTING
 *      IS_ROW_INFO = LS_ROW
 *      IS_COL_INFO = LS_COL.
 
-  CALL METHOD PO_GRID->SET_CURRENT_CELL_VIA_ID
-  EXPORTING
-    IS_ROW_ID    = LS_ROW
-    IS_COLUMN_ID = LS_COL.
+  CALL METHOD po_grid->set_current_cell_via_id
+    EXPORTING
+      is_row_id    = ls_row
+      is_column_id = ls_col.
 
-  CALL METHOD CL_GUI_ALV_GRID=>SET_FOCUS
-  EXPORTING
-    CONTROL = PO_GRID.
+  CALL METHOD cl_gui_alv_grid=>set_focus
+    EXPORTING
+      control = po_grid.
 
 ENDFORM.                    " ALV_SET_CURSOR
 
 *&---------------------------------------------------------------------*
 *&      Form  ALV_SET_DDLB
 *&---------------------------------------------------------------------*
-FORM ALV_SET_DDLB USING PO_GRID TYPE REF TO CL_GUI_ALV_GRID
+FORM alv_set_ddlb USING po_grid TYPE REF TO cl_gui_alv_grid
 *                        PT_DROP TYPE        LVC_T_DROP.
-      PT_DRAL TYPE        LVC_T_DRAL.
+      pt_dral TYPE        lvc_t_dral.
 
-  CALL METHOD PO_GRID->SET_DROP_DOWN_TABLE
-  EXPORTING
-*      IT_DROP_DOWN =       PT_DROP[].
-    IT_DROP_DOWN_ALIAS = PT_DRAL[].
+  CALL METHOD po_grid->set_drop_down_table
+    EXPORTING
+*     IT_DROP_DOWN       = PT_DROP[].
+      it_drop_down_alias = pt_dral[].
 
 ENDFORM.                    " ALV_SET_DDLB
 
@@ -687,36 +687,36 @@ ENDFORM.                    " ALV_SET_DDLB
 *&---------------------------------------------------------------------*
 *  ###õ# ###### MARK #ʵ带 'X' ó###Ѵ#. SY-TABIX## ###õ# #### #Ǽ#
 *----------------------------------------------------------------------*
-FORM ALV_SET_MARK USING PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-      PT_ITAB TYPE STANDARD TABLE.
+FORM alv_set_mark USING po_grid TYPE REF TO cl_gui_alv_grid
+      pt_itab TYPE STANDARD TABLE.
 
-  FIELD-SYMBOLS: <FS_WA> TYPE ANY,
-  <FS>.
+  FIELD-SYMBOLS: <fs_wa> TYPE any,
+                 <fs>.
 
-  DATA: LT_ROW  TYPE LVC_T_ROW WITH HEADER LINE,
-        L_TABIX TYPE SY-TABIX.
+  DATA: lt_row  TYPE lvc_t_row WITH HEADER LINE,
+        l_tabix TYPE sy-tabix.
 
-  CALL METHOD PO_GRID->GET_SELECTED_ROWS
-  IMPORTING
-    ET_INDEX_ROWS = LT_ROW[].
+  CALL METHOD po_grid->get_selected_rows
+    IMPORTING
+      et_index_rows = lt_row[].
 
-  LOOP AT PT_ITAB ASSIGNING <FS_WA>.
-    ASSIGN COMPONENT 'MARK' OF STRUCTURE <FS_WA> TO <FS>.
-    IF <FS> = ' '. CONTINUE. ENDIF.
-    <FS> = ' '.
-    MODIFY PT_ITAB FROM <FS_WA>.
+  LOOP AT pt_itab ASSIGNING <fs_wa>.
+    ASSIGN COMPONENT 'MARK' OF STRUCTURE <fs_wa> TO <fs>.
+    IF <fs> = ' '. CONTINUE. ENDIF.
+    <fs> = ' '.
+    MODIFY pt_itab FROM <fs_wa>.
   ENDLOOP.
 
-  LOOP AT LT_ROW WHERE ROWTYPE = ' '.
-    READ TABLE PT_ITAB ASSIGNING <FS_WA> INDEX LT_ROW-INDEX.
-    IF SY-SUBRC <> 0. CONTINUE. ENDIF.
-    ASSIGN COMPONENT 'MARK' OF STRUCTURE <FS_WA> TO <FS>.
-    <FS> = 'X'.
-    MODIFY PT_ITAB FROM <FS_WA> INDEX LT_ROW-INDEX.
-    L_TABIX = L_TABIX + 1.
+  LOOP AT lt_row WHERE rowtype = ' '.
+    READ TABLE pt_itab ASSIGNING <fs_wa> INDEX lt_row-index.
+    IF sy-subrc <> 0. CONTINUE. ENDIF.
+    ASSIGN COMPONENT 'MARK' OF STRUCTURE <fs_wa> TO <fs>.
+    <fs> = 'X'.
+    MODIFY pt_itab FROM <fs_wa> INDEX lt_row-index.
+    l_tabix = l_tabix + 1.
   ENDLOOP.
 
-  SY-TABIX = L_TABIX.
+  sy-tabix = l_tabix.
 
 ENDFORM.                    " ALV_SET_MARK
 
@@ -725,33 +725,33 @@ ENDFORM.                    " ALV_SET_MARK
 *&---------------------------------------------------------------------*
 *  ####Ŭ#### ### ROW_COLOR = 'C500'. ó###Ѵ#. & REFRESH
 *----------------------------------------------------------------------*
-FORM ALV_SET_ROW_COLOR USING    PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-      PT_FCAT TYPE        LVC_T_FCAT
-      P_TABIX
-CHANGING CT_M    TYPE STANDARD TABLE.
+FORM alv_set_row_color USING    po_grid TYPE REF TO cl_gui_alv_grid
+      pt_fcat TYPE        lvc_t_fcat
+      p_tabix
+CHANGING ct_m    TYPE STANDARD TABLE.
 
-  DATA: L_FNAME(30).
+  DATA: l_fname(30).
 
-  FIELD-SYMBOLS: <LFS_WA> TYPE ANY,
-  <LFS>.
+  FIELD-SYMBOLS: <lfs_wa> TYPE any,
+                 <lfs>.
 
-  L_FNAME = 'ROW_COLOR'.
+  l_fname = 'ROW_COLOR'.
 
-  READ TABLE CT_M ASSIGNING <LFS_WA> WITH KEY (L_FNAME) = 'C500'.
-  IF SY-SUBRC = 0.
-    ASSIGN COMPONENT L_FNAME OF STRUCTURE <LFS_WA> TO <LFS>.
-    <LFS> = ''.
-    MODIFY CT_M FROM <LFS_WA> INDEX SY-TABIX TRANSPORTING (L_FNAME).
+  READ TABLE ct_m ASSIGNING <lfs_wa> WITH KEY (l_fname) = 'C500'.
+  IF sy-subrc = 0.
+    ASSIGN COMPONENT l_fname OF STRUCTURE <lfs_wa> TO <lfs>.
+    <lfs> = ''.
+    MODIFY ct_m FROM <lfs_wa> INDEX sy-tabix TRANSPORTING (l_fname).
   ENDIF.
 
-  READ TABLE CT_M ASSIGNING <LFS_WA> INDEX P_TABIX.
-  IF SY-SUBRC = 0.
-    ASSIGN COMPONENT L_FNAME OF STRUCTURE <LFS_WA> TO <LFS>.
-    <LFS> = 'C500'.
-    MODIFY CT_M FROM <LFS_WA> INDEX SY-TABIX TRANSPORTING (L_FNAME).
+  READ TABLE ct_m ASSIGNING <lfs_wa> INDEX p_tabix.
+  IF sy-subrc = 0.
+    ASSIGN COMPONENT l_fname OF STRUCTURE <lfs_wa> TO <lfs>.
+    <lfs> = 'C500'.
+    MODIFY ct_m FROM <lfs_wa> INDEX sy-tabix TRANSPORTING (l_fname).
   ENDIF.
 
-  PERFORM ALV_REFRESH USING PO_GRID PT_FCAT ''.
+  PERFORM alv_refresh USING po_grid pt_fcat ''.
 
 ENDFORM.                    " ALV_SET_ROW_COLOR
 
@@ -760,28 +760,28 @@ ENDFORM.                    " ALV_SET_ROW_COLOR
 *&---------------------------------------------------------------------*
 *  ALV #̺#Ʈ #Ŀ# ȭ## PAI ## Ÿ## #Ѵ#.
 *----------------------------------------------------------------------*
-FORM ALV_SET_NEW_OK_CODE USING P_NEW_OKCD.
+FORM alv_set_new_ok_code USING p_new_okcd.
 
-  CALL METHOD CL_GUI_CFW=>SET_NEW_OK_CODE
-  EXPORTING
-    NEW_CODE = P_NEW_OKCD.
+  CALL METHOD cl_gui_cfw=>set_new_ok_code
+    EXPORTING
+      new_code = p_new_okcd.
 
 ENDFORM.                    " ALV_SET_NEW_OK_CODE
 
 *&---------------------------------------------------------------------*
 *&      Form  ALV_SET_SEL_ROW
 *&---------------------------------------------------------------------*
-FORM ALV_SET_SEL_ROW USING PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-      P_ROW.
+FORM alv_set_sel_row USING po_grid TYPE REF TO cl_gui_alv_grid
+      p_row.
 
-  DATA: LT_ROW TYPE LVC_T_ROW WITH HEADER LINE.
+  DATA: lt_row TYPE lvc_t_row WITH HEADER LINE.
 
-  LT_ROW-INDEX = P_ROW.
-  APPEND LT_ROW.
+  lt_row-index = p_row.
+  APPEND lt_row.
 
-  CALL METHOD PO_GRID->SET_SELECTED_ROWS
-  EXPORTING
-    IT_INDEX_ROWS = LT_ROW[].
+  CALL METHOD po_grid->set_selected_rows
+    EXPORTING
+      it_index_rows = lt_row[].
 *      IT_ROW_NO                =
 *      IS_KEEP_OTHER_SELECTIONS = 'X'.
 
@@ -790,24 +790,24 @@ ENDFORM.                    " ALV_SET_SEL_ROW
 *&---------------------------------------------------------------------*
 *&      Form  ALV_SET_SEL_ROW_ALL
 *&---------------------------------------------------------------------*
-FORM ALV_SET_SEL_ROW_ALL USING PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-      PT_M    TYPE STANDARD TABLE
-      P_SEL_ALL.
+FORM alv_set_sel_row_all USING po_grid TYPE REF TO cl_gui_alv_grid
+      pt_m    TYPE STANDARD TABLE
+      p_sel_all.
 
-  DATA: LT_ROW TYPE LVC_T_ROW WITH HEADER LINE.
+  DATA: lt_row TYPE lvc_t_row WITH HEADER LINE.
 
-  FIELD-SYMBOLS: <FS_WA> TYPE ANY.
+  FIELD-SYMBOLS: <fs_wa> TYPE any.
 
-  IF P_SEL_ALL = 'X'.
-    LOOP AT PT_M ASSIGNING <FS_WA>.
-      LT_ROW-INDEX = SY-TABIX.
-      APPEND LT_ROW.
+  IF p_sel_all = 'X'.
+    LOOP AT pt_m ASSIGNING <fs_wa>.
+      lt_row-index = sy-tabix.
+      APPEND lt_row.
     ENDLOOP.
   ENDIF.
 
-  CALL METHOD PO_GRID->SET_SELECTED_ROWS
-  EXPORTING
-    IT_INDEX_ROWS = LT_ROW[].
+  CALL METHOD po_grid->set_selected_rows
+    EXPORTING
+      it_index_rows = lt_row[].
 *      IT_ROW_NO                =
 *      IS_KEEP_OTHER_SELECTIONS = 'X'.
 
@@ -816,52 +816,52 @@ ENDFORM.                    " ALV_SET_SEL_ROW_ALL
 *&---------------------------------------------------------------------*
 *&      Form  ALV_TOOLBAR_SET_CNT
 *&---------------------------------------------------------------------*
-FORM ALV_TOOLBAR_SET_CNT USING E_OBJECT TYPE REF TO CL_ALV_EVENT_TOOLBAR_SET
-      PO_GRID  TYPE REF TO CL_GUI_ALV_GRID
-      PT_IT    TYPE STANDARD TABLE.
+FORM alv_toolbar_set_cnt USING e_object TYPE REF TO cl_alv_event_toolbar_set
+      po_grid  TYPE REF TO cl_gui_alv_grid
+      pt_it    TYPE STANDARD TABLE.
 
-  DATA: LS_TOOLBAR TYPE STB_BUTTON,
-        LT_FIDX    TYPE LVC_T_FIDX,
-        L_TOT_CNT(10) VALUE '0',
-        L_SUC_CNT(10) VALUE '0',
-        L_WRN_CNT(10) VALUE '0',
-        L_ERR_CNT(10) VALUE '0',
-        L_FIL_CNT(10) VALUE '0'.
+  DATA: ls_toolbar    TYPE stb_button,
+        lt_fidx       TYPE lvc_t_fidx,
+        l_tot_cnt(10) VALUE '0',
+        l_suc_cnt(10) VALUE '0',
+        l_wrn_cnt(10) VALUE '0',
+        l_err_cnt(10) VALUE '0',
+        l_fil_cnt(10) VALUE '0'.
 
 * #Ǽ#
-  DESCRIBE TABLE PT_IT LINES L_TOT_CNT.  "#ѰǼ#
+  DESCRIBE TABLE pt_it LINES l_tot_cnt.  "#ѰǼ#
 
 * ###͸# #Ǽ#
-  CALL METHOD PO_GRID->GET_FILTERED_ENTRIES
-  IMPORTING
-    ET_FILTERED_ENTRIES = LT_FIDX.
-  DESCRIBE TABLE LT_FIDX LINES L_FIL_CNT.
+  CALL METHOD po_grid->get_filtered_entries
+    IMPORTING
+      et_filtered_entries = lt_fidx.
+  DESCRIBE TABLE lt_fidx LINES l_fil_cnt.
 
 * #### #Ǽ# = #ѰǼ# - ###͸# #Ǽ#
-  L_FIL_CNT = L_TOT_CNT - L_FIL_CNT.
+  l_fil_cnt = l_tot_cnt - l_fil_cnt.
 
-  CONDENSE: L_TOT_CNT NO-GAPS,
-  L_SUC_CNT NO-GAPS,
-  L_WRN_CNT NO-GAPS,
-  L_ERR_CNT NO-GAPS,
-  L_FIL_CNT NO-GAPS.
+  CONDENSE: l_tot_cnt NO-GAPS,
+  l_suc_cnt NO-GAPS,
+  l_wrn_cnt NO-GAPS,
+  l_err_cnt NO-GAPS,
+  l_fil_cnt NO-GAPS.
 
 * ##ư #߰#
-  CLEAR LS_TOOLBAR.
-  LS_TOOLBAR-FUNCTION  = '&&SEP90'.
-  LS_TOOLBAR-BUTN_TYPE = '3'.  "#и###
-  APPEND LS_TOOLBAR TO E_OBJECT->MT_TOOLBAR.
+  CLEAR ls_toolbar.
+  ls_toolbar-function  = '&&SEP90'.
+  ls_toolbar-butn_type = '3'.  "#и###
+  APPEND ls_toolbar TO e_object->mt_toolbar.
 
-  CLEAR LS_TOOLBAR.
-  LS_TOOLBAR-FUNCTION  = 'TOT_CNT'.
-  CONCATENATE 'TOTAL:' L_TOT_CNT INTO LS_TOOLBAR-TEXT SEPARATED BY ''.
-  APPEND LS_TOOLBAR TO E_OBJECT->MT_TOOLBAR.
+  CLEAR ls_toolbar.
+  ls_toolbar-function  = 'TOT_CNT'.
+  CONCATENATE 'TOTAL:' l_tot_cnt INTO ls_toolbar-text SEPARATED BY ''.
+  APPEND ls_toolbar TO e_object->mt_toolbar.
 
-  IF LT_FIDX[] IS NOT INITIAL.
-    CLEAR LS_TOOLBAR.
-    LS_TOOLBAR-FUNCTION  = 'CUR_CNT'.
-    CONCATENATE 'CURRENT:' L_FIL_CNT INTO LS_TOOLBAR-TEXT SEPARATED BY ''.
-    APPEND LS_TOOLBAR TO E_OBJECT->MT_TOOLBAR.
+  IF lt_fidx[] IS NOT INITIAL.
+    CLEAR ls_toolbar.
+    ls_toolbar-function  = 'CUR_CNT'.
+    CONCATENATE 'CURRENT:' l_fil_cnt INTO ls_toolbar-text SEPARATED BY ''.
+    APPEND ls_toolbar TO e_object->mt_toolbar.
   ENDIF.
 
 ENDFORM.                    " ALV_TOOLBAR_SET_CNT
@@ -869,58 +869,58 @@ ENDFORM.                    " ALV_TOOLBAR_SET_CNT
 *&---------------------------------------------------------------------*
 *&      Form  ALV_USER_CMD_FILTER
 *&---------------------------------------------------------------------*
-FORM ALV_USER_CMD_FILTER USING PO_GRID TYPE REF TO CL_GUI_ALV_GRID
-      PT_FCAT TYPE LVC_T_FCAT
-      P_FNAME
-      P_VAL.         "EQ_INITIAL, NE_INITIAL
+FORM alv_user_cmd_filter USING po_grid TYPE REF TO cl_gui_alv_grid
+      pt_fcat TYPE lvc_t_fcat
+      p_fname
+      p_val.         "EQ_INITIAL, NE_INITIAL
 
-  DATA: LT_FILTER TYPE LVC_T_FILT WITH HEADER LINE.
+  DATA: lt_filter TYPE lvc_t_filt WITH HEADER LINE.
 
-  CALL METHOD PO_GRID->GET_FILTER_CRITERIA
-  IMPORTING
-    ET_FILTER = LT_FILTER[].
+  CALL METHOD po_grid->get_filter_criteria
+    IMPORTING
+      et_filter = lt_filter[].
 
-  IF P_FNAME IS INITIAL.
-    CLEAR LT_FILTER[].
+  IF p_fname IS INITIAL.
+    CLEAR lt_filter[].
   ELSE.
-    DELETE LT_FILTER WHERE FIELDNAME = P_FNAME.
+    DELETE lt_filter WHERE fieldname = p_fname.
   ENDIF.
 
-  CASE P_VAL.
-  WHEN 'EQ_INITIAL'.
-    CLEAR: LT_FILTER.
-    LT_FILTER-FIELDNAME = P_FNAME.
-    LT_FILTER-SIGN      = 'I'.
-    LT_FILTER-OPTION    = 'EQ'.
-    APPEND LT_FILTER.
-  WHEN 'NE_INITIAL'.
-    CLEAR: LT_FILTER.
-    LT_FILTER-FIELDNAME = P_FNAME.
-    LT_FILTER-SIGN      = 'I'.
-    LT_FILTER-OPTION    = 'NE'.
-    APPEND LT_FILTER.
-  WHEN OTHERS.
-    CLEAR: LT_FILTER.
-    LT_FILTER-FIELDNAME = P_FNAME.
-    LT_FILTER-SIGN      = 'I'.
-    LT_FILTER-OPTION    = 'EQ'.
-    LT_FILTER-LOW       = P_VAL.
-    APPEND LT_FILTER.
+  CASE p_val.
+    WHEN 'EQ_INITIAL'.
+      CLEAR: lt_filter.
+      lt_filter-fieldname = p_fname.
+      lt_filter-sign      = 'I'.
+      lt_filter-option    = 'EQ'.
+      APPEND lt_filter.
+    WHEN 'NE_INITIAL'.
+      CLEAR: lt_filter.
+      lt_filter-fieldname = p_fname.
+      lt_filter-sign      = 'I'.
+      lt_filter-option    = 'NE'.
+      APPEND lt_filter.
+    WHEN OTHERS.
+      CLEAR: lt_filter.
+      lt_filter-fieldname = p_fname.
+      lt_filter-sign      = 'I'.
+      lt_filter-option    = 'EQ'.
+      lt_filter-low       = p_val.
+      APPEND lt_filter.
   ENDCASE.
 
-  CALL METHOD PO_GRID->SET_FILTER_CRITERIA
-  EXPORTING
-    IT_FILTER                 = LT_FILTER[]
-  EXCEPTIONS
-    NO_FIELDCATALOG_AVAILABLE = 1
-    OTHERS                    = 2.
+  CALL METHOD po_grid->set_filter_criteria
+    EXPORTING
+      it_filter                 = lt_filter[]
+    EXCEPTIONS
+      no_fieldcatalog_available = 1
+      OTHERS                    = 2.
 
-  IF SY-SUBRC <> 0.
-    MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-    WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  IF sy-subrc <> 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   ENDIF.
 
-  PERFORM ALV_REFRESH USING PO_GRID PT_FCAT[] 'A'.
+  PERFORM alv_refresh USING po_grid pt_fcat[] 'A'.
 
 ENDFORM.                    " ALV_USER_CMD_FILTER
 

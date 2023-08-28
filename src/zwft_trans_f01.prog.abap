@@ -92,8 +92,8 @@ FORM read_text .
   CLEAR: gt_m, gt_m[].
 
   DATA: BEGIN OF lt_type OCCURS 0,
-    obj_type LIKE lxe_attob-obj_type,
-  END OF lt_type.
+          obj_type LIKE lxe_attob-obj_type,
+        END OF lt_type.
 
 * 프로그램
   SELECT obj_type                           "CAD4(GUI 제목)
@@ -169,8 +169,8 @@ ENDFORM. "READ_TEXT
 *----------------------------------------------------------------------*
 FORM check_korean USING p_text.
 
-  DATA: l_len TYPE I,
-        l_pos TYPE I,
+  DATA: l_len TYPE i,
+        l_pos TYPE i,
         l_chk.
 
   DESCRIBE FIELD p_text LENGTH l_len IN CHARACTER MODE .
@@ -199,35 +199,35 @@ FORM upload_excel.
 
   "Excel에서 변환 데이터 읽어오기
   CALL FUNCTION 'ALSM_EXCEL_TO_INTERNAL_TABLE'
-  EXPORTING
-    filename                = l_filename
-    i_begin_col             = 2
-    i_begin_row             = 3
-    i_end_col               = 20
-    i_end_row               = 10000
-  TABLES
-    intern                  = xls_data1
-  EXCEPTIONS
-    inconsistent_parameters = 1
-    upload_ole              = 2
-    OTHERS                  = 3.
+    EXPORTING
+      filename                = l_filename
+      i_begin_col             = 2
+      i_begin_row             = 3
+      i_end_col               = 20
+      i_end_row               = 10000
+    TABLES
+      intern                  = xls_data1
+    EXCEPTIONS
+      inconsistent_parameters = 1
+      upload_ole              = 2
+      OTHERS                  = 3.
 
   LOOP AT xls_data1.
     CASE xls_data1-col.
-    WHEN '001'.
-      gt_m-objtype = xls_data1-VALUE.
-    WHEN '002'.
-      gt_m-objname = xls_data1-VALUE.
-    WHEN '003'.
-      gt_m-textkey = xls_data1-VALUE.
-    WHEN '004'.
-      gt_m-s_text  = xls_data1-VALUE.
-    WHEN '005'.
-      gt_m-t_text  = xls_data1-VALUE.
-    WHEN '006'.
-      gt_m-unitmlt = xls_data1-VALUE.
-    WHEN '007'.
-      gt_m-uppcase = xls_data1-VALUE.
+      WHEN '001'.
+        gt_m-objtype = xls_data1-value.
+      WHEN '002'.
+        gt_m-objname = xls_data1-value.
+      WHEN '003'.
+        gt_m-textkey = xls_data1-value.
+      WHEN '004'.
+        gt_m-s_text  = xls_data1-value.
+      WHEN '005'.
+        gt_m-t_text  = xls_data1-value.
+      WHEN '006'.
+        gt_m-unitmlt = xls_data1-value.
+      WHEN '007'.
+        gt_m-uppcase = xls_data1-value.
     ENDCASE.
 
     AT END OF row.
@@ -248,51 +248,51 @@ ENDFORM. "UPLOAD_EXCEL
 *----------------------------------------------------------------------*
 FORM file_name USING p_mode CHANGING p_file LIKE rlgrap-filename.
   DATA : l_file_table TYPE filetable,
-        l_rc         TYPE I,
-        l_user_actio TYPE I,
-        file_name    TYPE string.
+         l_rc         TYPE i,
+         l_user_actio TYPE i,
+         file_name    TYPE string.
 
   DATA : lf_sel_file    TYPE string,
-        lf_sel_path    TYPE string,
-        lf_full_path   TYPE string,
-        lf_user_action TYPE I.
+         lf_sel_path    TYPE string,
+         lf_full_path   TYPE string,
+         lf_user_action TYPE i.
 
   IF p_mode = 'O'.
     "Open File Name
     CALL METHOD cl_gui_frontend_services=>file_open_dialog
-    EXPORTING
-      window_title            = 'File Open'
-      default_filename        = space
-      file_filter             = '*.xls'
-      initial_directory       = 'C:\'
-      multiselection          = space
-    CHANGING
-      file_table              = l_file_table
-      rc                      = l_rc
-    EXCEPTIONS
-      file_open_dialog_failed = 1
-      cntl_error              = 2
-      error_no_gui            = 3
-      OTHERS                  = 5.
+      EXPORTING
+        window_title            = 'File Open'
+        default_filename        = space
+        file_filter             = '*.xls'
+        initial_directory       = 'C:\'
+        multiselection          = space
+      CHANGING
+        file_table              = l_file_table
+        rc                      = l_rc
+      EXCEPTIONS
+        file_open_dialog_failed = 1
+        cntl_error              = 2
+        error_no_gui            = 3
+        OTHERS                  = 5.
 
     READ TABLE l_file_table INTO file_name INDEX 1.
   ELSE.
     "Save File Name
     CALL METHOD cl_gui_frontend_services=>file_save_dialog
-    EXPORTING
-      window_title      = 'Save File'
-      default_file_name = space
-      file_filter       = '*.xls'
-      initial_directory = 'C:\'
-    CHANGING
-      filename          = lf_sel_file
-      path              = lf_sel_path
-      fullpath          = lf_full_path
-      user_action       = lf_user_action
-    EXCEPTIONS
-      cntl_error        = 1
-      error_no_gui      = 2
-      OTHERS            = 4.
+      EXPORTING
+        window_title      = 'Save File'
+        default_file_name = space
+        file_filter       = '*.xls'
+        initial_directory = 'C:\'
+      CHANGING
+        filename          = lf_sel_file
+        path              = lf_sel_path
+        fullpath          = lf_full_path
+        user_action       = lf_user_action
+      EXCEPTIONS
+        cntl_error        = 1
+        error_no_gui      = 2
+        OTHERS            = 4.
 
     CONCATENATE lf_sel_path lf_sel_file INTO file_name.
   ENDIF.
@@ -308,17 +308,17 @@ FORM lxe_t002_check_language .
 
   "ISO 언어 코드로 변환
   CALL FUNCTION 'LXE_T002_CHECK_LANGUAGE'
-  EXPORTING
-    r3_lang    = pm_tlang
-  IMPORTING
-    o_language = g_tlang.
+    EXPORTING
+      r3_lang    = pm_tlang
+    IMPORTING
+      o_language = g_tlang.
 
   "ISO 언어 코드로 변환
   CALL FUNCTION 'LXE_T002_CHECK_LANGUAGE'
-  EXPORTING
-    r3_lang    = pm_slang
-  IMPORTING
-    o_language = g_slang.
+    EXPORTING
+      r3_lang    = pm_slang
+    IMPORTING
+      o_language = g_slang.
 
 ENDFORM. " LXE_T002_CHECK_LANGUAGE
 
@@ -359,10 +359,10 @@ FORM alv_toolbar USING p_grid_name
       e_interactive.
 
   CASE p_grid_name.
-  WHEN 'GO_GRID'.
-    PERFORM alv_toolbar_0 USING e_object.
-  WHEN 'GO_GRID1'.
-    PERFORM alv_toolbar_1 USING e_object.
+    WHEN 'GO_GRID'.
+      PERFORM alv_toolbar_0 USING e_object.
+    WHEN 'GO_GRID1'.
+      PERFORM alv_toolbar_1 USING e_object.
   ENDCASE.
 
 ENDFORM. " ALV_TOOLBAR
@@ -380,14 +380,14 @@ FORM alv_toolbar_1 USING e_object TYPE REF TO cl_alv_event_toolbar_set.
 
 * 버튼 삽입
   CLEAR ls_toolbar.
-  ls_toolbar-FUNCTION  = '&&SEP90'.
+  ls_toolbar-function  = '&&SEP90'.
   ls_toolbar-butn_type = '3'.  "분리자
   INSERT ls_toolbar INTO e_object->mt_toolbar INDEX 1.
 
   CLEAR ls_toolbar.
-  ls_toolbar-FUNCTION  = 'DELE'.
-  ls_toolbar-ICON      = icon_delete_row.
-  ls_toolbar-TEXT      = 'Delete'.
+  ls_toolbar-function  = 'DELE'.
+  ls_toolbar-icon      = icon_delete_row.
+  ls_toolbar-text      = 'Delete'.
   ls_toolbar-quickinfo = 'Delete'.
   INSERT ls_toolbar INTO e_object->mt_toolbar INDEX 1.
 
@@ -419,33 +419,33 @@ FORM alv_toolbar_0 USING e_object TYPE REF TO cl_alv_event_toolbar_set.
 
 * 버튼 삽입
   CLEAR ls_toolbar.
-  ls_toolbar-FUNCTION  = '&&SEP90'.
+  ls_toolbar-function  = '&&SEP90'.
   ls_toolbar-butn_type = '3'.  "분리자
   APPEND ls_toolbar TO e_object->mt_toolbar.
 
   CLEAR ls_toolbar.
-  ls_toolbar-FUNCTION  = 'TR_YES'.
-  ls_toolbar-ICON      = icon_led_green.
-  CONCATENATE l_yes_cnt '件 已翻译' INTO ls_toolbar-TEXT.
+  ls_toolbar-function  = 'TR_YES'.
+  ls_toolbar-icon      = icon_led_green.
+  CONCATENATE l_yes_cnt '件 已翻译' INTO ls_toolbar-text.
   ls_toolbar-quickinfo = '已翻译'.
   APPEND ls_toolbar TO e_object->mt_toolbar.
 
   CLEAR ls_toolbar.
-  ls_toolbar-FUNCTION  = 'TR_NO'.
-  ls_toolbar-ICON      = icon_led_red.
-  CONCATENATE l_no_cnt '件 未翻译' INTO ls_toolbar-TEXT.
+  ls_toolbar-function  = 'TR_NO'.
+  ls_toolbar-icon      = icon_led_red.
+  CONCATENATE l_no_cnt '件 未翻译' INTO ls_toolbar-text.
   ls_toolbar-quickinfo = '未翻译'.
   APPEND ls_toolbar TO e_object->mt_toolbar.
 
   CLEAR ls_toolbar.
-  ls_toolbar-FUNCTION  = '&&SEP90'.
+  ls_toolbar-function  = '&&SEP90'.
   ls_toolbar-butn_type = '3'.  "분리자
   APPEND ls_toolbar TO e_object->mt_toolbar.
 
   CLEAR ls_toolbar.
-  ls_toolbar-FUNCTION  = 'SEL_ALL'.
-  ls_toolbar-ICON      = icon_execute_object.
-  ls_toolbar-TEXT      = '批量更改'.
+  ls_toolbar-function  = 'SEL_ALL'.
+  ls_toolbar-icon      = icon_execute_object.
+  ls_toolbar-text      = '批量更改'.
   ls_toolbar-quickinfo = '批量更改'.
   APPEND ls_toolbar TO e_object->mt_toolbar.
 
@@ -458,10 +458,10 @@ FORM alv_user_command USING p_grid_name
       e_ucomm LIKE sy-ucomm.
 
   CASE p_grid_name.
-  WHEN 'GO_GRID'.
-    PERFORM alv_user_cmd_0 USING e_ucomm.
-  WHEN 'GO_GRID1'.
-    PERFORM alv_user_cmd_1 USING e_ucomm.
+    WHEN 'GO_GRID'.
+      PERFORM alv_user_cmd_0 USING e_ucomm.
+    WHEN 'GO_GRID1'.
+      PERFORM alv_user_cmd_1 USING e_ucomm.
   ENDCASE.
 
 ENDFORM. " ALV_USER_COMMAND
@@ -472,10 +472,10 @@ ENDFORM. " ALV_USER_COMMAND
 FORM alv_user_cmd_1 USING e_ucomm LIKE sy-ucomm.
 
   CASE e_ucomm.
-  WHEN 'DELE'.
-    PERFORM alv_user_cmd_1_dele USING go_grid1 gt_fcat1[].
-  WHEN 'TOT_CNT'.
-    PERFORM alv_user_cmd_filter USING go_grid1 gt_fcat1[]  ''  ''.
+    WHEN 'DELE'.
+      PERFORM alv_user_cmd_1_dele USING go_grid1 gt_fcat1[].
+    WHEN 'TOT_CNT'.
+      PERFORM alv_user_cmd_filter USING go_grid1 gt_fcat1[]  ''  ''.
   ENDCASE.
 
 ENDFORM. " ALV_USER_CMD_1
@@ -501,7 +501,7 @@ FORM alv_user_cmd_1_dele USING po_grid TYPE REF TO cl_gui_alv_grid
 
   LOOP AT gt_110 WHERE mark = 'X'.
 
-    DELETE FROM ZWFT_CAG WHERE erdat = gt_110-erdat
+    DELETE FROM zwft_cag WHERE erdat = gt_110-erdat
     AND erzet = gt_110-erzet
     AND seqno = gt_110-seqno.
     IF sy-subrc <> 0.
@@ -528,16 +528,16 @@ ENDFORM. " ALV_USER_CMD_1_DELE
 FORM alv_user_cmd_0 USING e_ucomm LIKE sy-ucomm.
 
   CASE e_ucomm.
-  WHEN 'SEL_ALL'.   "일괄 적용
-    PERFORM alv_user_cmd_sel_all USING go_grid gt_fcat[].
-  WHEN 'TR_YES'.
-    PERFORM alv_user_cmd_filter USING go_grid gt_fcat[]  'T_TEXT'
-          'NE_INITIAL'.
-  WHEN 'TR_NO'.
-    PERFORM alv_user_cmd_filter USING go_grid gt_fcat[]  'T_TEXT'
-          'EQ_INITIAL'.
-  WHEN 'TOT_CNT'.
-    PERFORM alv_user_cmd_filter USING go_grid gt_fcat[]  ''  ''.
+    WHEN 'SEL_ALL'.   "일괄 적용
+      PERFORM alv_user_cmd_sel_all USING go_grid gt_fcat[].
+    WHEN 'TR_YES'.
+      PERFORM alv_user_cmd_filter USING go_grid gt_fcat[]  'T_TEXT'
+            'NE_INITIAL'.
+    WHEN 'TR_NO'.
+      PERFORM alv_user_cmd_filter USING go_grid gt_fcat[]  'T_TEXT'
+            'EQ_INITIAL'.
+    WHEN 'TOT_CNT'.
+      PERFORM alv_user_cmd_filter USING go_grid gt_fcat[]  ''  ''.
   ENDCASE.
 
 ENDFORM. " ALV_USER_CMD_0
@@ -552,7 +552,7 @@ FORM alv_user_cmd_sel_all USING po_grid TYPE REF TO cl_gui_alv_grid
 
     IF gt_m-t_text IS NOT INITIAL. CONTINUE. ENDIF.
 
-    PERFORM sel_ZWFT_CAG USING    gt_m-s_text
+    PERFORM sel_zwft_cag USING    gt_m-s_text
     CHANGING gt_m-t_text
       gt_m-ico_sel.
 
@@ -601,33 +601,33 @@ FORM alv_fieldcat_0100 TABLES pt_fcat STRUCTURE lvc_s_fcat.
     pt_fcat-no_out  = ' '.
 
     CASE pt_fcat-fieldname.
-    WHEN 'OBJTYPE'.
-      pt_fcat-col_pos    = '10'.
-      pt_fcat-coltext    = 'Type'.
-    WHEN 'OBJNAME'.
-      pt_fcat-col_pos    = '20'.
-    WHEN 'TEXTKEY'.
-      pt_fcat-col_pos    = '30'.
-    WHEN 'S_TEXT'.
-      pt_fcat-col_pos    = '40'.
-      pt_fcat-coltext    = 'Source Text'.
-      pt_fcat-emphasize  = 'C700'.
-    WHEN 'ICO_SEL'.
-      pt_fcat-col_pos    = '45'.
-      pt_fcat-coltext    = '조회'.
-      pt_fcat-just       = 'C'.
-      pt_fcat-HOTSPOT    = 'X'.
-      pt_fcat-tooltip    = '번역풀 조회'.
-    WHEN 'T_TEXT'.
-      pt_fcat-col_pos    = '50'.
-      pt_fcat-coltext    = 'Target Text'.
-      pt_fcat-EDIT       = 'X'.
-    WHEN 'UNITMLT'.
-      pt_fcat-col_pos    = '60'.
-    WHEN 'UPPCASE'.
-      pt_fcat-col_pos    = '70'.
-    WHEN OTHERS.
-      pt_fcat-no_out     = 'X'.
+      WHEN 'OBJTYPE'.
+        pt_fcat-col_pos    = '10'.
+        pt_fcat-coltext    = 'Type'.
+      WHEN 'OBJNAME'.
+        pt_fcat-col_pos    = '20'.
+      WHEN 'TEXTKEY'.
+        pt_fcat-col_pos    = '30'.
+      WHEN 'S_TEXT'.
+        pt_fcat-col_pos    = '40'.
+        pt_fcat-coltext    = 'Source Text'.
+        pt_fcat-emphasize  = 'C700'.
+      WHEN 'ICO_SEL'.
+        pt_fcat-col_pos    = '45'.
+        pt_fcat-coltext    = '조회'.
+        pt_fcat-just       = 'C'.
+        pt_fcat-hotspot    = 'X'.
+        pt_fcat-tooltip    = '번역풀 조회'.
+      WHEN 'T_TEXT'.
+        pt_fcat-col_pos    = '50'.
+        pt_fcat-coltext    = 'Target Text'.
+        pt_fcat-edit       = 'X'.
+      WHEN 'UNITMLT'.
+        pt_fcat-col_pos    = '60'.
+      WHEN 'UPPCASE'.
+        pt_fcat-col_pos    = '70'.
+      WHEN OTHERS.
+        pt_fcat-no_out     = 'X'.
     ENDCASE.
 
     IF pt_fcat-coltext IS NOT INITIAL.
@@ -654,46 +654,46 @@ FORM alv_fieldcat_0110 TABLES pt_fcat STRUCTURE lvc_s_fcat.
     pt_fcat-no_out  = ' '.
 
     CASE pt_fcat-fieldname.
-    WHEN 'ICO_SEL'.
-      pt_fcat-col_pos    = '1'.
-      pt_fcat-coltext    = '적용'.
-      pt_fcat-just       = 'C'.
-      pt_fcat-HOTSPOT    = 'X'.
-      pt_fcat-tooltip    = '값 적용'.
-    WHEN 'TXT_KO'.
-      pt_fcat-col_pos    = '10'.
-      pt_fcat-coltext    = '한글'.
-      IF pm_slang NE '3' AND pm_tlang NE '3'. "korean
-        pt_fcat-no_out  = 'X'.
-      ENDIF.
-    WHEN 'TXT_EN'.
-      pt_fcat-col_pos    = '20'.
-      pt_fcat-coltext    = '영어'.
-      pt_fcat-EDIT       = 'X'.
-      IF pm_slang NE 'E' AND pm_tlang NE 'E'. "English
-        pt_fcat-no_out  = 'X'.
-      ENDIF.
-    WHEN 'TXT_ZH'.
-      pt_fcat-col_pos    = '30'.
-      pt_fcat-coltext    = '중문'.
-      pt_fcat-EDIT       = 'X'.
-      IF pm_slang NE '1' AND pm_tlang NE '1'. "chinese
-        pt_fcat-no_out  = 'X'.
-      ENDIF.
-    WHEN 'OBJTYPE'.
-      pt_fcat-col_pos    = '40'.
-    WHEN 'OBJNAME'.
-      pt_fcat-col_pos    = '50'.
-    WHEN 'TEXTKEY'.
-      pt_fcat-col_pos    = '60'.
-    WHEN 'ERDAT'.
-      pt_fcat-col_pos    = '70'.
-    WHEN 'ERZET'.
-      pt_fcat-col_pos    = '80'.
-    WHEN 'SEQNO'.
-      pt_fcat-col_pos    = '90'.
-    WHEN OTHERS.
-      pt_fcat-no_out     = 'X'.
+      WHEN 'ICO_SEL'.
+        pt_fcat-col_pos    = '1'.
+        pt_fcat-coltext    = '적용'.
+        pt_fcat-just       = 'C'.
+        pt_fcat-hotspot    = 'X'.
+        pt_fcat-tooltip    = '값 적용'.
+      WHEN 'TXT_KO'.
+        pt_fcat-col_pos    = '10'.
+        pt_fcat-coltext    = '한글'.
+        IF pm_slang NE '3' AND pm_tlang NE '3'. "korean
+          pt_fcat-no_out  = 'X'.
+        ENDIF.
+      WHEN 'TXT_EN'.
+        pt_fcat-col_pos    = '20'.
+        pt_fcat-coltext    = '영어'.
+        pt_fcat-edit       = 'X'.
+        IF pm_slang NE 'E' AND pm_tlang NE 'E'. "English
+          pt_fcat-no_out  = 'X'.
+        ENDIF.
+      WHEN 'TXT_ZH'.
+        pt_fcat-col_pos    = '30'.
+        pt_fcat-coltext    = '중문'.
+        pt_fcat-edit       = 'X'.
+        IF pm_slang NE '1' AND pm_tlang NE '1'. "chinese
+          pt_fcat-no_out  = 'X'.
+        ENDIF.
+      WHEN 'OBJTYPE'.
+        pt_fcat-col_pos    = '40'.
+      WHEN 'OBJNAME'.
+        pt_fcat-col_pos    = '50'.
+      WHEN 'TEXTKEY'.
+        pt_fcat-col_pos    = '60'.
+      WHEN 'ERDAT'.
+        pt_fcat-col_pos    = '70'.
+      WHEN 'ERZET'.
+        pt_fcat-col_pos    = '80'.
+      WHEN 'SEQNO'.
+        pt_fcat-col_pos    = '90'.
+      WHEN OTHERS.
+        pt_fcat-no_out     = 'X'.
     ENDCASE.
 
     IF pt_fcat-coltext IS NOT INITIAL.
@@ -725,8 +725,8 @@ FORM alv_data_changed USING p_grid_name
   ENDIF.
 
   CASE p_grid_name.
-  WHEN 'GO_GRID1'.
-    PERFORM alv_data_chg_1 USING er_data_changed.
+    WHEN 'GO_GRID1'.
+      PERFORM alv_data_chg_1 USING er_data_changed.
   ENDCASE.
 
 ENDFORM. " ALV_DATA_CHANGED
@@ -784,10 +784,10 @@ FORM alv_double_click USING p_grid_name
   CHECK ps_row-rowtype IS INITIAL.
 
   CASE p_grid_name.
-  WHEN 'GO_GRID'.    "MAIN 화면
-    PERFORM alv_dbl_clk_0 USING ps_row-INDEX ps_col-fieldname.
-  WHEN 'GO_GRID1'.   "번역풀 화면
-    PERFORM alv_dbl_clk_1 USING ps_row-INDEX ps_col-fieldname.
+    WHEN 'GO_GRID'.    "MAIN 화면
+      PERFORM alv_dbl_clk_0 USING ps_row-index ps_col-fieldname.
+    WHEN 'GO_GRID1'.   "번역풀 화면
+      PERFORM alv_dbl_clk_1 USING ps_row-index ps_col-fieldname.
   ENDCASE.
 
 ENDFORM. " ALV_DOUBLE_CLICK
@@ -805,17 +805,17 @@ FORM alv_dbl_clk_1 USING p_row
 
   CASE p_col.
 
-  WHEN 'ICO_SEL'.
-    IF pm_tlang = 'E'."englisgh
-      gt_m-t_text = gt_110-txt_en.
-  ELSEIF pm_tlang  = '1'."chinese
-      gt_m-t_text = gt_110-txt_zh.
-  ELSEIF pm_tlang = '3'. "korean
-      gt_m-t_text = gt_110-txt_ko.
-    ENDIF.
-    MODIFY gt_m INDEX g_clk_tabix TRANSPORTING t_text.
-    PERFORM alv_refresh USING go_grid  gt_fcat[]  'F'.
-    PERFORM alv_set_new_ok_code USING 'DBL_CLK_1_ICO_SEL'.
+    WHEN 'ICO_SEL'.
+      IF pm_tlang = 'E'."englisgh
+        gt_m-t_text = gt_110-txt_en.
+      ELSEIF pm_tlang  = '1'."chinese
+        gt_m-t_text = gt_110-txt_zh.
+      ELSEIF pm_tlang = '3'. "korean
+        gt_m-t_text = gt_110-txt_ko.
+      ENDIF.
+      MODIFY gt_m INDEX g_clk_tabix TRANSPORTING t_text.
+      PERFORM alv_refresh USING go_grid  gt_fcat[]  'F'.
+      PERFORM alv_set_new_ok_code USING 'DBL_CLK_1_ICO_SEL'.
 
   ENDCASE.
 
@@ -832,15 +832,15 @@ FORM alv_dbl_clk_0 USING p_row
 
   CASE p_col.
 
-  WHEN 'S_TEXT'.  "소스텍스트
-    IF gt_m-s_text IS INITIAL. EXIT. ENDIF.
-    gt_m-t_text = gt_m-s_text.
-    MODIFY gt_m INDEX p_row.
-    PERFORM alv_refresh USING go_grid  gt_fcat[]  ''.
+    WHEN 'S_TEXT'.  "소스텍스트
+      IF gt_m-s_text IS INITIAL. EXIT. ENDIF.
+      gt_m-t_text = gt_m-s_text.
+      MODIFY gt_m INDEX p_row.
+      PERFORM alv_refresh USING go_grid  gt_fcat[]  ''.
 
-  WHEN 'ICO_SEL'.
-    PERFORM alv_dbl_clk_0_ico_sel USING    p_row
-    CHANGING gt_m.
+    WHEN 'ICO_SEL'.
+      PERFORM alv_dbl_clk_0_ico_sel USING    p_row
+      CHANGING gt_m.
 
   ENDCASE.
 
@@ -853,11 +853,11 @@ FORM alv_dbl_clk_0_ico_sel USING p_row
 CHANGING ps_m STRUCTURE gt_m.
 
   DATA: l_t_text  TYPE lxe_pcx_s1-t_text,
-        l_ico_sel LIKE ICON-ID.
+        l_ico_sel LIKE icon-id.
   DATA: lv_condi  TYPE char255,
         lv_condi1 TYPE char10.
 
-  PERFORM sel_ZWFT_CAG USING    ps_m-s_text
+  PERFORM sel_zwft_cag USING    ps_m-s_text
   CHANGING l_t_text
     l_ico_sel.
 
@@ -880,7 +880,7 @@ CHANGING ps_m STRUCTURE gt_m.
   CONCATENATE '*' l_text '*' INTO l_text.
 
   CLEAR: so_text, so_text[].
-  so_text-SIGN   = 'I'.
+  so_text-sign   = 'I'.
   so_text-option = 'CP'.
   so_text-low    = l_text.
   APPEND so_text.
@@ -890,10 +890,10 @@ CHANGING ps_m STRUCTURE gt_m.
   IF pm_slang = '3'. "korean
     lv_condi = 'TXT_KO IN SO_TEXT'.
     lv_condi1 = 'TXT_KO'.
-ELSEIF pm_slang = 'E'."englisgh
+  ELSEIF pm_slang = 'E'."englisgh
     lv_condi = 'TXT_EN IN SO_TEXT'.
     lv_condi1 = 'TXT_EN'.
-ELSEIF pm_slang = '1'."chinese
+  ELSEIF pm_slang = '1'."chinese
     lv_condi = 'TXT_ZH IN SO_TEXT'.
     lv_condi1 = 'TXT_ZH'.
   ENDIF.
@@ -903,12 +903,12 @@ ELSEIF pm_slang = '1'."chinese
     'AND'
     `TXT_EN NE ''`
     INTO lv_condi SEPARATED BY space.
-ELSEIF pm_tlang  = '1'."chinese
+  ELSEIF pm_tlang  = '1'."chinese
     CONCATENATE lv_condi
     'AND'
     `TXT_ZH NE ''`
     INTO lv_condi SEPARATED BY space.
-ELSEIF pm_tlang = '3'. "korean
+  ELSEIF pm_tlang = '3'. "korean
     CONCATENATE lv_condi
     'AND'
     `TXT_KO NE ''`
@@ -917,7 +917,7 @@ ELSEIF pm_tlang = '3'. "korean
 
   SELECT *
   INTO CORRESPONDING FIELDS OF TABLE gt_110
-  FROM ZWFT_CAG
+  FROM zwft_cag
   WHERE (lv_condi).
 
   IF gt_110[] IS INITIAL.
@@ -1007,7 +1007,7 @@ FORM sel_prog .
     INTO CORRESPONDING FIELDS OF TABLE lt_scrn
     FROM d020s
     WHERE prog  = lt_prog-object
-    AND TYPE <> 'S'.
+    AND type <> 'S'.
 
     LOOP AT lt_scrn.
 
@@ -1053,7 +1053,7 @@ FORM 0100_save .
   IF l_answer <> '1'. LEAVE SCREEN. ENDIF.
 
 * 번역풀에 저장 작업 먼저 한다.
-  PERFORM save_ZWFT_CAG.
+  PERFORM save_zwft_cag.
 
 * 선택된 건
   DATA: lt_m LIKE gt_m OCCURS 0 WITH HEADER LINE.
@@ -1145,13 +1145,13 @@ USING  iv_objtype
   CLEAR: et_pcx_s1, et_pcx_s1[].
 
   CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_READ'
-  EXPORTING
-    t_lang    = g_tlang
-    s_lang    = g_slang
-    custmnr   = c_custmnr
-    objtype   = iv_objtype
-    objname   = iv_objname
-    read_only = iv_read_only     "'X'
+    EXPORTING
+      t_lang    = g_tlang
+      s_lang    = g_slang
+      custmnr   = c_custmnr
+      objtype   = iv_objtype
+      objname   = iv_objname
+      read_only = iv_read_only     "'X'
 *   IMPORTING
 *     COLLTYP   =
 *     COLLNAM   =
@@ -1159,8 +1159,8 @@ USING  iv_objtype
 *     DOMANAM   =
 *     PSTATUS   =
 *     O_LANG    =
-  TABLES
-    lt_pcx_s1 = et_pcx_s1
+    TABLES
+      lt_pcx_s1 = et_pcx_s1
 *     LT_CONDITIONS       =
 *     LT_WHERECLAUS       =
     .
@@ -1176,24 +1176,24 @@ USING  is_m      STRUCTURE gt_m.
   DATA: l_pstatus TYPE  lxestatprc.
 
   CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_WRITE'
-  EXPORTING
-    t_lang    = g_tlang
-    s_lang    = g_slang
-    custmnr   = c_custmnr
-    objtype   = is_m-objtype
-    objname   = is_m-objname
-  IMPORTING
-    pstatus   = l_pstatus
-  TABLES
-    lt_pcx_s1 = it_pcx_s1.
+    EXPORTING
+      t_lang    = g_tlang
+      s_lang    = g_slang
+      custmnr   = c_custmnr
+      objtype   = is_m-objtype
+      objname   = is_m-objname
+    IMPORTING
+      pstatus   = l_pstatus
+    TABLES
+      lt_pcx_s1 = it_pcx_s1.
 
   IF l_pstatus = 'F'.
     MESSAGE i000 WITH is_m-objname g_slang g_tlang '번역오류'.
     LEAVE SCREEN.
   ELSE.
     CALL FUNCTION 'BAPI_TRANSACTION_COMMIT'
-    EXPORTING
-      WAIT = 'X'.
+      EXPORTING
+        wait = 'X'.
 *    IMPORTING
 *      RETURN        =
     .
@@ -1213,10 +1213,10 @@ CHANGING p_answer.
   CLEAR p_answer.
 
   CALL FUNCTION 'POPUP_TO_CONFIRM'
-  EXPORTING
-    TITLEBAR       = 'Confirm'   "' '
+    EXPORTING
+      titlebar       = 'Confirm'   "' '
 *     DIAGNOSE_OBJECT             = ' '
-    text_question  = p_text
+      text_question  = p_text
 *     TEXT_BUTTON_1  = 'Ja'(001)
 *     ICON_BUTTON_1  = ' '
 *     TEXT_BUTTON_2  = 'Nein'(002)
@@ -1229,13 +1229,13 @@ CHANGING p_answer.
 *     POPUP_TYPE     =
 *     IV_QUICKINFO_BUTTON_1       = ' '
 *     IV_QUICKINFO_BUTTON_2       = ' '
-  IMPORTING
-    answer         = p_answer
+    IMPORTING
+      answer         = p_answer
 *   TABLES
 *     PARAMETER      =
-  EXCEPTIONS
-    text_not_found = 1
-    OTHERS         = 2.
+    EXCEPTIONS
+      text_not_found = 1
+      OTHERS         = 2.
 
   IF sy-subrc <> 0.
     MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
@@ -1247,18 +1247,18 @@ ENDFORM. " POPUP_CONF
 *&---------------------------------------------------------------------*
 *&      Form  SAVE_ZWFT_CAG
 *&---------------------------------------------------------------------*
-FORM save_ZWFT_CAG .
+FORM save_zwft_cag .
 
-  DATA: lt_9000 LIKE ZWFT_CAG OCCURS 0 WITH HEADER LINE,
-        l_seqno TYPE ZWFT_CAG-seqno.
+  DATA: lt_9000 LIKE zwft_cag OCCURS 0 WITH HEADER LINE,
+        l_seqno TYPE zwft_cag-seqno.
 
   DATA: lv_condi TYPE char50.
 
   IF pm_slang = '3'. "korean
     lv_condi = 'TXT_KO = GT_M-S_TEXT'.
-ELSEIF pm_slang = 'E'."englisgh
+  ELSEIF pm_slang = 'E'."englisgh
     lv_condi = 'TXT_EN = GT_M-S_TEXT'.
-ELSEIF pm_slang = '1'."chinese
+  ELSEIF pm_slang = '1'."chinese
     lv_condi = 'TXT_ZH = GT_M-S_TEXT'.
   ENDIF.
 
@@ -1267,12 +1267,12 @@ ELSEIF pm_slang = '1'."chinese
     'AND'
     'TXT_EN = GT_M-T_TEXT'
     INTO lv_condi SEPARATED BY space.
-ELSEIF pm_tlang  = '1'."chinese
+  ELSEIF pm_tlang  = '1'."chinese
     CONCATENATE lv_condi
     'AND'
     'TXT_ZH = GT_M-T_TEXT'
     INTO lv_condi SEPARATED BY space.
-ELSEIF pm_tlang = '3'. "korean
+  ELSEIF pm_tlang = '3'. "korean
     CONCATENATE lv_condi
     'AND'
     'TXT_KO = GT_M-T_TEXT'
@@ -1286,19 +1286,19 @@ ELSEIF pm_tlang = '3'. "korean
     gt_m-t_text.
     MODIFY gt_m.
 
-    CLEAR ZWFT_CAG.
+    CLEAR zwft_cag.
 
-    SELECT SINGLE * FROM ZWFT_CAG
+    SELECT SINGLE * FROM zwft_cag
     WHERE (lv_condi).
 
     IF sy-subrc = 0.
-      IF ZWFT_CAG-objname IS INITIAL.
-        UPDATE ZWFT_CAG SET objtype = gt_m-objtype
+      IF zwft_cag-objname IS INITIAL.
+        UPDATE zwft_cag SET objtype = gt_m-objtype
         objname = gt_m-objname
         textkey = gt_m-textkey
-        WHERE erdat   = ZWFT_CAG-erdat
-        AND erzet   = ZWFT_CAG-erzet
-        AND seqno   = ZWFT_CAG-seqno.
+        WHERE erdat   = zwft_cag-erdat
+        AND erzet   = zwft_cag-erzet
+        AND seqno   = zwft_cag-seqno.
       ENDIF.
       CONTINUE.
     ENDIF.
@@ -1307,23 +1307,23 @@ ELSEIF pm_tlang = '3'. "korean
       IF pm_tlang = 'E'."englisgh
         READ TABLE lt_9000 WITH KEY txt_ko = gt_m-s_text
         txt_en = gt_m-t_text.
-    ELSEIF pm_tlang  = '1'."chinese
+      ELSEIF pm_tlang  = '1'."chinese
         READ TABLE lt_9000 WITH KEY txt_ko = gt_m-s_text
         txt_zh = gt_m-t_text.
       ENDIF.
-  ELSEIF pm_slang = 'E'."englisgh
+    ELSEIF pm_slang = 'E'."englisgh
       IF pm_tlang  = '1'."chinese
         READ TABLE lt_9000 WITH KEY txt_en = gt_m-s_text
         txt_zh = gt_m-t_text.
-    ELSEIF pm_tlang = '3'. "korean
+      ELSEIF pm_tlang = '3'. "korean
         READ TABLE lt_9000 WITH KEY txt_en = gt_m-s_text
         txt_ko = gt_m-t_text.
       ENDIF.
-  ELSEIF pm_slang = '1'."chinese
+    ELSEIF pm_slang = '1'."chinese
       IF pm_tlang = 'E'."englisgh
         READ TABLE lt_9000 WITH KEY txt_zh = gt_m-s_text
         txt_en = gt_m-t_text.
-    ELSEIF pm_tlang = '3'. "korean
+      ELSEIF pm_tlang = '3'. "korean
         READ TABLE lt_9000 WITH KEY txt_zh = gt_m-s_text
         txt_ko = gt_m-t_text.
       ENDIF.
@@ -1339,17 +1339,17 @@ ELSEIF pm_tlang = '3'. "korean
     lt_9000-seqno   = l_seqno = l_seqno + 1.
     IF pm_slang = '3'. "korean
       lt_9000-txt_ko  = gt_m-s_text.
-  ELSEIF pm_slang = 'E'."englisgh
+    ELSEIF pm_slang = 'E'."englisgh
       lt_9000-txt_en  = gt_m-s_text.
-  ELSEIF pm_slang = '1'."chinese
+    ELSEIF pm_slang = '1'."chinese
       lt_9000-txt_zh  = gt_m-s_text.
     ENDIF.
 
     IF pm_tlang = '3'. "korean
       lt_9000-txt_ko  = gt_m-t_text.
-  ELSEIF pm_tlang = 'E'."englisgh
+    ELSEIF pm_tlang = 'E'."englisgh
       lt_9000-txt_en  = gt_m-t_text.
-  ELSEIF pm_tlang = '1'."chinese
+    ELSEIF pm_tlang = '1'."chinese
       lt_9000-txt_zh  = gt_m-t_text.
     ENDIF.
     lt_9000-objtype = gt_m-objtype.
@@ -1361,7 +1361,7 @@ ELSEIF pm_tlang = '3'. "korean
 
   IF lt_9000[] IS INITIAL. EXIT. ENDIF.
 
-  MODIFY ZWFT_CAG FROM TABLE lt_9000.
+  MODIFY zwft_cag FROM TABLE lt_9000.
 
   IF sy-subrc <> 0.
     ROLLBACK WORK.
@@ -1376,9 +1376,9 @@ ENDFORM. " SAVE_ZWFT_CAG
 *&---------------------------------------------------------------------*
 *&      Form  INITIALIZATION
 *&---------------------------------------------------------------------*
-FORM INITIALIZATION .
+FORM initialization .
 
-  g_pgm_title = sy-TITLE.
+  g_pgm_title = sy-title.
 
 ENDFORM. " INITIALIZATION
 
@@ -1406,10 +1406,10 @@ FORM 0110_okay .
   IF pm_slang = '3'. "korean
     lv_condi = 'TXT_KO IN SO_TEXT'.
     lv_condi1 = 'TXT_KO'.
-ELSEIF pm_slang = 'E'."englisgh
+  ELSEIF pm_slang = 'E'."englisgh
     lv_condi = 'TXT_EN IN SO_TEXT'.
     lv_condi1 = 'TXT_EN'.
-ELSEIF pm_slang = '1'."chinese
+  ELSEIF pm_slang = '1'."chinese
     lv_condi = 'TXT_ZH IN SO_TEXT'.
     lv_condi1 = 'TXT_ZH'.
   ENDIF.
@@ -1419,12 +1419,12 @@ ELSEIF pm_slang = '1'."chinese
     'AND'
     `TXT_EN NE ''`
     INTO lv_condi SEPARATED BY space.
-ELSEIF pm_tlang  = '1'."chinese
+  ELSEIF pm_tlang  = '1'."chinese
     CONCATENATE lv_condi
     'AND'
     `TXT_ZH NE ''`
     INTO lv_condi SEPARATED BY space.
-ELSEIF pm_tlang = '3'. "korean
+  ELSEIF pm_tlang = '3'. "korean
     CONCATENATE lv_condi
     'AND'
     `TXT_KO NE ''`
@@ -1433,7 +1433,7 @@ ELSEIF pm_tlang = '3'. "korean
 
   SELECT *
   INTO CORRESPONDING FIELDS OF TABLE gt_110
-  FROM ZWFT_CAG
+  FROM zwft_cag
   WHERE (lv_condi).
 
   gt_110-ico_sel = icon_execute_object.
@@ -1448,13 +1448,13 @@ ENDFORM. " 0110_OKAY
 *&---------------------------------------------------------------------*
 *&      Form  SEL_ZWFT_CAG
 *&---------------------------------------------------------------------*
-FORM sel_ZWFT_CAG USING p_s_text
+FORM sel_zwft_cag USING p_s_text
 CHANGING p_t_text
   e_icon.
 
   e_icon = icon_create_text.
 
-  DATA: lt_9000 LIKE ZWFT_CAG OCCURS 0 WITH HEADER LINE,
+  DATA: lt_9000 LIKE zwft_cag OCCURS 0 WITH HEADER LINE,
         l_s_txt TYPE text132.
   DATA: lv_condi TYPE char255.
 
@@ -1463,9 +1463,9 @@ CHANGING p_t_text
 
   IF pm_slang = '3'. "korean
     lv_condi = 'TXT_KO = L_S_TXT'.
-ELSEIF pm_slang = 'E'."englisgh
+  ELSEIF pm_slang = 'E'."englisgh
     lv_condi = 'TXT_EN = L_S_TXT'.
-ELSEIF pm_slang = '1'."chinese
+  ELSEIF pm_slang = '1'."chinese
     lv_condi = 'TXT_ZH = L_S_TXT'.
   ENDIF.
 
@@ -1474,12 +1474,12 @@ ELSEIF pm_slang = '1'."chinese
     'AND'
     `TXT_EN NE ''`
     INTO lv_condi SEPARATED BY space.
-ELSEIF pm_tlang  = '1'."chinese
+  ELSEIF pm_tlang  = '1'."chinese
     CONCATENATE lv_condi
     'AND'
     `TXT_ZH NE ''`
     INTO lv_condi SEPARATED BY space.
-ELSEIF pm_tlang = '3'. "korean
+  ELSEIF pm_tlang = '3'. "korean
     CONCATENATE lv_condi
     'AND'
     `TXT_KO NE ''`
@@ -1488,7 +1488,7 @@ ELSEIF pm_tlang = '3'. "korean
 
   SELECT *
   INTO CORRESPONDING FIELDS OF TABLE lt_9000
-  FROM ZWFT_CAG
+  FROM zwft_cag
   WHERE (lv_condi).
 
 
@@ -1498,14 +1498,14 @@ ELSEIF pm_tlang = '3'. "korean
 
   e_icon   = icon_change_text.
 
-  IF LINES( lt_9000 ) = 1.
+  IF lines( lt_9000 ) = 1.
     READ TABLE lt_9000 INDEX 1.
 
     IF pm_tlang = 'E'."englisgh
       p_t_text = lt_9000-txt_en.
-  ELSEIF pm_tlang  = '1'."chinese
+    ELSEIF pm_tlang  = '1'."chinese
       p_t_text = lt_9000-txt_zh.
-  ELSEIF pm_tlang = '3'. "korean
+    ELSEIF pm_tlang = '3'. "korean
       p_t_text = lt_9000-txt_ko.
     ENDIF.
 
@@ -1523,7 +1523,7 @@ FORM 0110_save .
   CALL METHOD go_grid1->check_changed_data.
 
 * 수정된 건
-  DATA: lt_9000 LIKE ZWFT_CAG OCCURS 0 WITH HEADER LINE.
+  DATA: lt_9000 LIKE zwft_cag OCCURS 0 WITH HEADER LINE.
 
   LOOP AT gt_110 WHERE edit_gb = 'X'.
     CLEAR lt_9000.
@@ -1543,7 +1543,7 @@ FORM 0110_save .
   IF l_answer <> '1'. LEAVE SCREEN. ENDIF.
 
 * 저장
-  MODIFY ZWFT_CAG FROM TABLE lt_9000.
+  MODIFY zwft_cag FROM TABLE lt_9000.
 
   IF sy-subrc <> 0.
     ROLLBACK WORK.
@@ -1575,7 +1575,7 @@ FORM modi_gt_m .
 
   LOOP AT gt_m.
 
-    PERFORM sel_ZWFT_CAG USING    gt_m-s_text
+    PERFORM sel_zwft_cag USING    gt_m-s_text
     CHANGING l_t_text
       gt_m-ico_sel.
 
@@ -1624,7 +1624,7 @@ FORM sel_area .
     INTO CORRESPONDING FIELDS OF TABLE lt_scrn
     FROM d020s
     WHERE prog  = ls_prog
-    AND TYPE <> 'S'.
+    AND type <> 'S'.
 
     LOOP AT lt_scrn.
 

@@ -181,6 +181,67 @@
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>E</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>E01</KEY>
+       <ENTRY>Grid should be in edit mode in order to use this!</ENTRY>
+       <LENGTH>120</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E02</KEY>
+       <ENTRY>No editable fields in the grid</ENTRY>
+       <LENGTH>120</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E03</KEY>
+       <ENTRY>Please select editable fields only</ENTRY>
+       <LENGTH>120</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E04</KEY>
+       <ENTRY>Please select at least one column!</ENTRY>
+       <LENGTH>120</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E05</KEY>
+       <ENTRY>Select max 10 columns!</ENTRY>
+       <LENGTH>120</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>E06</KEY>
+       <ENTRY>No more free sessions. Close one window.</ENTRY>
+       <LENGTH>120</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>S01</KEY>
+       <ENTRY>Mass replace function</ENTRY>
+       <LENGTH>50</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>S02</KEY>
+       <ENTRY>with:</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>S03</KEY>
+       <ENTRY>Fill</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+   </I18N_TPOOL>
    <DYNPROS>
     <item>
      <HEADER>
@@ -342,8 +403,8 @@
       <CODE>%ML</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Folder</FUN_TEXT>
-      <PATH>F</PATH>
+      <FUN_TEXT>文件夹</FUN_TEXT>
+      <PATH>文</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>%PC</CODE>
@@ -351,8 +412,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_EXPORT</TEXT_NAME>
       <ICON_ID>@49@</ICON_ID>
-      <FUN_TEXT>Local File...</FUN_TEXT>
-      <PATH>L</PATH>
+      <FUN_TEXT>本地文件...</FUN_TEXT>
+      <PATH>本</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>%SC</CODE>
@@ -360,8 +421,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SEARCH</TEXT_NAME>
       <ICON_ID>@13@</ICON_ID>
-      <FUN_TEXT>Find</FUN_TEXT>
-      <PATH>N</PATH>
+      <FUN_TEXT>找到</FUN_TEXT>
+      <PATH>找</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>%SL</CODE>
@@ -369,8 +430,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_MAIL</TEXT_NAME>
       <ICON_ID>@1S@</ICON_ID>
-      <FUN_TEXT>Mail Recipient</FUN_TEXT>
-      <PATH>M</PATH>
+      <FUN_TEXT>邮件收件人</FUN_TEXT>
+      <PATH>邮</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;ABC</CODE>
@@ -378,8 +439,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_ABC</TEXT_NAME>
       <ICON_ID>@DL@</ICON_ID>
-      <FUN_TEXT>ABC Analysis</FUN_TEXT>
-      <PATH>A</PATH>
+      <FUN_TEXT>基础知识分析</FUN_TEXT>
+      <PATH>基</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;ALL</CODE>
@@ -387,8 +448,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SELECT_ALL</TEXT_NAME>
       <ICON_ID>@4B@</ICON_ID>
-      <FUN_TEXT>Select All</FUN_TEXT>
-      <PATH>S</PATH>
+      <FUN_TEXT>全选</FUN_TEXT>
+      <PATH>全</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;AQW</CODE>
@@ -396,22 +457,22 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_WORD_PROCESSING</TEXT_NAME>
       <ICON_ID>@DK@</ICON_ID>
-      <FUN_TEXT>Word Processing...</FUN_TEXT>
-      <PATH>W</PATH>
+      <FUN_TEXT>文字处理...</FUN_TEXT>
+      <PATH>文</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;AUF</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Define Totals Drilldown...</FUN_TEXT>
-      <PATH>S</PATH>
+      <FUN_TEXT>定义总计明细...</FUN_TEXT>
+      <PATH>定</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;AVE</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Saving...</FUN_TEXT>
-      <PATH>S</PATH>
+      <FUN_TEXT>储蓄。。。</FUN_TEXT>
+      <PATH>储</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;AVE</CODE>
@@ -419,28 +480,28 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_ALV_VARIANT_SAVE</TEXT_NAME>
       <ICON_ID>@DN@</ICON_ID>
-      <FUN_TEXT>Save Layout...</FUN_TEXT>
+      <FUN_TEXT>保存布局...</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;AVR</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Mean Value</FUN_TEXT>
-      <PATH>M</PATH>
+      <FUN_TEXT>平均值</FUN_TEXT>
+      <PATH>平</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;CDF</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Unfreeze Columns</FUN_TEXT>
-      <PATH>U</PATH>
+      <FUN_TEXT>解冻列</FUN_TEXT>
+      <PATH>解</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;CFI</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Freeze to Column</FUN_TEXT>
-      <PATH>F</PATH>
+      <FUN_TEXT>冻结到列</FUN_TEXT>
+      <PATH>冻</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;COL0</CODE>
@@ -448,14 +509,14 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_ALV_VARIANTS</TEXT_NAME>
       <ICON_ID>@LZ@</ICON_ID>
-      <FUN_TEXT>Current Variant</FUN_TEXT>
+      <FUN_TEXT>当前变体</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;COUNT</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Count</FUN_TEXT>
-      <PATH>C</PATH>
+      <FUN_TEXT>计数</FUN_TEXT>
+      <PATH>计</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;DATA_SAVE</CODE>
@@ -463,7 +524,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SYSTEM_SAVE</TEXT_NAME>
       <ICON_ID>@2L@</ICON_ID>
-      <FUN_TEXT>Save</FUN_TEXT>
+      <FUN_TEXT>救</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;EB9</CODE>
@@ -471,15 +532,15 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_TABLE_SETTINGS</TEXT_NAME>
       <ICON_ID>@36@</ICON_ID>
-      <FUN_TEXT>Call Up Report...</FUN_TEXT>
+      <FUN_TEXT>调用报告...</FUN_TEXT>
       <PATH>B</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;ERW</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Manage...</FUN_TEXT>
-      <PATH>M</PATH>
+      <FUN_TEXT>管理...</FUN_TEXT>
+      <PATH>管</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;ETA</CODE>
@@ -487,14 +548,14 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SELECT_DETAIL</TEXT_NAME>
       <ICON_ID>@16@</ICON_ID>
-      <FUN_TEXT>Details</FUN_TEXT>
+      <FUN_TEXT>明细</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;F03</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Back</FUN_TEXT>
-      <PATH>B</PATH>
+      <FUN_TEXT>返回</FUN_TEXT>
+      <PATH>返</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;F12</CODE>
@@ -502,15 +563,15 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_CANCEL</TEXT_NAME>
       <ICON_ID>@0W@</ICON_ID>
-      <FUN_TEXT>Cancel</FUN_TEXT>
-      <PATH>A</PATH>
+      <FUN_TEXT>取消</FUN_TEXT>
+      <PATH>消</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;F15</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Exit</FUN_TEXT>
-      <PATH>X</PATH>
+      <FUN_TEXT>退出</FUN_TEXT>
+      <PATH>退</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;FILTER</CODE>
@@ -518,7 +579,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_FILTER</TEXT_NAME>
       <ICON_ID>@4G@</ICON_ID>
-      <FUN_TEXT>Filter</FUN_TEXT>
+      <FUN_TEXT>滤波器</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;GRAPH</CODE>
@@ -526,8 +587,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_GRAPHICS</TEXT_NAME>
       <ICON_ID>@0N@</ICON_ID>
-      <FUN_TEXT>Graphic</FUN_TEXT>
-      <PATH>G</PATH>
+      <FUN_TEXT>图形</FUN_TEXT>
+      <PATH>图</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;ILD</CODE>
@@ -535,8 +596,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_FILTER_UNDO</TEXT_NAME>
       <ICON_ID>@GD@</ICON_ID>
-      <FUN_TEXT>Delete Filter</FUN_TEXT>
-      <PATH>E</PATH>
+      <FUN_TEXT>删除筛选器</FUN_TEXT>
+      <PATH>删</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;ILT</CODE>
@@ -544,8 +605,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_FILTER</TEXT_NAME>
       <ICON_ID>@4G@</ICON_ID>
-      <FUN_TEXT>Set Filter</FUN_TEXT>
-      <PATH>F</PATH>
+      <FUN_TEXT>设置过滤器</FUN_TEXT>
+      <PATH>设</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;INFO</CODE>
@@ -553,7 +614,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_INFORMATION</TEXT_NAME>
       <ICON_ID>@0S@</ICON_ID>
-      <FUN_TEXT>Information</FUN_TEXT>
+      <FUN_TEXT>信息</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;LOAD</CODE>
@@ -561,28 +622,28 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_ALV_VARIANT_CHOOSE</TEXT_NAME>
       <ICON_ID>@DM@</ICON_ID>
-      <FUN_TEXT>Load Variant</FUN_TEXT>
+      <FUN_TEXT>负载变量</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;MAX</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Maximum</FUN_TEXT>
-      <PATH>A</PATH>
+      <FUN_TEXT>最大</FUN_TEXT>
+      <PATH>大</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;MIN</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Minimum</FUN_TEXT>
-      <PATH>I</PATH>
+      <FUN_TEXT>最低</FUN_TEXT>
+      <PATH>最</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;OAD</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Choose...</FUN_TEXT>
-      <PATH>H</PATH>
+      <FUN_TEXT>选择。。。</FUN_TEXT>
+      <PATH>选</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;OAD</CODE>
@@ -590,7 +651,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_ALV_VARIANT_CHOOSE</TEXT_NAME>
       <ICON_ID>@DM@</ICON_ID>
-      <FUN_TEXT>Select Layout...</FUN_TEXT>
+      <FUN_TEXT>选择布局...</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;ODN</CODE>
@@ -598,8 +659,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SORT_DOWN</TEXT_NAME>
       <ICON_ID>@3F@</ICON_ID>
-      <FUN_TEXT>Sort in Descending Order</FUN_TEXT>
-      <PATH>O</PATH>
+      <FUN_TEXT>按降序排序</FUN_TEXT>
+      <PATH>降</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;OL0</CODE>
@@ -607,7 +668,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_ALV_VARIANTS</TEXT_NAME>
       <ICON_ID>@LZ@</ICON_ID>
-      <FUN_TEXT>Change Layout...</FUN_TEXT>
+      <FUN_TEXT>更改布局...</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;OLX</CODE>
@@ -615,15 +676,15 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_VARIANTS</TEXT_NAME>
       <ICON_ID>@0R@</ICON_ID>
-      <FUN_TEXT>Change...</FUN_TEXT>
-      <PATH>C</PATH>
+      <FUN_TEXT>改变...</FUN_TEXT>
+      <PATH>改</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;OPT</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Optimize Width</FUN_TEXT>
-      <PATH>P</PATH>
+      <FUN_TEXT>优化宽度</FUN_TEXT>
+      <PATH>优</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;OUP</CODE>
@@ -631,8 +692,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SORT_UP</TEXT_NAME>
       <ICON_ID>@3E@</ICON_ID>
-      <FUN_TEXT>Sort in Ascending Order</FUN_TEXT>
-      <PATH>I</PATH>
+      <FUN_TEXT>按升序排序</FUN_TEXT>
+      <PATH>按</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;REFRESH</CODE>
@@ -640,7 +701,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_REFRESH</TEXT_NAME>
       <ICON_ID>@42@</ICON_ID>
-      <FUN_TEXT>Refresh</FUN_TEXT>
+      <FUN_TEXT>刷新</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;RNT</CODE>
@@ -648,8 +709,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_PRINT</TEXT_NAME>
       <ICON_ID>@0X@</ICON_ID>
-      <FUN_TEXT>Print</FUN_TEXT>
-      <PATH>P</PATH>
+      <FUN_TEXT>打印</FUN_TEXT>
+      <PATH>印</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;RNT_PREV</CODE>
@@ -657,8 +718,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_LAYOUT_CONTROL</TEXT_NAME>
       <ICON_ID>@3G@</ICON_ID>
-      <FUN_TEXT>Print Preview</FUN_TEXT>
-      <PATH>R</PATH>
+      <FUN_TEXT>打印预览</FUN_TEXT>
+      <PATH>打</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;SAL</CODE>
@@ -666,8 +727,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_DESELECT_ALL</TEXT_NAME>
       <ICON_ID>@4D@</ICON_ID>
-      <FUN_TEXT>Deselect All</FUN_TEXT>
-      <PATH>D</PATH>
+      <FUN_TEXT>取消全选</FUN_TEXT>
+      <PATH>取</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;SAVE</CODE>
@@ -675,7 +736,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_ALV_VARIANT_SAVE</TEXT_NAME>
       <ICON_ID>@DN@</ICON_ID>
-      <FUN_TEXT>Save Variant</FUN_TEXT>
+      <FUN_TEXT>保存变体</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;SORT_ASC</CODE>
@@ -683,7 +744,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SORT_UP</TEXT_NAME>
       <ICON_ID>@3E@</ICON_ID>
-      <FUN_TEXT>Sort Ascending</FUN_TEXT>
+      <FUN_TEXT>升序排序</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;SORT_DSC</CODE>
@@ -691,7 +752,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SORT_DOWN</TEXT_NAME>
       <ICON_ID>@3F@</ICON_ID>
-      <FUN_TEXT>Sort Descending</FUN_TEXT>
+      <FUN_TEXT>降序排序</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;SUBTOT</CODE>
@@ -699,7 +760,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_INTERMEDIATE_SUM</TEXT_NAME>
       <ICON_ID>@5V@</ICON_ID>
-      <FUN_TEXT>Subtotal</FUN_TEXT>
+      <FUN_TEXT>小计</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;SUM</CODE>
@@ -707,8 +768,8 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_INTERMEDIATE_SUM</TEXT_NAME>
       <ICON_ID>@5V@</ICON_ID>
-      <FUN_TEXT>Subtotals...</FUN_TEXT>
-      <PATH>T</PATH>
+      <FUN_TEXT>小计...</FUN_TEXT>
+      <PATH>小</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;SUMC</CODE>
@@ -716,7 +777,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SUM</TEXT_NAME>
       <ICON_ID>@3Z@</ICON_ID>
-      <FUN_TEXT>Sum</FUN_TEXT>
+      <FUN_TEXT>求和</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;UMC</CODE>
@@ -724,15 +785,15 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SUM</TEXT_NAME>
       <ICON_ID>@3Z@</ICON_ID>
-      <FUN_TEXT>Total</FUN_TEXT>
-      <PATH>T</PATH>
+      <FUN_TEXT>求和</FUN_TEXT>
+      <PATH>求</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;VCRYSTAL</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Crystal Reports</FUN_TEXT>
-      <PATH>C</PATH>
+      <FUN_TEXT>水晶报告</FUN_TEXT>
+      <PATH>水</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;VEXCEL</CODE>
@@ -747,22 +808,22 @@
       <CODE>&amp;VGRID</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>SAP List Viewer</FUN_TEXT>
+      <FUN_TEXT>SAP 列表查看器</FUN_TEXT>
       <PATH>S</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;VLOTUS</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Lotus 1-2-3</FUN_TEXT>
-      <PATH>L</PATH>
+      <FUN_TEXT>莲花 1-2-3</FUN_TEXT>
+      <PATH>莲</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;XINT</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Additional Functions of SAP Query</FUN_TEXT>
-      <PATH>E</PATH>
+      <FUN_TEXT>SAP 查询的附加功能</FUN_TEXT>
+      <PATH>S</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;XXL</CODE>
@@ -770,7 +831,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_XLS</TEXT_NAME>
       <ICON_ID>@J2@</ICON_ID>
-      <FUN_TEXT>Export Excel</FUN_TEXT>
+      <FUN_TEXT>导出 Excel</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>&amp;XXL</CODE>
@@ -778,14 +839,14 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_XXL</TEXT_NAME>
       <ICON_ID>@DJ@</ICON_ID>
-      <FUN_TEXT>Spreadsheet...</FUN_TEXT>
-      <PATH>A</PATH>
+      <FUN_TEXT>电子表格。。。</FUN_TEXT>
+      <PATH>电</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>BACK</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Back</FUN_TEXT>
+      <FUN_TEXT>返回</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>CANCEL</CODE>
@@ -793,7 +854,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_CANCEL</TEXT_NAME>
       <ICON_ID>@0W@</ICON_ID>
-      <FUN_TEXT>Cancel</FUN_TEXT>
+      <FUN_TEXT>取消</FUN_TEXT>
       <PATH>A</PATH>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
@@ -802,7 +863,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_OKAY</TEXT_NAME>
       <ICON_ID>@0V@</ICON_ID>
-      <FUN_TEXT>Continue</FUN_TEXT>
+      <FUN_TEXT>继续</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>EXIT</CODE>
@@ -810,7 +871,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_CANCEL</TEXT_NAME>
       <ICON_ID>@0W@</ICON_ID>
-      <FUN_TEXT>Cancel</FUN_TEXT>
+      <FUN_TEXT>取消</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>F01</CODE>
@@ -1028,7 +1089,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SEARCH</TEXT_NAME>
       <ICON_ID>@13@</ICON_ID>
-      <FUN_TEXT>Find</FUN_TEXT>
+      <FUN_TEXT>找到</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>FINDNEXT</CODE>
@@ -1036,7 +1097,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SEARCH_NEXT</TEXT_NAME>
       <ICON_ID>@4E@</ICON_ID>
-      <FUN_TEXT>Find next</FUN_TEXT>
+      <FUN_TEXT>查找下一个</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>PGDOWN</CODE>
@@ -1044,7 +1105,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_NEXT_PAGE</TEXT_NAME>
       <ICON_ID>@30@</ICON_ID>
-      <FUN_TEXT>Next page</FUN_TEXT>
+      <FUN_TEXT>下一页</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>PGEND</CODE>
@@ -1052,7 +1113,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_LAST_PAGE</TEXT_NAME>
       <ICON_ID>@31@</ICON_ID>
-      <FUN_TEXT>Last Page</FUN_TEXT>
+      <FUN_TEXT>最后一页</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>PGHOME</CODE>
@@ -1060,7 +1121,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_FIRST_PAGE</TEXT_NAME>
       <ICON_ID>@2Y@</ICON_ID>
-      <FUN_TEXT>First Page</FUN_TEXT>
+      <FUN_TEXT>第一页</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>PGUP</CODE>
@@ -1068,7 +1129,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_PREVIOUS_PAGE</TEXT_NAME>
       <ICON_ID>@2Z@</ICON_ID>
-      <FUN_TEXT>Previous Page</FUN_TEXT>
+      <FUN_TEXT>上一页</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>PRINT</CODE>
@@ -1076,7 +1137,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_PRINT</TEXT_NAME>
       <ICON_ID>@0X@</ICON_ID>
-      <FUN_TEXT>Print</FUN_TEXT>
+      <FUN_TEXT>打印</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>SAVE</CODE>
@@ -1084,13 +1145,13 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SYSTEM_SAVE</TEXT_NAME>
       <ICON_ID>@2L@</ICON_ID>
-      <FUN_TEXT>Save</FUN_TEXT>
+      <FUN_TEXT>救</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>UP</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Exit</FUN_TEXT>
+      <FUN_TEXT>退出</FUN_TEXT>
      </RSMPE_FUNT>
     </FUN>
     <MEN>
@@ -1455,68 +1516,68 @@
      <RSMPE_MNLT>
       <CODE>000001</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>List</TEXT>
-      <PATH>L</PATH>
+      <TEXT>列表</TEXT>
+      <PATH>列</PATH>
       <INT_NOTE>STANDARD_FULLSCREEN List</INT_NOTE>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000002</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Export</TEXT>
-      <PATH>E</PATH>
+      <TEXT>出口</TEXT>
+      <PATH>出</PATH>
       <INT_NOTE>STANDARD Save</INT_NOTE>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000003</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Send To</TEXT>
-      <PATH>S</PATH>
+      <TEXT>发送到</TEXT>
+      <PATH>发</PATH>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000004</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Edit</TEXT>
-      <PATH>E</PATH>
+      <TEXT>编辑</TEXT>
+      <PATH>编</PATH>
       <INT_NOTE>STANDARD</INT_NOTE>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000005</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Calculate</TEXT>
-      <PATH>C</PATH>
+      <TEXT>算</TEXT>
+      <PATH>算</PATH>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000006</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Goto</TEXT>
-      <PATH>G</PATH>
+      <TEXT>转到</TEXT>
+      <PATH>转</PATH>
       <INT_NOTE>STANDARD</INT_NOTE>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000007</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Views</TEXT>
-      <PATH>I</PATH>
+      <TEXT>视图</TEXT>
+      <PATH>视</PATH>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000008</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Settings</TEXT>
-      <PATH>S</PATH>
+      <TEXT>设置</TEXT>
+      <PATH>设</PATH>
       <INT_NOTE>STANDARD_FULLSCREEN</INT_NOTE>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000009</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Layout</TEXT>
-      <PATH>A</PATH>
+      <TEXT>布局</TEXT>
+      <PATH>布</PATH>
       <INT_NOTE>Sub STANDARD</INT_NOTE>
      </RSMPE_MNLT>
      <RSMPE_MNLT>
       <CODE>000010</CODE>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <TEXT>Columns</TEXT>
-      <PATH>C</PATH>
+      <TEXT>列</TEXT>
+      <PATH>列</PATH>
      </RSMPE_MNLT>
     </MTX>
     <ACT>

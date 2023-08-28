@@ -17,55 +17,55 @@
     <item>
      <ID>I</ID>
      <KEY>E01</KEY>
-     <ENTRY>Grid should be in edit mode in order to use this!</ENTRY>
+     <ENTRY>网格应该处于编辑模式才能使用它！</ENTRY>
      <LENGTH>120</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E02</KEY>
-     <ENTRY>No editable fields in the grid</ENTRY>
+     <ENTRY>网格中没有可编辑的字段</ENTRY>
      <LENGTH>120</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E03</KEY>
-     <ENTRY>Please select editable fields only</ENTRY>
+     <ENTRY>请仅选择可编辑字段</ENTRY>
      <LENGTH>120</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E04</KEY>
-     <ENTRY>Please select at least one column!</ENTRY>
+     <ENTRY>请至少选择一列！</ENTRY>
      <LENGTH>120</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E05</KEY>
-     <ENTRY>Select max 10 columns!</ENTRY>
+     <ENTRY>最多选择10列！</ENTRY>
      <LENGTH>120</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>E06</KEY>
-     <ENTRY>No more free sessions. Close one window.</ENTRY>
+     <ENTRY>不再有免费会话。关闭一个窗口。</ENTRY>
      <LENGTH>120</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>S01</KEY>
-     <ENTRY>Mass replace function</ENTRY>
+     <ENTRY>批量替换功能</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>S02</KEY>
-     <ENTRY>with:</ENTRY>
+     <ENTRY>跟：</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>S03</KEY>
-     <ENTRY>Fill</ENTRY>
+     <ENTRY>填充</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
    </TPOOL>

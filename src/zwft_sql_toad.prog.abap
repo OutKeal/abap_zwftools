@@ -227,7 +227,7 @@ DATA : BEGIN OF s_customize,                                "#EC NEEDED
 * 16 for EXECUTE NATIVE SQL command
 * TABLE contain allowed table name pattern
 * '*' to allow all table, 'Z*' to allow all specific tables...
-         auth_object(20) TYPE c VALUE 'ZTOAD_AUTH',
+         auth_object(20) TYPE c VALUE 'ZWFT_TOAD',
          actvt_select    TYPE tactt-actvt VALUE '03',
          actvt_insert    TYPE tactt-actvt VALUE '01',
          actvt_update    TYPE tactt-actvt VALUE '02',

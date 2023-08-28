@@ -6,32 +6,26 @@
     <ARBGB>ZWFT</ARBGB>
     <MASTERLANG>1</MASTERLANG>
    </T100A>
-   <I18N_LANGS>
-    <LANGU>1</LANGU>
-   </I18N_LANGS>
-   <T100T>
-    <T100T>
+   <T100>
+    <T100>
      <SPRSL>1</SPRSL>
      <ARBGB>ZWFT</ARBGB>
-    </T100T>
-   </T100T>
-   <T100_TEXTS>
-    <item>
-     <SPRSL>1</SPRSL>
      <MSGNR>000</MSGNR>
      <TEXT>&amp;1&amp;2&amp;3&amp;4</TEXT>
-    </item>
-    <item>
+    </T100>
+    <T100>
      <SPRSL>1</SPRSL>
+     <ARBGB>ZWFT</ARBGB>
      <MSGNR>002</MSGNR>
      <TEXT>字段&amp;1不能为空</TEXT>
-    </item>
-    <item>
+    </T100>
+    <T100>
      <SPRSL>1</SPRSL>
+     <ARBGB>ZWFT</ARBGB>
      <MSGNR>003</MSGNR>
      <TEXT>&amp;1字段值&amp;2不正确</TEXT>
-    </item>
-   </T100_TEXTS>
+    </T100>
+   </T100>
   </asx:values>
  </asx:abap>
 </abapGit>

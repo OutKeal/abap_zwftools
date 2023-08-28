@@ -274,7 +274,7 @@ public section.
       value(I_SUBCLASS) type ref to CL_ABAP_TYPEDESCR optional
       value(I_REPID) type SY-REPID optional
       value(I_HANDLE) type SLIS_HANDL optional
-      value(I_SUFFIX) type FINB_GN_SUFFIX optional
+      value(I_SUFFIX) type FAP_CB_SUFFIX optional
       value(IT_EVENTS) type SLIS_T_EVENT optional
     changing
       !CT_TABLE type STANDARD TABLE
@@ -1059,9 +1059,9 @@ CLASS ZWFT_FALV IMPLEMENTATION.
     rv_falv->layout = NEW zwft_falv_layout( rv_falv ).
 
     rv_falv->gui_status = NEW zwft_falv_dynamic_status( ).
+
     rv_falv->screen = SWITCH #( i_popup WHEN abap_true THEN c_screen_popup
     WHEN abap_false THEN c_screen_full ).
-
     IF built_in_screen EQ abap_true AND rv_falv->screen EQ c_screen_full.
       "default in full screen
       rv_falv->layout->set_no_toolbar( abap_true ).
@@ -1266,126 +1266,61 @@ CLASS ZWFT_FALV IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD create_ex_result_falv.
+METHOD create_ex_result_falv.
+  DATA:
+        lt_lvc_row TYPE lvc_t_row.
 
-    DATA:
-          lt_lvc_row TYPE lvc_t_row.
+  CLEAR:
+  lt_lvc_row.
+  me->get_selected_rows(
+  IMPORTING
+    et_index_rows = lt_lvc_row ).
 
-    CLEAR:
-    lt_lvc_row.
-    me->get_selected_rows(
-    IMPORTING
-      et_index_rows = lt_lvc_row ).
+  DATA: lt_sel_cols  TYPE lvc_t_col,
+        lt_sel_cells TYPE lvc_t_cell.
 
-    DATA: lt_sel_cols  TYPE lvc_t_col,
-          lt_sel_cells TYPE lvc_t_cell.
+  me->get_selected_columns(
+  IMPORTING
+    et_index_columns = lt_sel_cols ).
 
-    me->get_selected_columns(
-    IMPORTING
-      et_index_columns = lt_sel_cols ).
+  me->get_selected_cells(
+  IMPORTING
+    et_cell = lt_sel_cells ).
 
-    me->get_selected_cells(
-    IMPORTING
-      et_cell = lt_sel_cells ).
+  DATA:
+        ls_lvc_col  TYPE lvc_s_col,
+        ls_lvc_row  TYPE lvc_s_row,
+        ls_cur_cell TYPE lvc_s_cell.
 
-    DATA:
-          ls_lvc_col  TYPE lvc_s_col,
-          ls_lvc_row  TYPE lvc_s_row,
-          ls_cur_cell TYPE lvc_s_cell.
+  CLEAR:
+  ls_lvc_row,
+  ls_lvc_col.
+  me->get_current_cell(
+  IMPORTING
+    es_row_id = ls_lvc_row
+    es_col_id = ls_lvc_col ).
+  ls_cur_cell-col_id-fieldname = ls_lvc_col-fieldname.
+  ls_cur_cell-row_id-INDEX = ls_lvc_row-INDEX.
 
-    CLEAR:
-    ls_lvc_row,
-    ls_lvc_col.
-    me->get_current_cell(
-    IMPORTING
-      es_row_id = ls_lvc_row
-      es_col_id = ls_lvc_col ).
-    ls_cur_cell-col_id-fieldname = ls_lvc_col-fieldname.
-    ls_cur_cell-row_id-INDEX = ls_lvc_row-INDEX.
+  er_result_table = cl_salv_ex_util=>factory_result_data_table(
+  t_selected_rows             = lt_lvc_row
+  t_selected_columns          = lt_sel_cols
+  t_selected_cells            = lt_sel_cells
+  r_data                      = grid->mt_outtab
+  s_layout                    = grid->m_cl_variant->ms_layout
+  t_fieldcatalog              = grid->m_cl_variant->mt_fieldcatalog
+  t_sort                      = grid->m_cl_variant->mt_sort
+  t_filter                    = grid->m_cl_variant->mt_filter
+  t_hyperlinks                = grid->mt_hyperlinks
+  s_current_cell              = ls_cur_cell
+*        hyperlink_entry_column      = ls_hyper_entry
+*        dropdown_entry_column       = ls_dropdown_entry
+*        r_top_of_list               = lr_top_of_list
+*        r_end_of_list               = lr_end_of_list
+*        t_dropdown_values           = lt_drdn
+  ).
 
-    DATA: ls_hyper_entry    TYPE string,
-          ls_dropdown_entry TYPE string,
-          lt_drdn           TYPE lvc_t_drop.
-
-    IF grid->r_salv_adapter IS BOUND.
-      DATA:
-            lr_display TYPE REF TO if_salv_display_adapter.
-
-      lr_display ?= grid->r_salv_adapter.
-
-      DATA:
-            lr_columns TYPE REF TO cl_salv_columns_list.
-
-      lr_columns ?= lr_display->get_columns( ).
-
-      ls_hyper_entry = lr_columns->get_hyperlink_entry_column( ).
-      ls_dropdown_entry = lr_columns->get_dropdown_entry_column( ).
-
-      DATA:
-            lr_om TYPE REF TO cl_salv_table.
-
-      lr_om ?= grid->r_salv_adapter->r_controller->r_model.
-
-      DATA:
-            lr_functional_settings TYPE REF TO cl_salv_functional_settings.
-
-      lr_functional_settings = lr_om->get_functional_settings( ).
-
-      DATA:
-            lr_dropdowns TYPE REF TO cl_salv_dropdowns.
-
-***<<<Y7AK057779
-      TRY.
-        lr_dropdowns = lr_functional_settings->get_dropdowns( ).
-
-        lt_drdn = cl_salv_controller_metadata=>get_dropdowns( lr_dropdowns ).
-      CATCH cx_salv_method_not_supported.
-        CLEAR sy-subrc.
-      ENDTRY.
-***>>>Y7AK057779
-
-*>>> Y7AK058143
-      DATA:
-            lr_tol TYPE REF TO cl_salv_form_element,
-            lr_eol TYPE REF TO cl_salv_form_element.
-*<<< Y7AK058143
-
-      lr_tol = lr_om->get_top_of_list( ).
-      lr_eol = lr_om->get_end_of_list( ).
-    ENDIF.
-
-*>>> Y7AK058143
-    DATA:
-          lr_top_of_list TYPE REF TO cl_salv_form,
-          lr_end_of_list TYPE REF TO cl_salv_form.
-
-    CREATE OBJECT lr_top_of_list
-    EXPORTING
-      r_content = lr_tol.
-
-    CREATE OBJECT lr_end_of_list
-    EXPORTING
-      r_content = lr_eol.
-*<<< Y7AK058143
-
-    er_result_table = cl_salv_ex_util=>factory_result_data_table(
-    t_selected_rows        = lt_lvc_row
-    t_selected_columns     = lt_sel_cols
-    t_selected_cells       = lt_sel_cells
-    r_data                 = grid->mt_outtab
-    s_layout               = grid->m_cl_variant->ms_layout
-    t_fieldcatalog         = grid->m_cl_variant->mt_fieldcatalog
-    t_sort                 = grid->m_cl_variant->mt_sort
-    t_filter               = grid->m_cl_variant->mt_filter
-    t_hyperlinks           = grid->mt_hyperlinks
-    s_current_cell         = ls_cur_cell
-    hyperlink_entry_column = ls_hyper_entry
-    dropdown_entry_column  = ls_dropdown_entry
-    r_top_of_list          = lr_top_of_list
-    r_end_of_list          = lr_end_of_list
-    t_dropdown_values      = lt_drdn ).
-
-  ENDMETHOD.
+ENDMETHOD.
 
 
   METHOD create_falv_object.
@@ -1499,10 +1434,10 @@ CLASS ZWFT_FALV IMPLEMENTATION.
     FIELD-SYMBOLS: <outtab> TYPE STANDARD TABLE.
     r_falv = me.
     IF me->title_v1 IS INITIAL.
-      me->title_v1 = sy-title. " for lazy people who wants to have alv title to be equal one from report.
+      me->title_v1 = sy-TITLE. " for lazy people who wants to have alv title to be equal one from report.
     ENDIF.
     IF built_in_screen EQ abap_true AND iv_force_grid EQ abap_false.
-      IF screen EQ c_screen_popup AND iv_start_row IS INITIAL
+      IF SCREEN EQ c_screen_popup AND iv_start_row IS INITIAL
       AND iv_start_column IS INITIAL
       AND iv_end_row IS INITIAL
       AND iv_end_column IS INITIAL.
@@ -1512,12 +1447,12 @@ CLASS ZWFT_FALV IMPLEMENTATION.
         iv_end_column = 150.
       ENDIF.
       CALL FUNCTION 'ZWFT_FALV_DISPLAY'
-        EXPORTING
-          io_falv         = me
-          iv_start_row    = iv_start_row
-          iv_start_column = iv_start_column
-          iv_end_row      = iv_end_row
-          iv_end_column   = iv_end_column.
+      EXPORTING
+        io_falv         = me
+        iv_start_row    = iv_start_row
+        iv_start_column = iv_start_column
+        iv_end_row      = iv_end_row
+        iv_end_column   = iv_end_column.
       .
     ELSE.
       ASSIGN outtab->* TO <outtab>.
@@ -1541,7 +1476,7 @@ CLASS ZWFT_FALV IMPLEMENTATION.
       CHANGING
         it_outtab                     = <outtab> " Output Table
         it_fieldcatalog               = fcat
-        it_sort                       = sort " Sort Criteria
+        it_sort                       = SORT " Sort Criteria
         it_filter                     = filter " Filter Criteria
       EXCEPTIONS
         invalid_parameter_combination = 1
@@ -1555,7 +1490,7 @@ CLASS ZWFT_FALV IMPLEMENTATION.
         IF split_container IS NOT INITIAL.
           split_container->set_focus(
           EXPORTING
-            control           = me
+            CONTROL           = me
           EXCEPTIONS
             cntl_error        = 0
             cntl_system_error = 0
@@ -1564,7 +1499,7 @@ CLASS ZWFT_FALV IMPLEMENTATION.
         ELSE.
           me->parent->set_focus(
           EXPORTING
-            control           = me
+            CONTROL           = me
           EXCEPTIONS
             cntl_error        = 0
             cntl_system_error = 0
@@ -2752,6 +2687,8 @@ CLASS ZWFT_FALV IMPLEMENTATION.
     iv_falv->cb_context_menu_request = iv_falv->cb_context_menu_request && iv_falv->suffix.
     iv_falv->cb_toolbar_menu_selected = iv_falv->cb_toolbar_menu_selected && iv_falv->suffix.
     iv_falv->cb_request_data = iv_falv->cb_request_data && iv_falv->suffix.
+
+
 
   ENDMETHOD.
 

@@ -4,7 +4,9 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZWFT_CHECK_RULE</TABNAME>
+    <DDLANGUAGE>1</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
+    <DDTEXT>检查规则</DDTEXT>
    </DD02V>
    <DD03P_TABLE>
     <DD03P>
@@ -35,15 +37,6 @@
      <COMPTYPE>E</COMPTYPE>
     </DD03P>
    </DD03P_TABLE>
-   <I18N_LANGS>
-    <LANGU>1</LANGU>
-   </I18N_LANGS>
-   <DD02_TEXTS>
-    <item>
-     <DDLANGUAGE>1</DDLANGUAGE>
-     <DDTEXT>检查规则</DDTEXT>
-    </item>
-   </DD02_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

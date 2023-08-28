@@ -2,82 +2,82 @@
 *&  Include           ZLJW_TRANS_TOP
 *&---------------------------------------------------------------------*
 
-TABLES: TRDIR,
-  TLIBG,
-  TADIR,
-  T100,
-  DD01L,
-  DD04L,
-  ZWFT_CAG.
+TABLES: trdir,
+        tlibg,
+        tadir,
+        t100,
+        dd01l,
+        dd04l,
+        zwft_cag.
 
 *----------------------------------------------------------------------*
 * IT & STRUCTURE
 *----------------------------------------------------------------------*
 
-DATA: BEGIN OF GT_M OCCURS 0.
-  INCLUDE  STRUCTURE LXE_PCX_S1.
-  DATA:   OBJTYPE  LIKE LXE_COLOB-OBJTYPE,  "LXE_ATTOB-OBJ_TYPE,
-        OBJNAME  LIKE LXE_COLOB-OBJNAME,
-        META_OBJTYPE LIKE LXE_ATTOB-META_OBJTYPE,
-        ICO_SEL  LIKE ICON-ID,                     "####Ǯ #ȸ
-        MARK.
-DATA: END OF GT_M.
+DATA: BEGIN OF gt_m OCCURS 0.
+        INCLUDE  STRUCTURE lxe_pcx_s1.
+DATA: objtype      LIKE lxe_colob-objtype,  "LXE_ATTOB-OBJ_TYPE,
+        objname      LIKE lxe_colob-objname,
+        meta_objtype LIKE lxe_attob-meta_objtype,
+        ico_sel      LIKE icon-id,                     "####Ǯ #ȸ
+        mark.
+DATA: END OF gt_m.
 
-DATA: BEGIN OF GT_110 OCCURS 0.
-  INCLUDE STRUCTURE ZWFT_CAG.
-  DATA:   ICO_SEL LIKE ICON-ID,           "### Main## ####
-        EDIT_GB,                        "#######
-        MARK.
-DATA: END OF GT_110.
+DATA: BEGIN OF gt_110 OCCURS 0.
+        INCLUDE STRUCTURE zwft_cag.
+DATA: ico_sel LIKE icon-id,           "### Main## ####
+        edit_gb,                        "#######
+        mark.
+DATA: END OF gt_110.
 
-DATA: BEGIN OF GT_LXE OCCURS 0,
-  OBJECT   TYPE LXEOBJNAME ,
-  OBJTYPE  TYPE LXEOBJTYPE,
-END OF GT_LXE.
+DATA: BEGIN OF gt_lxe OCCURS 0,
+        object  TYPE lxeobjname,
+        objtype TYPE lxeobjtype,
+      END OF gt_lxe.
 
-DATA : BEGIN OF GT_MESS OCCURS 0,
-  ARBGB  LIKE T100-ARBGB  ,
-  MSGNR  LIKE T100-MSGNR  ,
-END OF GT_MESS.
+DATA : BEGIN OF gt_mess OCCURS 0,
+         arbgb LIKE t100-arbgb,
+         msgnr LIKE t100-msgnr,
+       END OF gt_mess.
 
 *----------------------------------------------------------------------*
 * ########
 *----------------------------------------------------------------------*
-CONSTANTS: C_CUSTMNR TYPE LXECUSTMNR VALUE '999999'.
+CONSTANTS: c_custmnr TYPE lxecustmnr VALUE '999999'.
 
-DATA: G_OKCD  LIKE SY-UCOMM,
-      G_UCOM  LIKE SY-UCOMM,
-      G_ERROR.
+DATA: g_okcd  LIKE sy-ucomm,
+      g_ucom  LIKE sy-ucomm,
+      g_error.
 
-DATA: G_SLANG     TYPE  LXEISOLANG,
-      G_TLANG     TYPE  LXEISOLANG,
-      G_2LANG     TYPE  LXEISOLANG.
+DATA: g_slang TYPE  lxeisolang,
+      g_tlang TYPE  lxeisolang,
+      g_2lang TYPE  lxeisolang.
 
-DATA: G_ONLY_DEVCLS,                "####Ŭ#### #˻###Ǹ# #ԷµǾ## ####
-      G_CLK_TABIX TYPE SY-TABIX,    "MAIN ȭ#鿡## ####Ǯ #ȸ ###### Ŭ#### ##
-      G_PGM_TITLE TYPE TRDIRT-TEXT.
+DATA: g_only_devcls,                "####Ŭ#### #˻###Ǹ# #ԷµǾ## ####
+      g_clk_tabix   TYPE sy-tabix,    "MAIN ȭ#鿡## ####Ǯ #ȸ ###### Ŭ#### ##
+      g_pgm_title   TYPE trdirt-text.
 
 *----------------------------------------------------------------------*
 * SELECTION SCREEN
 *----------------------------------------------------------------------*
-SELECTION-SCREEN BEGIN OF BLOCK B1 WITH FRAME TITLE TEXT-001.
-  PARAMETERS: PM_SLANG LIKE SY-LANGU OBLIGATORY DEFAULT '1' MATCHCODE OBJECT H_T002,
-  PM_TLANG LIKE SY-LANGU OBLIGATORY DEFAULT 'E' MATCHCODE OBJECT H_T002.  "
+SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE TEXT-001.
+  PARAMETERS: pm_slang LIKE sy-langu OBLIGATORY DEFAULT '1' MATCHCODE OBJECT h_t002,
+              pm_tlang LIKE sy-langu OBLIGATORY DEFAULT 'E' MATCHCODE OBJECT h_t002.  "
 *            pm_zlang LIKE sy-langu OBLIGATORY DEFAULT '1' MATCHCODE OBJECT h_t002.
 
-SELECTION-SCREEN END OF BLOCK B1.
+SELECTION-SCREEN END OF BLOCK b1.
 
-SELECTION-SCREEN BEGIN OF BLOCK B2 WITH FRAME TITLE TEXT-200.
-  SELECT-OPTIONS: SO_PROG  FOR TRDIR-NAME,    " MATCHCODE OBJECT PROGNAME,
-  SO_AREA  FOR TLIBG-AREA,    "FUNCTION_GROUP
-  SO_MSAG  FOR T100-ARBGB,
-  SO_DTEL  FOR DD04L-ROLLNAME,
-  SO_DOMA  FOR DD01L-DOMNAME,
-  SO_CLASS FOR TADIR-DEVCLASS.
-SELECTION-SCREEN END OF BLOCK B2.
+SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE TEXT-200.
+  SELECT-OPTIONS: so_prog  FOR trdir-name,    " MATCHCODE OBJECT PROGNAME,
+  so_area  FOR tlibg-area,    "FUNCTION_GROUP
+  so_msag  FOR t100-arbgb,
+  so_dtel  FOR dd04l-rollname,
+  so_doma  FOR dd01l-domname,
+  so_class FOR tadir-devclass.
+SELECTION-SCREEN END OF BLOCK b2.
 
 SELECTION-SCREEN BEGIN OF SCREEN 1100 AS SUBSCREEN.
-  SELECT-OPTIONS: SO_TEXT FOR ZWFT_CAG-TXT_KO NO-EXTENSION NO INTERVALS.
+  SELECT-OPTIONS: so_text FOR zwft_cag-txt_ko NO-EXTENSION NO INTERVALS.
 SELECTION-SCREEN END OF SCREEN 1100.
 
 *SELECTION-SCREEN BEGIN OF BLOCK B7 WITH FRAME TITLE TEXT-002.

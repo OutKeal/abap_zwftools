@@ -2,6 +2,7 @@
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
+   <AREAT>工具函数组</AREAT>
    <INCLUDES>
     <SOBJ_NAME>LZWFT_GROUPTOP</SOBJ_NAME>
     <SOBJ_NAME>SAPLZWFT_GROUP</SOBJ_NAME>

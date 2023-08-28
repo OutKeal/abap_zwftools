@@ -9,28 +9,28 @@
 * 2013.11.08 | ###### | Initial Release
 *----------------------------------------------------------------------*
 
-REPORT  ZWFT_TRANS MESSAGE-ID ZSC001.
+REPORT  zwft_trans MESSAGE-ID zsc001.
 
-INCLUDE ZWFT_TRANS_TOP.
+INCLUDE zwft_trans_top.
 *INCLUDE ZCAG_TRANS_TOP.
-INCLUDE ZWFT_TRANS_CLS.
+INCLUDE zwft_trans_cls.
 *INCLUDE ZCAG_TRANS_CLS.
-INCLUDE ZWFT_TRANS_M01.
+INCLUDE zwft_trans_m01.
 *INCLUDE ZCAG_TRANS_M01.
-INCLUDE ZWFT_TRANS_F01.
+INCLUDE zwft_trans_f01.
 *INCLUDE ZCAG_TRANS_F01.
 
 *----------------------------------------------------------------------*
 * INITIALIZATION                                                       *
 *----------------------------------------------------------------------*
 INITIALIZATION.
-  PERFORM INITIALIZATION.
+  PERFORM initialization.
 
 *----------------------------------------------------------------------*
 * AT SELECTION-SCREEN
 *----------------------------------------------------------------------*
 AT SELECTION-SCREEN.
-  PERFORM AT_SEL_SCR.
+  PERFORM at_sel_scr.
 
 
 *----------------------------------------------------------------------*
@@ -38,19 +38,20 @@ AT SELECTION-SCREEN.
 *----------------------------------------------------------------------*
 START-OF-SELECTION.
 
-  IF G_ERROR = 'X'. EXIT. ENDIF.
+  IF g_error = 'X'. EXIT. ENDIF.
+  gv_repid = sy-repid.
 
 * ISO #### #ڵ### ##ȯ
-  PERFORM LXE_T002_CHECK_LANGUAGE.
+  PERFORM lxe_t002_check_language.
 
 *  IF PM_EXCEL = 'X'.
 *    PERFORM UPLOAD_EXCEL.
 *  ELSE.
-    PERFORM SELECT_OBJLIST.
-    PERFORM READ_TEXT.
+  PERFORM select_objlist.
+  PERFORM read_text.
 *  ENDIF.
 
-  PERFORM MODI_GT_M.
+  PERFORM modi_gt_m.
 
 
   CALL SCREEN 0100.

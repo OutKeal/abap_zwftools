@@ -45,7 +45,7 @@
 *&
 *& In some case (when application server is fast) the read process
 *& after a remote server action give the old state of a folder
-*& To be sure than C_DIR_READ_ give the correct folder content
+*& To be sure than C_DIR_READ_ give tLShe correct folder content
 *& a "wait up to 1 seconds" is added after each server action.
 *& It's a dirty trick...
 *&
@@ -6443,7 +6443,7 @@ FORM init_auth.
   AUTHORITY-CHECK OBJECT 'S_C_FUNCT'
                   ID 'ACTVT' FIELD '16'
                   ID 'CFUNCNAME' FIELD ' '
-                  ID 'PROGRAM' FIELD 'ZAL11'.
+                  ID 'PROGRAM' FIELD 'ZWFT_AL11'.
   IF sy-subrc NE 0.
 * If not allowed, it is not possible to :
 * - Compress/uncompress

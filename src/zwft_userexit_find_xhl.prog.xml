@@ -9,62 +9,117 @@
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
+   <TPOOL>
+    <item>
+     <ID>R</ID>
+     <ENTRY>报表 ZUT_FIND_USER_EXITS</ENTRY>
+     <LENGTH>70</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_BYDEV</KEY>
+     <ENTRY>程序包</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_BYTCDE</KEY>
+     <ENTRY>事务代码</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_CUSTOM</KEY>
+     <ENTRY>出口</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_DEVC</KEY>
+     <ENTRY>包</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_INC</KEY>
+     <ENTRY>内部的</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_PRJ</KEY>
+     <ENTRY>程序</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_SAP</KEY>
+     <ENTRY>SAP</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_TCODE</KEY>
+     <ENTRY>事务代码</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+   </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
+     <LANGUAGE>E</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>R</ID>
        <ENTRY>报表 ZUT_FIND_USER_EXITS</ENTRY>
-       <LENGTH>22</LENGTH>
+       <LENGTH>70</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_BYDEV</KEY>
        <ENTRY>程序包</ENTRY>
-       <LENGTH>11</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_BYTCDE</KEY>
        <ENTRY>事务代码</ENTRY>
-       <LENGTH>12</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_CUSTOM</KEY>
        <ENTRY>出口</ENTRY>
-       <LENGTH>10</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_DEVC</KEY>
        <ENTRY>包</ENTRY>
-       <LENGTH>9</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_INC</KEY>
        <ENTRY>内部的</ENTRY>
-       <LENGTH>11</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_PRJ</KEY>
        <ENTRY>程序</ENTRY>
-       <LENGTH>10</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_SAP</KEY>
        <ENTRY>SAP</ENTRY>
-       <LENGTH>11</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_TCODE</KEY>
        <ENTRY>事务代码</ENTRY>
-       <LENGTH>12</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
      </TEXTPOOL>
     </item>

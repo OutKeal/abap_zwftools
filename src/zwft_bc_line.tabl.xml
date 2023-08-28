@@ -4,7 +4,9 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZWFT_BC_LINE</TABNAME>
+    <DDLANGUAGE>1</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
+    <DDTEXT>BC LINE</DDTEXT>
    </DD02V>
    <DD03P_TABLE>
     <DD03P>
@@ -17,15 +19,6 @@
      <MASK>  CHAR</MASK>
     </DD03P>
    </DD03P_TABLE>
-   <I18N_LANGS>
-    <LANGU>1</LANGU>
-   </I18N_LANGS>
-   <DD02_TEXTS>
-    <item>
-     <DDLANGUAGE>1</DDLANGUAGE>
-     <DDTEXT>BC LINE</DDTEXT>
-    </item>
-   </DD02_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

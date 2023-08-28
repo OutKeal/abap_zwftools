@@ -9,14 +9,45 @@
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
+   <TPOOL>
+    <item>
+     <ID>R</ID>
+     <ENTRY>表数据批量下载</ENTRY>
+     <LENGTH>70</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_PATH</KEY>
+     <ENTRY>路径</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>S_TAB</KEY>
+     <ENTRY>表名</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+   </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
+     <LANGUAGE>E</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>R</ID>
        <ENTRY>表数据批量下载</ENTRY>
-       <LENGTH>7</LENGTH>
+       <LENGTH>70</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>P_PATH</KEY>
+       <ENTRY>路径</ENTRY>
+       <LENGTH>38</LENGTH>
+      </item>
+      <item>
+       <ID>S</ID>
+       <KEY>S_TAB</KEY>
+       <ENTRY>表名</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
      </TEXTPOOL>
     </item>

@@ -9,20 +9,33 @@
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
+   <TPOOL>
+    <item>
+     <ID>R</ID>
+     <ENTRY>ABAP应急使用程序</ENTRY>
+     <LENGTH>70</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>P_REPORT</KEY>
+     <ENTRY>报表名称</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+   </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
+     <LANGUAGE>E</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>R</ID>
        <ENTRY>ABAP应急使用程序</ENTRY>
-       <LENGTH>10</LENGTH>
+       <LENGTH>70</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>P_REPORT</KEY>
        <ENTRY>报表名称</ENTRY>
-       <LENGTH>12</LENGTH>
+       <LENGTH>38</LENGTH>
       </item>
      </TEXTPOOL>
     </item>

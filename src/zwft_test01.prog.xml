@@ -3,19 +3,27 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <PROGDIR>
-    <NAME>ZWFT_SQL_EXPLORERF05</NAME>
-    <SUBC>I</SUBC>
+    <NAME>ZWFT_TEST01</NAME>
+    <SUBC>1</SUBC>
     <RLOAD>1</RLOAD>
+    <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
+   <TPOOL>
+    <item>
+     <ID>R</ID>
+     <ENTRY>TEST</ENTRY>
+     <LENGTH>70</LENGTH>
+    </item>
+   </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
+     <LANGUAGE>E</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>R</ID>
-       <ENTRY>Include ZSQLEXPLORERF05</ENTRY>
-       <LENGTH>23</LENGTH>
+       <ENTRY>TEST</ENTRY>
+       <LENGTH>70</LENGTH>
       </item>
      </TEXTPOOL>
     </item>

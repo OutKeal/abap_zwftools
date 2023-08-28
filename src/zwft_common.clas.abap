@@ -202,12 +202,12 @@ public section.
       value(CONFIG) type DATA
     changing
       value(FCAT) type LVC_T_FCAT .
-  class-methods GET_FCAT
+  class-methods FCAT_FROM_DATA
     importing
       !IT_TABLE type DATA
     returning
       value(RT_FCAT) type LVC_T_FCAT .
-  class-methods GET_FCAT_BY_NAME
+  class-methods FCAT_FROM_NAME
     importing
       !IV_TABNAME type CHAR30
     returning
@@ -248,6 +248,12 @@ public section.
       !CT_DATA type ref to DATA
     returning
       value(RV_OK) type ABAP_BOOL .
+  class-methods GET_USER_PARAMETER
+    importing
+      value(PARID) type MEMORYID
+      value(UNAME) type SY-UNAME default SY-UNAME
+    returning
+      value(R_PARAMETER_VALUE) type XUVALUE .
   PROTECTED SECTION.
 private section.
 ENDCLASS.
@@ -415,114 +421,6 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
   ENDMETHOD.
 
 
-METHOD call_transation_by_line.
-
-  ASSIGN COMPONENT fieldname OF STRUCTURE LINE TO FIELD-SYMBOL(<value>).
-  CHECK sy-subrc EQ 0.
-
-  CASE fieldname.
-  WHEN 'BANFN' ."采购申请
-    SET PARAMETER ID 'BAN' FIELD <value>.
-    CALL TRANSACTION 'ME53N' AND SKIP FIRST SCREEN.
-
-  WHEN 'EBELN' .  "采购订单
-    SET PARAMETER ID 'BES' FIELD <value>.
-    CALL TRANSACTION  'ME23N' AND SKIP FIRST SCREEN.
-
-  WHEN 'VBELN_ASN' . "内向交货单"
-    SET PARAMETER ID 'VL' FIELD <value>.
-    CALL TRANSACTION 'VL33N' AND SKIP FIRST SCREEN.
-
-  WHEN 'VBELN_VA'. "销售订单"
-    SET PARAMETER ID 'AUN' FIELD <value>.
-    CALL TRANSACTION 'VA03' AND SKIP FIRST SCREEN.
-
-  WHEN 'VBELN_VL'. "交货单"
-    SET PARAMETER ID 'VL' FIELD <value>.
-    CALL TRANSACTION 'VL03N' AND SKIP FIRST SCREEN.
-
-  WHEN 'VBELN_VF'. "发票"
-    SET PARAMETER ID 'VF' FIELD <value>.
-    CALL TRANSACTION 'VF03' AND SKIP FIRST SCREEN.
-
-  WHEN 'RSNUM'. "预留"
-    SET PARAMETER ID 'RES' FIELD <value>.
-    CALL TRANSACTION  'MB23' AND SKIP FIRST SCREEN.
-
-  WHEN 'MBLNR'. "商品凭证"
-    ASSIGN COMPONENT 'MJAHR' OF STRUCTURE LINE TO FIELD-SYMBOL(<mjahr>).
-    CHECK sy-subrc EQ 0.
-    CALL FUNCTION 'MIGO_DIALOG'
-    EXPORTING
-      i_action = 'A04'
-      i_refdoc = 'R02'
-      i_mblnr  = <value>
-      i_mjahr  = <mjahr>.
-
-  WHEN 'BELNR_R' .            "发票校验"
-    ASSIGN COMPONENT 'GJAHR_R' OF STRUCTURE LINE TO FIELD-SYMBOL(<gjahr_r>).
-    CHECK sy-subrc EQ 0.
-    SET PARAMETER ID 'RBN' FIELD <value>.
-    SET PARAMETER ID 'GJR' FIELD <gjahr_r>.
-    CALL TRANSACTION 'MIR4' AND SKIP FIRST SCREEN.
-
-  WHEN 'BELNR' .  "会计凭证
-    ASSIGN COMPONENT 'GJAHR' OF STRUCTURE LINE TO FIELD-SYMBOL(<gjahr>).
-    CHECK sy-subrc EQ 0.
-    ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs>).
-    CHECK sy-subrc EQ 0.
-    SET PARAMETER ID 'BLN' FIELD <value>.
-    SET PARAMETER ID 'GJR' FIELD <gjahr>.
-    SET PARAMETER ID 'BUK' FIELD <bukrs>.
-    CALL TRANSACTION 'FB03' AND SKIP FIRST SCREEN.
-
-  WHEN 'MATNR' OR 'STANR'. "商品"
-    SET PARAMETER ID 'MAT' FIELD <value>.
-    CALL TRANSACTION 'MM43' AND SKIP FIRST SCREEN.
-
-
-  WHEN 'LIFNR' OR 'KUNNR' . "客户/供应商"
-    SET PARAMETER ID 'BPA' FIELD <value>.
-    SUBMIT r_ftr_display_bp WITH p_bp = <value> AND RETURN.
-
-  WHEN 'AUFNR_U' .  "内部订单"
-    SET PARAMETER ID 'ANR' FIELD <value>.
-    CALL TRANSACTION 'KO03' AND SKIP FIRST SCREEN.
-
-  WHEN 'SAKNR' OR 'HKONT' . "科目"
-    ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs_skb1>).
-    CHECK sy-subrc EQ 0.
-    SET PARAMETER ID 'SAK' FIELD <value>.
-    SET PARAMETER ID 'BUK' FIELD <bukrs_skb1>.
-    CALL TRANSACTION 'FS00' AND SKIP FIRST SCREEN.
-
-
-  WHEN 'ANLA' OR 'ANLN1' OR 'BUS1022'.   "固定资产
-    ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs_as03>).
-    CHECK sy-subrc EQ 0.
-    SET PARAMETER ID 'AN1' FIELD <value>.
-    SET PARAMETER ID 'BUK' FIELD <bukrs_as03>.
-    CALL TRANSACTION 'AS03' AND SKIP FIRST SCREEN.
-
-  WHEN 'WERKS'  OR 'UMWRK'. "地点
-    SET PARAMETER ID 'WRK' FIELD <value>.
-    CALL TRANSACTION 'WB03' AND SKIP FIRST SCREEN.
-
-  WHEN 'AUFNR' ."生产订单
-    SET PARAMETER ID 'ANR' FIELD <value>.
-    CALL TRANSACTION 'CO03' AND SKIP FIRST SCREEN.
-
-  WHEN 'DOCNUM' ."IDOC
-    SUBMIT idoc_tree_control WITH docnum = <value> AND RETURN.
-
-  WHEN 'XML' OR 'PROXY'.
-    SUBMIT rsxmb_display_msg_vers_new WITH msgguid = <value>
-    AND RETURN.
-  ENDCASE.
-
-ENDMETHOD.
-
-
   METHOD confirm.
 
     DATA lv_msg TYPE char100.
@@ -553,54 +451,6 @@ ENDMETHOD.
     ENDIF.
 
   ENDMETHOD.
-
-
-METHOD create_table_compo.
-  rv_ok = abap_false.
-  DATA(lo_table) = cl_abap_tabledescr=>create( cl_abap_structdescr=>create( it_compo ) ).
-  CREATE DATA ct_data TYPE HANDLE lo_table.
-  rv_ok = abap_true.
-ENDMETHOD.
-
-
-METHOD create_table_dfies.
-  DATA(lt_dfies) = it_dfies.
-  DELETE lt_dfies WHERE tabname IS INITIAL OR fieldname IS INITIAL.
-  "// 检查表名和字段名是否正确？
-  rv_ok = abap_false.
-  "//-------------------------------------------------------
-  DATA lt_compo TYPE cl_abap_structdescr=>component_table.
-  CLEAR lt_compo.
-  DATA lo_data TYPE REF TO cl_abap_datadescr.
-  LOOP AT it_dfies ASSIGNING FIELD-SYMBOL(<ls_dfies>).
-    APPEND INITIAL LINE TO lt_compo ASSIGNING FIELD-SYMBOL(<ls_compo>).
-    <ls_compo>-name = <ls_dfies>-fieldname.
-    lo_data = CAST cl_abap_datadescr(
-    cl_abap_datadescr=>describe_by_name( |{ <ls_dfies>-tabname }-{ <ls_dfies>-fieldname }| ) ).
-    <ls_compo>-type = lo_data.
-  ENDLOOP.
-  rv_ok = zwft_common=>create_table_compo( EXPORTING it_compo = lt_compo CHANGING ct_data = ct_data ).
-ENDMETHOD.
-
-
-METHOD create_table_fcat.
-  DATA(lt_fcat) = it_fcat.
-  DELETE lt_fcat WHERE tabname IS INITIAL OR fieldname IS INITIAL.
-  "// 检查表名和字段名是否正确？
-  rv_ok = abap_false.
-  "//-------------------------------------------------------
-  DATA lt_compo TYPE cl_abap_structdescr=>component_table.
-  CLEAR lt_compo.
-  DATA lo_data TYPE REF TO cl_abap_datadescr.
-  LOOP AT it_fcat ASSIGNING FIELD-SYMBOL(<ls_fcat>).
-    APPEND INITIAL LINE TO lt_compo ASSIGNING FIELD-SYMBOL(<ls_compo>).
-    <ls_compo>-name = <ls_fcat>-fieldname.
-    lo_data = CAST cl_abap_datadescr(
-    cl_abap_datadescr=>describe_by_name( |{ <ls_fcat>-tabname }-{ <ls_fcat>-fieldname }| ) ).
-    <ls_compo>-TYPE = lo_data.
-  ENDLOOP.
-  rv_ok = zwft_common=>create_table_compo( EXPORTING it_compo = lt_compo CHANGING ct_data = ct_data ).
-ENDMETHOD.
 
 
   METHOD date_input.
@@ -954,13 +804,13 @@ ENDMETHOD.
 
   METHOD file_download_to_csv.
     TYPES:BEGIN OF fieldnames,
-      name TYPE char30,
-    END OF fieldnames.
+            name TYPE char30,
+          END OF fieldnames.
     DATA:fieldnames TYPE TABLE OF fieldnames.
     DATA filename TYPE string.
 
-    CHECK DATA IS NOT INITIAL.
-    DATA(fcat) = GET_FCAT( DATA ).
+    CHECK data IS NOT INITIAL.
+    DATA(fcat) = fcat_from_data( data ).
     filename = file_get_save_path( 'CSV' ).
     CHECK filename IS NOT INITIAL.
 
@@ -972,40 +822,40 @@ ENDMETHOD.
     ENDIF.
 
     CALL FUNCTION 'GUI_DOWNLOAD'
-    EXPORTING
+      EXPORTING
 *       BIN_FILESIZE            =
-      filename                = filename
-      filetype                = 'ASC'
-      write_field_separator   = 'X'
-      HEADER                  = '00'
-      trunc_trailing_blanks   = 'X'
-      codepage                = get_encoding( 'UTF-8' )
-    TABLES
-    data_tab                = DATA
-          fieldnames              = fieldnames
-    EXCEPTIONS
-      file_write_error        = 1
-      no_batch                = 2
-      gui_refuse_filetransfer = 3
-      invalid_type            = 4
-      no_authority            = 5
-      unknown_error           = 6
-      header_not_allowed      = 7
-      separator_not_allowed   = 8
-      filesize_not_allowed    = 9
-      header_too_long         = 10
-      dp_error_create         = 11
-      dp_error_send           = 12
-      dp_error_write          = 13
-      unknown_dp_error        = 14
-      access_denied           = 15
-      dp_out_of_memory        = 16
-      disk_full               = 17
-      dp_timeout              = 18
-      file_not_found          = 19
-      dataprovider_exception  = 20
-      control_flush_error     = 21
-      OTHERS                  = 22.
+        filename                = filename
+        filetype                = 'ASC'
+        write_field_separator   = 'X'
+        header                  = '00'
+        trunc_trailing_blanks   = 'X'
+        codepage                = get_encoding( 'UTF-8' )
+      TABLES
+        data_tab                = data
+        fieldnames              = fieldnames
+      EXCEPTIONS
+        file_write_error        = 1
+        no_batch                = 2
+        gui_refuse_filetransfer = 3
+        invalid_type            = 4
+        no_authority            = 5
+        unknown_error           = 6
+        header_not_allowed      = 7
+        separator_not_allowed   = 8
+        filesize_not_allowed    = 9
+        header_too_long         = 10
+        dp_error_create         = 11
+        dp_error_send           = 12
+        dp_error_write          = 13
+        unknown_dp_error        = 14
+        access_denied           = 15
+        dp_out_of_memory        = 16
+        disk_full               = 17
+        dp_timeout              = 18
+        file_not_found          = 19
+        dataprovider_exception  = 20
+        control_flush_error     = 21
+        OTHERS                  = 22.
     IF sy-subrc <> 0.
 * Implement suitable error handling here
     ENDIF.
@@ -1018,17 +868,17 @@ ENDMETHOD.
     FIELD-SYMBOLS: <cdata> TYPE STANDARD TABLE.
     DATA filename TYPE string.
     DATA: salv  TYPE REF TO cl_salv_table.
-    CHECK data IS NOT INITIAL.
+    CHECK DATA IS NOT INITIAL.
 
     filename = file_get_save_path( 'xlsx' ).
     CHECK filename IS NOT INITIAL.
-    ASSIGN data TO <cdata>.
+    ASSIGN DATA TO <cdata>.
     cl_salv_table=>factory(  IMPORTING  r_salv_table = salv
     CHANGING t_table = <cdata> ).
 
     DATA(fcat) = cl_salv_controller_metadata=>get_lvc_fieldcatalog(
-    r_columns      = salv->get_columns( )
-    r_aggregations = salv->get_aggregations( ) ).
+          r_columns      = salv->get_columns( )
+          r_aggregations = salv->get_aggregations( ) ).
 
     LOOP AT fcat INTO DATA(ls_fcat).
       DATA(lr_column) = salv->get_columns( )->get_column( ls_fcat-fieldname ).
@@ -1046,152 +896,6 @@ ENDMETHOD.
   ENDMETHOD.
 
 
-  METHOD file_get_read_path.
-
-    DATA:filename TYPE string.
-    DATA:path TYPE string.
-    DATA:fullpath TYPE string.
-
-    DATA: lt_filetab TYPE filetable,
-          lv_rc      TYPE i.
-    cl_gui_frontend_services=>get_desktop_directory( CHANGING desktop_directory = path ).
-    cl_gui_cfw=>flush( ).
-    filename = |{ sy-title }_{ sy-datum  }_{ sy-uzeit }|.
-    CALL METHOD cl_gui_frontend_services=>file_open_dialog
-      EXPORTING
-        default_extension       = extname
-        default_filename        = filename
-        file_filter             = extname
-        initial_directory       = path
-      CHANGING
-        file_table              = lt_filetab
-        rc                      = lv_rc
-      EXCEPTIONS
-        file_open_dialog_failed = 1
-        cntl_error              = 2
-        error_no_gui            = 3
-        not_supported_by_gui    = 4
-        OTHERS                  = 5.
-
-    IF sy-subrc <> 0.
-      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-    ELSE.
-      READ TABLE lt_filetab INTO DATA(ls_filetab) INDEX 1.
-      IF sy-subrc EQ 0.
-        rv_file = ls_filetab-filename.
-      ENDIF.
-
-
-    ENDIF.
-  ENDMETHOD.
-
-
-  METHOD FILE_GET_SAVE_PATH.
-
-    DATA:filename TYPE string.
-    DATA:path TYPE string.
-    DATA:fullpath TYPE string.
-    cl_gui_frontend_services=>get_desktop_directory( CHANGING desktop_directory = path ).
-    cl_gui_cfw=>flush( ).
-    filename = |{ sy-TITLE }_{ sy-datum  }_{ sy-uzeit }|.
-
-    cl_gui_frontend_services=>file_save_dialog(
-    EXPORTING
-      default_file_name       = filename
-      default_extension       = extname
-      file_filter             = extname
-      initial_directory = path
-    CHANGING
-      path            = path
-      filename            = filename
-      fullpath            = fullpath
-    EXCEPTIONS
-      cntl_error          = 1
-      error_no_gui        = 2
-      OTHERS              = 3 ).
-    IF sy-subrc <> 0.
-      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-    ELSE.
-      rv_file = fullpath.
-    ENDIF.
-  ENDMETHOD.
-
-
-  METHOD file_upload_from_excel.
-    DATA: msg TYPE REF TO zwft_message.
-    DATA:lt_excel TYPE TABLE OF alsmex_tabline.
-    DATA(pv_path) = file_get_read_path( 'xlsx' ).
-
-    msg = NEW zwft_message( ).
-    CALL FUNCTION 'ALSM_EXCEL_TO_INTERNAL_TABLE'
-      EXPORTING
-        filename                = pv_path
-        i_begin_col             = begin_col
-        i_begin_row             = begin_row
-        i_end_col               = end_col
-        i_end_row               = end_row
-      TABLES
-        intern                  = lt_excel
-      EXCEPTIONS
-        inconsistent_parameters = 1
-        upload_ole              = 2
-        OTHERS                  = 3.
-    IF sy-subrc <> 0.
-      msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = '读取导入文件失败' ).
-    ENDIF.
-
-    CLEAR data.
-    DATA(fcat) = get_fcat( data ).
-
-
-    LOOP AT lt_excel INTO DATA(ls_excel).
-      IF ls_excel-row = 1.
-        READ TABLE fcat INTO DATA(ls_fcat) WITH KEY col_pos = ls_excel-col.
-        IF sy-subrc NE 0 OR ls_excel-value <> ls_fcat-reptext .
-          msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |列{ ls_fcat-reptext }模板与数据不一致| ).
-          msg->pop_msg( ).
-          RETURN.
-        ENDIF.
-        CONTINUE.
-      ENDIF.
-
-
-
-
-      AT NEW row.
-        APPEND INITIAL LINE TO data ASSIGNING FIELD-SYMBOL(<line>).
-      ENDAT.
-      READ TABLE fcat INTO ls_fcat WITH KEY col_pos = ls_excel-col.
-      IF sy-subrc EQ 0.
-        ASSIGN COMPONENT ls_fcat-fieldname OF STRUCTURE <line> TO FIELD-SYMBOL(<value>).
-        IF sy-subrc EQ 0.
-          CASE ls_fcat-inttype.
-            WHEN 'I' OR 'P'.
-              IF number_check( ls_excel-value ).
-                <value> = ls_excel-value.
-              ELSE.
-                msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |行{ ls_excel-row }列{ ls_fcat-fieldname }不是数值,导入失败| ).
-              ENDIF.
-            WHEN 'D'.
-              IF NOT date_input( EXPORTING value = ls_excel-value CHANGING date = <value> ).
-                msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |行{ ls_excel-row }列{ ls_fcat-fieldname }不是日期,导入失败|  ).
-              ENDIF.
-            WHEN OTHERS.
-              <value> = ls_excel-value.
-          ENDCASE.
-        ENDIF.
-      ENDIF.
-    ENDLOOP.
-
-    IF msg->get_error( ).
-      msg->pop_msg( ).
-    ENDIF.
-
-  ENDMETHOD.
-
-
   METHOD get_encoding.
     DATA :  l_codepage TYPE cpcodepage .
     CALL FUNCTION 'SCP_CODEPAGE_BY_EXTERNAL_NAME'
@@ -1201,109 +905,6 @@ ENDMETHOD.
       sap_codepage  = l_codepage.
     r_encoding = l_codepage.
   ENDMETHOD.
-
-
-  METHOD get_fcat.
-    CLEAR rt_fcat.
-    DATA lo_type TYPE REF TO cl_abap_typedescr.
-    lo_type ?= cl_abap_typedescr=>describe_by_data( it_table ).
-    DATA t_data TYPE REF TO data.
-    FIELD-SYMBOLS <t_data> TYPE any .
-    CASE lo_type->type_kind.
-      WHEN cl_abap_typedescr=>typekind_table. "内表
-        CREATE DATA t_data LIKE it_table.
-        ASSIGN t_data->* TO <t_data>.
-      WHEN cl_abap_typedescr=>typekind_struct1."结构
-        CREATE DATA t_data LIKE TABLE OF it_table.
-        ASSIGN t_data->* TO <t_data>.
-      WHEN cl_abap_typedescr=>typekind_struct2."结构
-        CREATE DATA t_data LIKE TABLE OF it_table.
-        ASSIGN t_data->* TO <t_data>.
-      WHEN cl_abap_typedescr=>typekind_dref. "type ref to data
-        ASSIGN it_table->* TO <t_data> .
-        get_fcat( <t_data> ).
-      WHEN OTHERS.
-        RETURN.
-    ENDCASE.
-    "//---------------------------------------------------------------
-    FIELD-SYMBOLS <t_table> TYPE ANY TABLE.
-    ASSIGN <t_data> TO <t_table>.
-    TRY.
-        cl_salv_table=>factory( IMPORTING r_salv_table = DATA(salv_table)
-        CHANGING  t_table      = <t_table> ).
-        rt_fcat = cl_salv_controller_metadata=>get_lvc_fieldcatalog(
-        r_columns      = salv_table->get_columns( )
-        r_aggregations = salv_table->get_aggregations( )
-        ).
-      CATCH cx_root.
-        RETURN.
-    ENDTRY.
-    "//---------------------------------------------------------------
-    LOOP AT rt_fcat ASSIGNING FIELD-SYMBOL(<fcat>) .
-      <fcat>-tooltip = <fcat>-fieldname.
-      IF <fcat>-scrtext_s IS INITIAL .
-        <fcat>-scrtext_s  = <fcat>-fieldname.
-      ELSEIF <fcat>-scrtext_m IS INITIAL .
-        <fcat>-scrtext_m  = <fcat>-fieldname.
-      ELSEIF <fcat>-scrtext_l IS INITIAL.
-        <fcat>-scrtext_l  = <fcat>-fieldname.
-      ENDIF.
-    ENDLOOP.
-  ENDMETHOD.
-
-
-  method GET_FCAT_BY_NAME.
-  CLEAR rt_fcat.
-  DATA lv_tabname TYPE tabname.
-  lv_tabname = |{ iv_tabname CASE = UPPER }|.
-  CONDENSE lv_tabname NO-GAPS.
-  DATA(lt_dfies) = get_fields_dfies( lv_tabname ).
-  IF lt_dfies IS INITIAL.
-    MESSAGE '给定的DDIC表名或者结构名不存在' TYPE 'S' DISPLAY LIKE 'E'.
-    RETURN.
-  ENDIF.
-  DATA lds_structure TYPE REF TO DATA.
-  CREATE DATA lds_structure TYPE (lv_tabname).
-  ASSIGN lds_structure->* TO FIELD-SYMBOL(<lds_structure>).
-  rt_fcat = get_fcat( <lds_structure> ).
-  endmethod.
-
-
-METHOD get_fields.
-  DATA lv_tabname TYPE tabname.
-  lv_tabname = |{ iv_tabname CASE = UPPER }|.
-  CONDENSE lv_tabname NO-GAPS.
-  DATA ls_x030l TYPE x030l .
-  DATA lt_x031l TYPE TABLE OF x031l.
-  CLEAR: ls_x030l, lt_x031l.
-  CLEAR rt_x031l.
-  CALL FUNCTION 'DDIF_NAMETAB_GET'
-  EXPORTING
-    tabname   = lv_tabname
-  IMPORTING
-    x030l_wa  = ls_x030l
-  TABLES
-    x031l_tab = lt_x031l
-  EXCEPTIONS
-    OTHERS    = 1.
-  rt_x031l = lt_x031l.
-  FREE: ls_x030l, lt_x031l, lv_tabname.
-ENDMETHOD.
-
-
-METHOD get_fields_dfies.
-  DATA lv_tabname TYPE tabname.
-  lv_tabname = |{ iv_tabname CASE = UPPER }|.
-  CONDENSE lv_tabname NO-GAPS.
-  CLEAR rt_dfies.
-
-  CALL FUNCTION 'DDIF_FIELDINFO_GET'
-    EXPORTING
-      tabname   = iv_tabname
-      langu     = sy-langu
-    TABLES
-      dfies_tab = rt_dfies.
-ENDMETHOD.
 
 
   METHOD get_guid16.
@@ -1386,29 +987,6 @@ ENDMETHOD.
   ENDMETHOD.
 
 
-METHOD GET_TABLE_FIELDS.
-  DATA lv_tabname TYPE tabname.
-  lv_tabname = |{ iv_tabname CASE = UPPER }|.
-  DATA ls_x030l TYPE x030l .
-  DATA lt_x031l TYPE TABLE OF x031l.
-  CLEAR: ls_x030l, lt_x031l.
-  CLEAR rt_x031l.
-  CALL FUNCTION 'DDIF_NAMETAB_GET'
-  EXPORTING
-    tabname   = lv_tabname
-  IMPORTING
-    x030l_wa  = ls_x030l
-  TABLES
-    x031l_tab = lt_x031l
-  EXCEPTIONS
-    OTHERS    = 1.
-  IF ls_x030l-tabtype = 'T'.
-    rt_x031l = lt_x031l.
-  ENDIF.
-  FREE: ls_x030l, lt_x031l, lv_tabname.
-ENDMETHOD.
-
-
   METHOD get_user_name.
     DATA lv_user_full_name TYPE addr3_val-name_text.
     CLEAR lv_user_full_name.
@@ -1442,12 +1020,12 @@ ENDMETHOD.
 
 
   METHOD number_input.
-    REPLACE ALL OCCURRENCES OF REGEX ',' IN value WITH ''.
+    REPLACE ALL OCCURRENCES OF REGEX ',' IN VALUE WITH ''.
     rv_ok = abap_true.
     TRY .
-        number = value.
-      CATCH cx_root INTO DATA(lr_message).
-        rv_ok = abap_false.
+      NUMBER = VALUE.
+    CATCH cx_root INTO DATA(lr_message).
+      rv_ok = abap_false.
     ENDTRY.
   ENDMETHOD.
 
@@ -1714,5 +1292,450 @@ ENDMETHOD.
     CHECK sy-subrc EQ 0.
     <fs_value> = sy-datum.
 
+  ENDMETHOD.
+
+
+  METHOD GET_TABLE_FIELDS.
+    DATA lv_tabname TYPE tabname.
+    lv_tabname = |{ iv_tabname CASE = UPPER }|.
+    DATA ls_x030l TYPE x030l .
+    DATA lt_x031l TYPE TABLE OF x031l.
+    CLEAR: ls_x030l, lt_x031l.
+    CLEAR rt_x031l.
+    CALL FUNCTION 'DDIF_NAMETAB_GET'
+    EXPORTING
+      tabname   = lv_tabname
+    IMPORTING
+      x030l_wa  = ls_x030l
+    TABLES
+      x031l_tab = lt_x031l
+    EXCEPTIONS
+      OTHERS    = 1.
+    IF ls_x030l-tabtype = 'T'.
+      rt_x031l = lt_x031l.
+    ENDIF.
+    FREE: ls_x030l, lt_x031l, lv_tabname.
+  ENDMETHOD.
+
+
+  METHOD create_table_fcat.
+    DATA(lt_fcat) = it_fcat.
+    DELETE lt_fcat WHERE tabname IS INITIAL OR fieldname IS INITIAL.
+    "// 检查表名和字段名是否正确？
+    rv_ok = abap_false.
+    "//-------------------------------------------------------
+    DATA lt_compo TYPE cl_abap_structdescr=>component_table.
+    CLEAR lt_compo.
+    DATA lo_data TYPE REF TO cl_abap_datadescr.
+    LOOP AT it_fcat ASSIGNING FIELD-SYMBOL(<ls_fcat>).
+      APPEND INITIAL LINE TO lt_compo ASSIGNING FIELD-SYMBOL(<ls_compo>).
+      <ls_compo>-name = <ls_fcat>-fieldname.
+      lo_data = CAST cl_abap_datadescr(
+      cl_abap_datadescr=>describe_by_name( |{ <ls_fcat>-tabname }-{ <ls_fcat>-fieldname }| ) ).
+      <ls_compo>-TYPE = lo_data.
+    ENDLOOP.
+    rv_ok = zwft_common=>create_table_compo( EXPORTING it_compo = lt_compo CHANGING ct_data = ct_data ).
+  ENDMETHOD.
+
+
+  METHOD create_table_dfies.
+    DATA(lt_dfies) = it_dfies.
+    DELETE lt_dfies WHERE tabname IS INITIAL OR fieldname IS INITIAL.
+    "// 检查表名和字段名是否正确？
+    rv_ok = abap_false.
+    "//-------------------------------------------------------
+    DATA lt_compo TYPE cl_abap_structdescr=>component_table.
+    CLEAR lt_compo.
+    DATA lo_data TYPE REF TO cl_abap_datadescr.
+    LOOP AT it_dfies ASSIGNING FIELD-SYMBOL(<ls_dfies>).
+      APPEND INITIAL LINE TO lt_compo ASSIGNING FIELD-SYMBOL(<ls_compo>).
+      <ls_compo>-name = <ls_dfies>-fieldname.
+      lo_data = CAST cl_abap_datadescr(
+      cl_abap_datadescr=>describe_by_name( |{ <ls_dfies>-tabname }-{ <ls_dfies>-fieldname }| ) ).
+      <ls_compo>-TYPE = lo_data.
+    ENDLOOP.
+    rv_ok = zwft_common=>create_table_compo( EXPORTING it_compo = lt_compo CHANGING ct_data = ct_data ).
+  ENDMETHOD.
+
+
+  METHOD create_table_compo.
+    rv_ok = abap_false.
+    DATA(lo_table) = cl_abap_tabledescr=>create( cl_abap_structdescr=>create( it_compo ) ).
+    CREATE DATA ct_data TYPE HANDLE lo_table.
+    rv_ok = abap_true.
+  ENDMETHOD.
+
+
+  METHOD get_fields_dfies.
+    DATA lv_tabname TYPE tabname.
+    lv_tabname = |{ iv_tabname CASE = UPPER }|.
+    CONDENSE lv_tabname NO-GAPS.
+    CLEAR rt_dfies.
+
+    CALL FUNCTION 'DDIF_FIELDINFO_GET'
+    EXPORTING
+      tabname   = iv_tabname
+      langu     = sy-langu
+    TABLES
+      dfies_tab = rt_dfies.
+  ENDMETHOD.
+
+
+  METHOD get_fields.
+    DATA lv_tabname TYPE tabname.
+    lv_tabname = |{ iv_tabname CASE = UPPER }|.
+    CONDENSE lv_tabname NO-GAPS.
+    DATA ls_x030l TYPE x030l .
+    DATA lt_x031l TYPE TABLE OF x031l.
+    CLEAR: ls_x030l, lt_x031l.
+    CLEAR rt_x031l.
+    CALL FUNCTION 'DDIF_NAMETAB_GET'
+    EXPORTING
+      tabname   = lv_tabname
+    IMPORTING
+      x030l_wa  = ls_x030l
+    TABLES
+      x031l_tab = lt_x031l
+    EXCEPTIONS
+      OTHERS    = 1.
+    rt_x031l = lt_x031l.
+    FREE: ls_x030l, lt_x031l, lv_tabname.
+  ENDMETHOD.
+
+
+  METHOD call_transation_by_line.
+
+    ASSIGN COMPONENT fieldname OF STRUCTURE LINE TO FIELD-SYMBOL(<value>).
+    CHECK sy-subrc EQ 0.
+
+    CASE fieldname.
+    WHEN 'BANFN' ."采购申请
+      SET PARAMETER ID 'BAN' FIELD <value>.
+      CALL TRANSACTION 'ME53N' AND SKIP FIRST SCREEN.
+
+    WHEN 'EBELN' .  "采购订单
+      SET PARAMETER ID 'BES' FIELD <value>.
+      CALL TRANSACTION  'ME23N' AND SKIP FIRST SCREEN.
+
+    WHEN 'VBELN_ASN' . "内向交货单"
+      SET PARAMETER ID 'VL' FIELD <value>.
+      CALL TRANSACTION 'VL33N' AND SKIP FIRST SCREEN.
+
+    WHEN 'VBELN_VA'. "销售订单"
+      SET PARAMETER ID 'AUN' FIELD <value>.
+      CALL TRANSACTION 'VA03' AND SKIP FIRST SCREEN.
+
+    WHEN 'VBELN_VL'. "交货单"
+      SET PARAMETER ID 'VL' FIELD <value>.
+      CALL TRANSACTION 'VL03N' AND SKIP FIRST SCREEN.
+
+    WHEN 'VBELN_VF'. "发票"
+      SET PARAMETER ID 'VF' FIELD <value>.
+      CALL TRANSACTION 'VF03' AND SKIP FIRST SCREEN.
+
+    WHEN 'RSNUM'. "预留"
+      SET PARAMETER ID 'RES' FIELD <value>.
+      CALL TRANSACTION  'MB23' AND SKIP FIRST SCREEN.
+
+    WHEN 'MBLNR'. "商品凭证"
+      ASSIGN COMPONENT 'MJAHR' OF STRUCTURE LINE TO FIELD-SYMBOL(<mjahr>).
+      CHECK sy-subrc EQ 0.
+      CALL FUNCTION 'MIGO_DIALOG'
+      EXPORTING
+        i_action = 'A04'
+        i_refdoc = 'R02'
+        i_mblnr  = <value>
+        i_mjahr  = <mjahr>.
+
+    WHEN 'BELNR_R' .            "发票校验"
+      ASSIGN COMPONENT 'GJAHR_R' OF STRUCTURE LINE TO FIELD-SYMBOL(<gjahr_r>).
+      CHECK sy-subrc EQ 0.
+      SET PARAMETER ID 'RBN' FIELD <value>.
+      SET PARAMETER ID 'GJR' FIELD <gjahr_r>.
+      CALL TRANSACTION 'MIR4' AND SKIP FIRST SCREEN.
+
+    WHEN 'BELNR' .  "会计凭证
+      ASSIGN COMPONENT 'GJAHR' OF STRUCTURE LINE TO FIELD-SYMBOL(<gjahr>).
+      CHECK sy-subrc EQ 0.
+      ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs>).
+      CHECK sy-subrc EQ 0.
+      SET PARAMETER ID 'BLN' FIELD <value>.
+      SET PARAMETER ID 'GJR' FIELD <gjahr>.
+      SET PARAMETER ID 'BUK' FIELD <bukrs>.
+      CALL TRANSACTION 'FB03' AND SKIP FIRST SCREEN.
+
+    WHEN 'MATNR' OR 'STANR'. "商品"
+      SET PARAMETER ID 'MAT' FIELD <value>.
+      CALL TRANSACTION 'MM43' AND SKIP FIRST SCREEN.
+
+
+    WHEN 'LIFNR' OR 'KUNNR' . "客户/供应商"
+      SET PARAMETER ID 'BPA' FIELD <value>.
+      SUBMIT r_ftr_display_bp WITH p_bp = <value> AND RETURN.
+
+    WHEN 'AUFNR_U' .  "内部订单"
+      SET PARAMETER ID 'ANR' FIELD <value>.
+      CALL TRANSACTION 'KO03' AND SKIP FIRST SCREEN.
+
+    WHEN 'SAKNR' OR 'HKONT' . "科目"
+      ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs_skb1>).
+      CHECK sy-subrc EQ 0.
+      SET PARAMETER ID 'SAK' FIELD <value>.
+      SET PARAMETER ID 'BUK' FIELD <bukrs_skb1>.
+      CALL TRANSACTION 'FS00' AND SKIP FIRST SCREEN.
+
+
+    WHEN 'ANLA' OR 'ANLN1' OR 'BUS1022'.   "固定资产
+      ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs_as03>).
+      CHECK sy-subrc EQ 0.
+      SET PARAMETER ID 'AN1' FIELD <value>.
+      SET PARAMETER ID 'BUK' FIELD <bukrs_as03>.
+      CALL TRANSACTION 'AS03' AND SKIP FIRST SCREEN.
+
+    WHEN 'WERKS'  OR 'UMWRK'. "地点
+      SET PARAMETER ID 'WRK' FIELD <value>.
+      CALL TRANSACTION 'WB03' AND SKIP FIRST SCREEN.
+
+    WHEN 'AUFNR' ."生产订单
+      SET PARAMETER ID 'ANR' FIELD <value>.
+      CALL TRANSACTION 'CO03' AND SKIP FIRST SCREEN.
+
+    WHEN 'DOCNUM' ."IDOC
+      SUBMIT idoc_tree_control WITH docnum = <value> AND RETURN.
+
+    WHEN 'XML' OR 'PROXY'.
+      SUBMIT rsxmb_display_msg_vers_new WITH msgguid = <value>
+      AND RETURN.
+    ENDCASE.
+
+  ENDMETHOD.
+
+
+  METHOD file_upload_from_excel.
+    DATA: msg TYPE REF TO zwft_message.
+    DATA:lt_excel TYPE TABLE OF alsmex_tabline.
+    DATA(pv_path) = file_get_read_path( 'xlsx' ).
+
+    msg = NEW zwft_message( ).
+    CALL FUNCTION 'ALSM_EXCEL_TO_INTERNAL_TABLE'
+    EXPORTING
+      filename                = pv_path
+      i_begin_col             = begin_col
+      i_begin_row             = begin_row
+      i_end_col               = end_col
+      i_end_row               = end_row
+    TABLES
+      intern                  = lt_excel
+    EXCEPTIONS
+      inconsistent_parameters = 1
+      upload_ole              = 2
+      OTHERS                  = 3.
+    IF sy-subrc <> 0.
+      msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = '读取导入文件失败' ).
+    ENDIF.
+
+    CLEAR DATA.
+    DATA(fcat) = fcat_from_data( DATA ).
+
+
+    LOOP AT lt_excel INTO DATA(ls_excel).
+      IF ls_excel-row = 1.
+        READ TABLE fcat INTO DATA(ls_fcat) WITH KEY col_pos = ls_excel-col.
+        IF sy-subrc NE 0 OR ls_excel-VALUE <> ls_fcat-reptext .
+          msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |列{ ls_fcat-reptext }模板与数据不一致| ).
+          msg->pop_msg( ).
+          RETURN.
+        ENDIF.
+        CONTINUE.
+      ENDIF.
+
+
+
+
+      AT NEW row.
+        APPEND INITIAL LINE TO DATA ASSIGNING FIELD-SYMBOL(<line>).
+      ENDAT.
+      READ TABLE fcat INTO ls_fcat WITH KEY col_pos = ls_excel-col.
+      IF sy-subrc EQ 0.
+        ASSIGN COMPONENT ls_fcat-fieldname OF STRUCTURE <line> TO FIELD-SYMBOL(<value>).
+        IF sy-subrc EQ 0.
+          CASE ls_fcat-inttype.
+          WHEN 'I' OR 'P'.
+            IF number_check( ls_excel-VALUE ).
+              <value> = ls_excel-VALUE.
+            ELSE.
+              msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |行{ ls_excel-row }列{ ls_fcat-fieldname }不是数值,导入失败| ).
+            ENDIF.
+          WHEN 'D'.
+            IF NOT date_input( EXPORTING VALUE = ls_excel-VALUE CHANGING DATE = <value> ).
+              msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |行{ ls_excel-row }列{ ls_fcat-fieldname }不是日期,导入失败|  ).
+            ENDIF.
+          WHEN OTHERS.
+            <value> = ls_excel-VALUE.
+          ENDCASE.
+        ENDIF.
+      ENDIF.
+    ENDLOOP.
+
+    IF msg->get_error( ).
+      msg->pop_msg( ).
+    ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD FILE_GET_SAVE_PATH.
+
+    DATA:filename TYPE string.
+    DATA:path TYPE string.
+    DATA:fullpath TYPE string.
+    cl_gui_frontend_services=>get_desktop_directory( CHANGING desktop_directory = path ).
+    cl_gui_cfw=>flush( ).
+    filename = |{ sy-TITLE }_{ sy-datum  }_{ sy-uzeit }|.
+
+    cl_gui_frontend_services=>file_save_dialog(
+    EXPORTING
+      default_file_name       = filename
+      default_extension       = extname
+      file_filter             = extname
+      initial_directory = path
+    CHANGING
+      path            = path
+      filename            = filename
+      fullpath            = fullpath
+    EXCEPTIONS
+      cntl_error          = 1
+      error_no_gui        = 2
+      OTHERS              = 3 ).
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ELSE.
+      rv_file = fullpath.
+    ENDIF.
+  ENDMETHOD.
+
+
+  METHOD file_get_read_path.
+
+    DATA:filename TYPE string.
+    DATA:path TYPE string.
+    DATA:fullpath TYPE string.
+
+    DATA: lt_filetab TYPE filetable,
+          lv_rc      TYPE I.
+    cl_gui_frontend_services=>get_desktop_directory( CHANGING desktop_directory = path ).
+    cl_gui_cfw=>flush( ).
+    filename = |{ sy-TITLE }_{ sy-datum  }_{ sy-uzeit }|.
+    CALL METHOD cl_gui_frontend_services=>file_open_dialog
+    EXPORTING
+      default_extension       = extname
+      default_filename        = filename
+      file_filter             = extname
+      initial_directory       = path
+    CHANGING
+      file_table              = lt_filetab
+      rc                      = lv_rc
+    EXCEPTIONS
+      file_open_dialog_failed = 1
+      cntl_error              = 2
+      error_no_gui            = 3
+      not_supported_by_gui    = 4
+      OTHERS                  = 5.
+
+    IF sy-subrc <> 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ELSE.
+      READ TABLE lt_filetab INTO DATA(ls_filetab) INDEX 1.
+      IF sy-subrc EQ 0.
+        rv_file = ls_filetab-filename.
+      ENDIF.
+
+
+    ENDIF.
+  ENDMETHOD.
+
+
+METHOD get_user_parameter.
+  DATA:PARAMETER TYPE TABLE OF bapiparam.
+  DATA:RETURN TYPE TABLE OF bapiret2 .
+  CALL FUNCTION 'BAPI_USER_GET_DETAIL'
+  EXPORTING
+    username  = uname
+  TABLES
+    PARAMETER = PARAMETER
+    RETURN    = RETURN.
+  READ TABLE PARAMETER INTO DATA(l_parameter) WITH KEY parid = parid.
+  IF sy-subrc EQ 0.
+    r_parameter_value = l_parameter-parva.
+  ENDIF.
+
+ENDMETHOD.
+
+
+  METHOD FCAT_FROM_NAME.
+    CLEAR rt_fcat.
+    DATA lv_tabname TYPE tabname.
+    lv_tabname = |{ iv_tabname CASE = UPPER }|.
+    CONDENSE lv_tabname NO-GAPS.
+    DATA(lt_dfies) = get_fields_dfies( lv_tabname ).
+    IF lt_dfies IS INITIAL.
+      MESSAGE '给定的DDIC表名或者结构名不存在' TYPE 'S' DISPLAY LIKE 'E'.
+      RETURN.
+    ENDIF.
+    DATA lds_structure TYPE REF TO DATA.
+    CREATE DATA lds_structure TYPE (lv_tabname).
+    ASSIGN lds_structure->* TO FIELD-SYMBOL(<lds_structure>).
+    rt_fcat = fcat_from_data( <lds_structure> ).
+  ENDMETHOD.
+
+
+  METHOD fcat_from_data.
+    CLEAR rt_fcat.
+    DATA lo_type TYPE REF TO cl_abap_typedescr.
+    lo_type ?= cl_abap_typedescr=>describe_by_data( it_table ).
+    DATA t_data TYPE REF TO data.
+    FIELD-SYMBOLS <t_data> TYPE any .
+    CASE lo_type->type_kind.
+      WHEN cl_abap_typedescr=>typekind_table. "内表
+        CREATE DATA t_data LIKE it_table.
+        ASSIGN t_data->* TO <t_data>.
+      WHEN cl_abap_typedescr=>typekind_struct1."结构
+        CREATE DATA t_data LIKE TABLE OF it_table.
+        ASSIGN t_data->* TO <t_data>.
+      WHEN cl_abap_typedescr=>typekind_struct2."结构
+        CREATE DATA t_data LIKE TABLE OF it_table.
+        ASSIGN t_data->* TO <t_data>.
+      WHEN cl_abap_typedescr=>typekind_dref. "type ref to data
+        ASSIGN it_table->* TO <t_data> .
+        fcat_from_data( <t_data> ).
+      WHEN OTHERS.
+        RETURN.
+    ENDCASE.
+    "//---------------------------------------------------------------
+    FIELD-SYMBOLS <t_table> TYPE ANY TABLE.
+    ASSIGN <t_data> TO <t_table>.
+    TRY.
+        cl_salv_table=>factory( IMPORTING r_salv_table = DATA(salv_table)
+        CHANGING  t_table      = <t_table> ).
+        rt_fcat = cl_salv_controller_metadata=>get_lvc_fieldcatalog(
+        r_columns      = salv_table->get_columns( )
+        r_aggregations = salv_table->get_aggregations( )
+        ).
+      CATCH cx_root.
+        RETURN.
+    ENDTRY.
+    "//---------------------------------------------------------------
+    LOOP AT rt_fcat ASSIGNING FIELD-SYMBOL(<fcat>) .
+      <fcat>-tooltip = <fcat>-fieldname.
+      IF <fcat>-scrtext_s IS INITIAL .
+        <fcat>-scrtext_s  = <fcat>-fieldname.
+      ELSEIF <fcat>-scrtext_m IS INITIAL .
+        <fcat>-scrtext_m  = <fcat>-fieldname.
+      ELSEIF <fcat>-scrtext_l IS INITIAL.
+        <fcat>-scrtext_l  = <fcat>-fieldname.
+      ENDIF.
+    ENDLOOP.
   ENDMETHOD.
 ENDCLASS.

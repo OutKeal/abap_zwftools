@@ -4,7 +4,9 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZWFT_TOAD</TABNAME>
+    <DDLANGUAGE>1</DDLANGUAGE>
     <TABCLASS>TRANSP</TABCLASS>
+    <DDTEXT>查询SQL工具记录表</DDTEXT>
     <MAINFLAG>X</MAINFLAG>
     <CONTFLAG>A</CONTFLAG>
    </DD02V>
@@ -78,15 +80,6 @@
      <MASK>  CHAR</MASK>
     </DD03P>
    </DD03P_TABLE>
-   <I18N_LANGS>
-    <LANGU>1</LANGU>
-   </I18N_LANGS>
-   <DD02_TEXTS>
-    <item>
-     <DDLANGUAGE>1</DDLANGUAGE>
-     <DDTEXT>查询SQL工具记录表</DDTEXT>
-    </item>
-   </DD02_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

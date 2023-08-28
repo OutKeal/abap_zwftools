@@ -43,9 +43,9 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_ABAP</TEXT_NAME>
       <ICON_ID>@9U@</ICON_ID>
-      <FUN_TEXT>PICK</FUN_TEXT>
-      <ICON_TEXT>Display code</ICON_TEXT>
-      <INFO_TEXT>Display code</INFO_TEXT>
+      <FUN_TEXT>选择</FUN_TEXT>
+      <ICON_TEXT>显示代码</ICON_TEXT>
+      <INFO_TEXT>显示代码</INFO_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>STOP</CODE>
@@ -61,9 +61,9 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_PDIR_BACK_SWITCH</TEXT_NAME>
       <ICON_ID>@CE@</ICON_ID>
-      <FUN_TEXT>Switch display</FUN_TEXT>
-      <ICON_TEXT>Switch display</ICON_TEXT>
-      <INFO_TEXT>Switch display</INFO_TEXT>
+      <FUN_TEXT>开关显示</FUN_TEXT>
+      <ICON_TEXT>开关显示</ICON_TEXT>
+      <INFO_TEXT>开关显示</INFO_TEXT>
      </RSMPE_FUNT>
     </FUN>
     <BUT>
@@ -156,110 +156,213 @@
      </RSMPE_ATRT>
     </DOC>
    </CUA>
+   <TPOOL>
+    <item>
+     <ID>R</ID>
+     <ENTRY>Program Scan</ENTRY>
+     <LENGTH>70</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>APPL</KEY>
+     <ENTRY>应用</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>CNAM</KEY>
+     <ENTRY>创建人</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>COMMENT</KEY>
+     <ENTRY>忽略注释行</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>DEVCLASS</KEY>
+     <ENTRY>开发类</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>DYNNR</KEY>
+     <ENTRY>屏幕</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>INCLU</KEY>
+     <ENTRY>INCLUDE程序</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>MASK</KEY>
+     <ENTRY>掩码查询</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>MODIASS</KEY>
+     <ENTRY>更改修改辅助工具</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>PLUSMINU</KEY>
+     <ENTRY>找到位置+/-x行</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_ALL</KEY>
+     <ENTRY>ABAP和屏幕</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_CODE</KEY>
+     <ENTRY>ABAP程序</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>RB_DYN</KEY>
+     <ENTRY>屏幕逻辑流</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>REPNAME</KEY>
+     <ENTRY>报表程序</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>SSTRING</KEY>
+     <ENTRY>查找字符串</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>SUBC</KEY>
+     <ENTRY>程序类型</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+    <item>
+     <ID>S</ID>
+     <KEY>UNAM</KEY>
+     <ENTRY>上次修改人</ENTRY>
+     <LENGTH>38</LENGTH>
+    </item>
+   </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>1</LANGUAGE>
+     <LANGUAGE>E</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>R</ID>
        <ENTRY>Program Scan</ENTRY>
-       <LENGTH>12</LENGTH>
+       <LENGTH>70</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>APPL</KEY>
-       <ENTRY>Application</ENTRY>
-       <LENGTH>19</LENGTH>
+       <ENTRY>应用</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>CNAM</KEY>
-       <ENTRY>Created by</ENTRY>
-       <LENGTH>18</LENGTH>
+       <ENTRY>创建人</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>COMMENT</KEY>
-       <ENTRY>Ignore comment lines</ENTRY>
-       <LENGTH>28</LENGTH>
+       <ENTRY>忽略注释行</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>DEVCLASS</KEY>
-       <ENTRY>Development class</ENTRY>
-       <LENGTH>25</LENGTH>
+       <ENTRY>开发类</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>DYNNR</KEY>
-       <ENTRY>Screen</ENTRY>
-       <LENGTH>14</LENGTH>
+       <ENTRY>屏幕</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>INCLU</KEY>
-       <ENTRY>Expand INCLUDEs</ENTRY>
-       <LENGTH>23</LENGTH>
+       <ENTRY>INCLUDE程序</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>MASK</KEY>
-       <ENTRY>Masked search</ENTRY>
-       <LENGTH>21</LENGTH>
+       <ENTRY>掩码查询</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>MODIASS</KEY>
-       <ENTRY>Change modification assistent</ENTRY>
-       <LENGTH>37</LENGTH>
+       <ENTRY>更改修改辅助工具</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>PLUSMINU</KEY>
-       <ENTRY>Found location +/- x lines</ENTRY>
-       <LENGTH>34</LENGTH>
+       <ENTRY>找到位置+/-x行</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>RB_ALL</KEY>
-       <ENTRY>ABAP and screen</ENTRY>
-       <LENGTH>23</LENGTH>
+       <ENTRY>ABAP和屏幕</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>RB_CODE</KEY>
-       <ENTRY>ABAP program(s)</ENTRY>
-       <LENGTH>23</LENGTH>
+       <ENTRY>ABAP程序</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>RB_DYN</KEY>
-       <ENTRY>Screen flow logic</ENTRY>
-       <LENGTH>25</LENGTH>
+       <ENTRY>屏幕逻辑流</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>REPNAME</KEY>
-       <ENTRY>Program name</ENTRY>
-       <LENGTH>20</LENGTH>
+       <ENTRY>报表程序</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>SSTRING</KEY>
-       <ENTRY>Find string</ENTRY>
-       <LENGTH>19</LENGTH>
+       <ENTRY>查找字符串</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>SUBC</KEY>
-       <ENTRY>Program type</ENTRY>
-       <LENGTH>20</LENGTH>
+       <ENTRY>程序类型</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
       <item>
        <ID>S</ID>
        <KEY>UNAM</KEY>
-       <ENTRY>Last changed by</ENTRY>
-       <LENGTH>23</LENGTH>
+       <ENTRY>上次修改人</ENTRY>
+       <LENGTH>38</LENGTH>
       </item>
      </TEXTPOOL>
     </item>
