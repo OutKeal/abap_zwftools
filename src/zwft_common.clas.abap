@@ -254,6 +254,11 @@ public section.
       value(UNAME) type SY-UNAME default SY-UNAME
     returning
       value(R_PARAMETER_VALUE) type XUVALUE .
+  class-methods GET_WHERE_FROM_RANGES
+    importing
+      !TRANGE type RSDS_TRANGE
+    returning
+      value(TWHERE) type RSDS_TWHERE .
   PROTECTED SECTION.
 private section.
 ENDCLASS.
@@ -1737,5 +1742,18 @@ ENDMETHOD.
         <fcat>-scrtext_l  = <fcat>-fieldname.
       ENDIF.
     ENDLOOP.
+  ENDMETHOD.
+
+
+  METHOD get_where_from_ranges.
+    CHECK lines( trange ) > 0.
+    TRY.
+        CALL FUNCTION 'FREE_SELECTIONS_RANGE_2_WHERE'
+          EXPORTING
+            field_ranges  = trange
+          IMPORTING
+            where_clauses = twhere.
+      CATCH cx_root INTO DATA(lx_fm_error).
+    ENDTRY.
   ENDMETHOD.
 ENDCLASS.
