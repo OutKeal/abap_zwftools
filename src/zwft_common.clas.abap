@@ -6,32 +6,44 @@ class ZWFT_COMMON definition
 public section.
 
   types:
+    BEGIN OF s_type_metadata,
+        is_hierseq   TYPE abap_bool,
+        tabname      TYPE string,
+        tabname_line TYPE string,
+        s_keyinfo    TYPE kkblo_keyinfo,
+        s_layout     TYPE lvc_s_layo,
+        t_fcat       TYPE lvc_t_fcat,
+        t_filter     TYPE lvc_t_filt,
+        t_sort       TYPE lvc_t_sort,
+      END OF s_type_metadata .
+  types:
     BEGIN OF ty_fcat,
-    col_pos   TYPE col_pos,
-    fieldname TYPE fieldname,
-    EDIT      TYPE lvc_edit,
-    emphasize TYPE lvc_emphsz,
-    HOTSPOT   TYPE lvc_hotspt,
-    coltext   TYPE lvc_txtcol,
-    tech      TYPE lvc_tech,
-  END OF ty_fcat .
+        col_pos   TYPE col_pos,
+        fieldname TYPE fieldname,
+        edit      TYPE lvc_edit,
+        emphasize TYPE lvc_emphsz,
+        hotspot   TYPE lvc_hotspt,
+        coltext   TYPE lvc_txtcol,
+        tech      TYPE lvc_tech,
+      END OF ty_fcat .
   types:
     BEGIN OF ty_doma_list,
-    rollname      TYPE rollname,
-    def_fieldname TYPE fieldname,
-  END OF ty_doma_list .
+        rollname      TYPE rollname,
+        def_fieldname TYPE fieldname,
+      END OF ty_doma_list .
   types:
     BEGIN OF ty_doma_value,
-    rollname TYPE rollname,
-    domval   TYPE char50,
-    ddtext   TYPE val_text,
-  END OF ty_doma_value .
+        rollname TYPE rollname,
+        domval   TYPE char50,
+        ddtext   TYPE val_text,
+      END OF ty_doma_value .
 
   data:
     doma_list TYPE TABLE OF ty_doma_list .
   data:
     doma_value TYPE TABLE OF ty_doma_value .
 
+  class-methods CLASS_CONSTRUCTOR .
   class-methods GET_GUID32
     returning
       value(RV_GUID32) type SYSUUID_C32 .
@@ -259,8 +271,22 @@ public section.
       !TRANGE type RSDS_TRANGE
     returning
       value(TWHERE) type RSDS_TWHERE .
+  class-methods GET_REPORT_ALV_DATA
+    importing
+      !TCODE type TCODE
+      !VARIANT type VARIANT optional
+    returning
+      value(DATA) type ref to DATA .
+  class-methods GET_REPORT_ALV_MATE
+    importing
+      !TCODE type TCODE
+      !VARIANT type VARIANT
+    exporting
+      !DATA type ref to DATA
+    returning
+      value(METADATA) type S_TYPE_METADATA .
   PROTECTED SECTION.
-private section.
+  PRIVATE SECTION.
 ENDCLASS.
 
 
@@ -278,15 +304,15 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     borident2-objtype = objtype2.
 
     CALL FUNCTION 'BINARY_RELATION_CREATE'
-    EXPORTING
-      obj_rolea      = objkey1
-      obj_roleb      = borident2
-      relationtype   = relation
-    EXCEPTIONS
-      no_model       = 1
-      internal_error = 2
-      unknown        = 3
-      OTHERS         = 4.
+      EXPORTING
+        obj_rolea      = objkey1
+        obj_roleb      = borident2
+        relationtype   = relation
+      EXCEPTIONS
+        no_model       = 1
+        internal_error = 2
+        unknown        = 3
+        OTHERS         = 4.
     IF sy-subrc <> 0.
 * Implement suitable error handling here
     ENDIF.
@@ -297,30 +323,30 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     IF cs_return IS SUPPLIED.
       IF cs_return IS INITIAL.
         CALL FUNCTION 'MESSAGE_TEXT_BUILD'
-        EXPORTING
-          msgid               = cs_return-ID
-          msgnr               = cs_return-NUMBER
-          msgv1               = cs_return-message_v1
-          msgv2               = cs_return-message_v2
-          msgv3               = cs_return-message_v3
-          msgv4               = cs_return-message_v4
-        IMPORTING
-          message_text_output = cs_return-MESSAGE.
+          EXPORTING
+            msgid               = cs_return-id
+            msgnr               = cs_return-number
+            msgv1               = cs_return-message_v1
+            msgv2               = cs_return-message_v2
+            msgv3               = cs_return-message_v3
+            msgv4               = cs_return-message_v4
+          IMPORTING
+            message_text_output = cs_return-message.
       ENDIF.
     ENDIF.
     IF ct_return IS SUPPLIED.
       LOOP AT ct_return ASSIGNING FIELD-SYMBOL(<ls_return>).
-        IF <ls_return>-MESSAGE IS INITIAL.
+        IF <ls_return>-message IS INITIAL.
           CALL FUNCTION 'MESSAGE_TEXT_BUILD'
-          EXPORTING
-            msgid               = <ls_return>-ID
-            msgnr               = <ls_return>-NUMBER
-            msgv1               = <ls_return>-message_v1
-            msgv2               = <ls_return>-message_v2
-            msgv3               = <ls_return>-message_v3
-            msgv4               = <ls_return>-message_v4
-          IMPORTING
-            message_text_output = <ls_return>-MESSAGE.
+            EXPORTING
+              msgid               = <ls_return>-id
+              msgnr               = <ls_return>-number
+              msgv1               = <ls_return>-message_v1
+              msgv2               = <ls_return>-message_v2
+              msgv3               = <ls_return>-message_v3
+              msgv4               = <ls_return>-message_v4
+            IMPORTING
+              message_text_output = <ls_return>-message.
         ENDIF.
       ENDLOOP.
     ENDIF.
@@ -328,100 +354,100 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
 
   METHOD call_transation.
-    CASE TYPE.
-    WHEN 'EBAN' OR 'PR' OR 'BUS2015'."采购申请
-      SET PARAMETER ID 'BAN' FIELD key1.
-      CALL TRANSACTION 'ME53N' AND SKIP FIRST SCREEN.
+    CASE type.
+      WHEN 'EBAN' OR 'PR' OR 'BUS2015'."采购申请
+        SET PARAMETER ID 'BAN' FIELD key1.
+        CALL TRANSACTION 'ME53N' AND SKIP FIRST SCREEN.
 
-    WHEN 'EKKO' OR 'PO' OR 'STO' OR 'BUS2012'.  "采购订单
-      SET PARAMETER ID 'BES' FIELD key1.
-      CALL TRANSACTION  'ME23N' AND SKIP FIRST SCREEN.
+      WHEN 'EKKO' OR 'PO' OR 'STO' OR 'BUS2012'.  "采购订单
+        SET PARAMETER ID 'BES' FIELD key1.
+        CALL TRANSACTION  'ME23N' AND SKIP FIRST SCREEN.
 
-    WHEN 'ASN' . "内向交货单"
-      SET PARAMETER ID 'VL' FIELD key1.
-      CALL TRANSACTION 'VL33N' AND SKIP FIRST SCREEN.
+      WHEN 'ASN' . "内向交货单"
+        SET PARAMETER ID 'VL' FIELD key1.
+        CALL TRANSACTION 'VL33N' AND SKIP FIRST SCREEN.
 
-    WHEN 'VBAK' OR 'SO' OR 'BUS2032'. "销售订单"
-      SET PARAMETER ID 'AUN' FIELD key1.
-      CALL TRANSACTION 'VA03' AND SKIP FIRST SCREEN.
+      WHEN 'VBAK' OR 'SO' OR 'BUS2032'. "销售订单"
+        SET PARAMETER ID 'AUN' FIELD key1.
+        CALL TRANSACTION 'VA03' AND SKIP FIRST SCREEN.
 
-    WHEN 'LIKP' OR 'DN' OR 'VL'. "交货单"
-      SET PARAMETER ID 'VL' FIELD key1.
-      CALL TRANSACTION 'VL03N' AND SKIP FIRST SCREEN.
+      WHEN 'LIKP' OR 'DN' OR 'VL'. "交货单"
+        SET PARAMETER ID 'VL' FIELD key1.
+        CALL TRANSACTION 'VL03N' AND SKIP FIRST SCREEN.
 
-    WHEN 'VBRK' OR 'VF' OR 'RV' OR 'BUS2037'. "发票"
-      SET PARAMETER ID 'VF' FIELD key1.
-      CALL TRANSACTION 'VF03' AND SKIP FIRST SCREEN.
+      WHEN 'VBRK' OR 'VF' OR 'RV' OR 'BUS2037'. "发票"
+        SET PARAMETER ID 'VF' FIELD key1.
+        CALL TRANSACTION 'VF03' AND SKIP FIRST SCREEN.
 
-    WHEN 'RESB' OR 'RS' OR 'BUS2093'. "预留"
-      SET PARAMETER ID 'RES' FIELD key1.
-      CALL TRANSACTION  'MB23' AND SKIP FIRST SCREEN.
+      WHEN 'RESB' OR 'RS' OR 'BUS2093'. "预留"
+        SET PARAMETER ID 'RES' FIELD key1.
+        CALL TRANSACTION  'MB23' AND SKIP FIRST SCREEN.
 
-    WHEN 'MKPF' OR 'MB' OR 'BUS2017'. "商品凭证"
-      CALL FUNCTION 'MIGO_DIALOG'
-      EXPORTING
-        i_action = 'A04'
-        i_refdoc = 'R02'
-        i_mblnr  = key1
-        i_mjahr  = key2.
+      WHEN 'MKPF' OR 'MB' OR 'BUS2017'. "商品凭证"
+        CALL FUNCTION 'MIGO_DIALOG'
+          EXPORTING
+            i_action = 'A04'
+            i_refdoc = 'R02'
+            i_mblnr  = key1
+            i_mjahr  = key2.
 
-    WHEN 'RBKP' OR 'MR' OR 'BUS2081'.            "发票校验"
-      SET PARAMETER ID 'RBN' FIELD key1.
-      SET PARAMETER ID 'GJR' FIELD key2.
-      CALL TRANSACTION 'MIR4' AND SKIP FIRST SCREEN.
+      WHEN 'RBKP' OR 'MR' OR 'BUS2081'.            "发票校验"
+        SET PARAMETER ID 'RBN' FIELD key1.
+        SET PARAMETER ID 'GJR' FIELD key2.
+        CALL TRANSACTION 'MIR4' AND SKIP FIRST SCREEN.
 
-    WHEN 'BKPF' OR 'FB' .  "会计凭证
-      SET PARAMETER ID 'BLN' FIELD key1.
-      SET PARAMETER ID 'GJR' FIELD key2.
-      SET PARAMETER ID 'BUK' FIELD key3.
-      CALL TRANSACTION 'FB03' AND SKIP FIRST SCREEN.
+      WHEN 'BKPF' OR 'FB' .  "会计凭证
+        SET PARAMETER ID 'BLN' FIELD key1.
+        SET PARAMETER ID 'GJR' FIELD key2.
+        SET PARAMETER ID 'BUK' FIELD key3.
+        CALL TRANSACTION 'FB03' AND SKIP FIRST SCREEN.
 
-    WHEN 'BUS1001' . "商品"
-      SET PARAMETER ID 'MAT' FIELD key1.
-      CALL TRANSACTION 'MM03' AND SKIP FIRST SCREEN.
+      WHEN 'BUS1001' . "商品"
+        SET PARAMETER ID 'MAT' FIELD key1.
+        CALL TRANSACTION 'MM03' AND SKIP FIRST SCREEN.
 
-    WHEN 'MARA' OR 'MATNR' OR 'BUS1001001' . "商品"
-      SET PARAMETER ID 'MAT' FIELD key1.
-      CALL TRANSACTION 'MM43' AND SKIP FIRST SCREEN.
+      WHEN 'MARA' OR 'MATNR' OR 'BUS1001001' . "商品"
+        SET PARAMETER ID 'MAT' FIELD key1.
+        CALL TRANSACTION 'MM43' AND SKIP FIRST SCREEN.
 
-    WHEN 'KNA1' OR 'LFA1' OR 'KUNNR' OR 'LIFNR' OR 'BUS1006'. "客户/供应商"
-      SET PARAMETER ID 'BPA' FIELD key1.
-      SUBMIT r_ftr_display_bp WITH p_bp = key1 AND RETURN.
+      WHEN 'KNA1' OR 'LFA1' OR 'KUNNR' OR 'LIFNR' OR 'BUS1006'. "客户/供应商"
+        SET PARAMETER ID 'BPA' FIELD key1.
+        SUBMIT r_ftr_display_bp WITH p_bp = key1 AND RETURN.
 
-    WHEN 'AUFK' OR 'BUS2075'.  "内部订单"
-      SET PARAMETER ID 'ANR' FIELD key1.
-      CALL TRANSACTION 'KO03' AND SKIP FIRST SCREEN.
+      WHEN 'AUFK' OR 'BUS2075'.  "内部订单"
+        SET PARAMETER ID 'ANR' FIELD key1.
+        CALL TRANSACTION 'KO03' AND SKIP FIRST SCREEN.
 
-    WHEN 'SKA1' OR 'HKONT' OR ' BUS3006'. "科目"
-      SET PARAMETER ID 'SAK' FIELD key1.
-      SET PARAMETER ID 'BUK' FIELD key2.
-      CALL TRANSACTION 'FS00' AND SKIP FIRST SCREEN.
+      WHEN 'SKA1' OR 'HKONT' OR ' BUS3006'. "科目"
+        SET PARAMETER ID 'SAK' FIELD key1.
+        SET PARAMETER ID 'BUK' FIELD key2.
+        CALL TRANSACTION 'FS00' AND SKIP FIRST SCREEN.
 
-    WHEN 'MAST' OR 'BOM' OR 'BUS3006'. "BOM"
-      SET PARAMETER ID 'MAT' FIELD key1.
-      SET PARAMETER ID 'WRK' FIELD key2.
-      SET PARAMETER ID 'CSV' FIELD key3.
-      CALL TRANSACTION 'CS03' AND SKIP FIRST SCREEN.
+      WHEN 'MAST' OR 'BOM' OR 'BUS3006'. "BOM"
+        SET PARAMETER ID 'MAT' FIELD key1.
+        SET PARAMETER ID 'WRK' FIELD key2.
+        SET PARAMETER ID 'CSV' FIELD key3.
+        CALL TRANSACTION 'CS03' AND SKIP FIRST SCREEN.
 
-    WHEN 'ANLA' OR 'ANLN1' OR 'BUS1022'.   "固定资产
-      SET PARAMETER ID 'AN1' FIELD key1.
-      SET PARAMETER ID 'BUK' FIELD key2.
-      CALL TRANSACTION 'AS03' AND SKIP FIRST SCREEN.
+      WHEN 'ANLA' OR 'ANLN1' OR 'BUS1022'.   "固定资产
+        SET PARAMETER ID 'AN1' FIELD key1.
+        SET PARAMETER ID 'BUK' FIELD key2.
+        CALL TRANSACTION 'AS03' AND SKIP FIRST SCREEN.
 
-    WHEN 'T001W' OR 'WERKS' OR 'BUS1069'. "地点
-      SET PARAMETER ID 'WRK' FIELD key1.
-      CALL TRANSACTION 'WB03' AND SKIP FIRST SCREEN.
+      WHEN 'T001W' OR 'WERKS' OR 'BUS1069'. "地点
+        SET PARAMETER ID 'WRK' FIELD key1.
+        CALL TRANSACTION 'WB03' AND SKIP FIRST SCREEN.
 
-    WHEN 'AFKO' OR 'AUFNR' OR 'BUS2005'."生产订单
-      SET PARAMETER ID 'ANR' FIELD key1.
-      CALL TRANSACTION 'CO03' AND SKIP FIRST SCREEN.
+      WHEN 'AFKO' OR 'AUFNR' OR 'BUS2005'."生产订单
+        SET PARAMETER ID 'ANR' FIELD key1.
+        CALL TRANSACTION 'CO03' AND SKIP FIRST SCREEN.
 
-    WHEN 'EDIDC' OR 'IDOC'."IDOC
-      SUBMIT idoc_tree_control WITH docnum = key1 AND RETURN.
+      WHEN 'EDIDC' OR 'IDOC'."IDOC
+        SUBMIT idoc_tree_control WITH docnum = key1 AND RETURN.
 
-    WHEN 'XML' OR 'PROXY'.
-      SUBMIT rsxmb_display_msg_vers_new WITH msgguid = key1
-      AND RETURN.
+      WHEN 'XML' OR 'PROXY'.
+        SUBMIT rsxmb_display_msg_vers_new WITH msgguid = key1
+        AND RETURN.
     ENDCASE.
   ENDMETHOD.
 
@@ -437,19 +463,19 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     lv_msg = COND #( WHEN iv_text IS INITIAL THEN '确定么?' ELSE iv_text ).
 
     CALL FUNCTION 'POPUP_TO_CONFIRM'
-    EXPORTING
-      text_question         = lv_msg
-      text_button_1         = '确定'
-      icon_button_1         = '@01@' "icon_checked
-      text_button_2         = '取消'
-      icon_button_2         = '@02@' "icon_incomplete
-      default_button        = '2'
-      display_cancel_button = ''
-    IMPORTING
-      answer                = lv_ans
-    EXCEPTIONS
-      text_not_found        = 1
-      OTHERS                = 2.
+      EXPORTING
+        text_question         = lv_msg
+        text_button_1         = '确定'
+        icon_button_1         = '@01@' "icon_checked
+        text_button_2         = '取消'
+        icon_button_2         = '@02@' "icon_incomplete
+        default_button        = '2'
+        display_cancel_button = ''
+      IMPORTING
+        answer                = lv_ans
+      EXCEPTIONS
+        text_not_found        = 1
+        OTHERS                = 2.
     IF sy-subrc EQ 0 AND lv_ans = '1'.
       ev_result = abap_true.
       RETURN.
@@ -460,69 +486,69 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
   METHOD date_input.
     DATA:flag TYPE char1.
-    DATA(len) = STRLEN( VALUE ).
+    DATA(len) = strlen( value ).
     DATA:year TYPE char4.
     DATA:month TYPE char2.
     DATA:day TYPE char2.
 
     rv_ok = abap_false.
     IF len < 8 OR len > 10.
-      CLEAR DATE.
+      CLEAR date.
       RETURN.
     ENDIF.
 
-    FIND '.' IN VALUE.
+    FIND '.' IN value.
     IF sy-subrc EQ 0.
       flag = '.'.
     ENDIF.
 
-    FIND '/' IN VALUE.
+    FIND '/' IN value.
     IF sy-subrc EQ 0.
       flag = '/'.
     ENDIF.
 
-    FIND '-' IN VALUE.
+    FIND '-' IN value.
     IF sy-subrc EQ 0.
       flag = '-'.
     ENDIF.
 
     CASE flag.
-    WHEN ''.
-      IF len = 8.
-        DATE = VALUE.
-      ELSE.
-        CLEAR DATE.
-        RETURN.
-      ENDIF.
-    WHEN OTHERS.
+      WHEN ''.
+        IF len = 8.
+          date = value.
+        ELSE.
+          CLEAR date.
+          RETURN.
+        ENDIF.
+      WHEN OTHERS.
 
-      SPLIT VALUE AT flag INTO year month day.
-      DO 4 - STRLEN( year ) TIMES.
-        year = '0' && year.
-      ENDDO.
+        SPLIT value AT flag INTO year month day.
+        DO 4 - strlen( year ) TIMES.
+          year = '0' && year.
+        ENDDO.
 
-      DO 2 - STRLEN( month ) TIMES.
-        month = '0' && month.
-      ENDDO.
+        DO 2 - strlen( month ) TIMES.
+          month = '0' && month.
+        ENDDO.
 
-      DO 2 - STRLEN( day ) TIMES.
-        day = '0' && day.
-      ENDDO.
+        DO 2 - strlen( day ) TIMES.
+          day = '0' && day.
+        ENDDO.
 
-      DATE = year && month && day.
+        date = year && month && day.
 
-      CALL FUNCTION 'DATE_CHECK_PLAUSIBILITY'
-      EXPORTING
-        DATE                      = DATE
-      EXCEPTIONS
-        plausibility_check_failed = 1
-        OTHERS                    = 2.
-      IF sy-subrc <> 0.
-        CLEAR DATE.
-        RETURN.
-      ELSE.
-        rv_ok = abap_true.
-      ENDIF.
+        CALL FUNCTION 'DATE_CHECK_PLAUSIBILITY'
+          EXPORTING
+            date                      = date
+          EXCEPTIONS
+            plausibility_check_failed = 1
+            OTHERS                    = 2.
+        IF sy-subrc <> 0.
+          CLEAR date.
+          RETURN.
+        ELSE.
+          rv_ok = abap_true.
+        ENDIF.
     ENDCASE.
 
   ENDMETHOD.
@@ -530,23 +556,23 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
   METHOD date_output.
     IF spliter IS INITIAL.
-      rv_date = |{ DATE DATE = ENVIRONMENT }|.
+      rv_date = |{ date DATE = ENVIRONMENT }|.
     ELSE.
-      rv_date = |{ DATE+0(4) }{ spliter }{ DATE+4(2) }{ spliter }{ DATE+6(2) }|.
+      rv_date = |{ date+0(4) }{ spliter }{ date+4(2) }{ spliter }{ date+6(2) }|.
     ENDIF.
   ENDMETHOD.
 
 
   METHOD doma_value_check.
     TYPES:
-    BEGIN OF s_doma_buf,
-      doma      TYPE domname,
-      VALUE(20) TYPE C,
-      langu     TYPE sylangu,
-      s_doma    TYPE dd01v,
-      TEXT(100) TYPE C,
-    END OF s_doma_buf,
-    ts_doma_buf TYPE SORTED TABLE OF s_doma_buf WITH UNIQUE KEY doma VALUE langu.
+      BEGIN OF s_doma_buf,
+        doma      TYPE domname,
+        value(20) TYPE c,
+        langu     TYPE sylangu,
+        s_doma    TYPE dd01v,
+        text(100) TYPE c,
+      END OF s_doma_buf,
+      ts_doma_buf TYPE SORTED TABLE OF s_doma_buf WITH UNIQUE KEY doma value langu.
 
     DATA: l_dd01v  TYPE dd01v,
           l_dd07v  TYPE dd07v,
@@ -568,12 +594,12 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
     IF l_use_buf EQ abap_true.
       ls_doma_buf-doma  = i_doma.
-      ls_doma_buf-VALUE = i_value.
+      ls_doma_buf-value = i_value.
       ls_doma_buf-langu = i_langu.
       READ TABLE lt_doma_buf FROM ls_doma_buf
       ASSIGNING <ls_doma_buf>.
       IF sy-subrc IS INITIAL.
-        e_text = <ls_doma_buf>-TEXT.
+        e_text = <ls_doma_buf>-text.
         IF e_doma IS REQUESTED.
           e_doma = <ls_doma_buf>-s_doma.
         ENDIF.
@@ -585,16 +611,16 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
 *--- Find out if enity-table or value-table exists
     CALL FUNCTION 'DDIF_DOMA_GET'
-    EXPORTING
-      name          = i_doma
-      langu         = i_langu
-    IMPORTING
-      dd01v_wa      = l_dd01v
-    TABLES
-      dd07v_tab     = lt_dd07v
-    EXCEPTIONS
-      illegal_input = 1
-      OTHERS        = 2.
+      EXPORTING
+        name          = i_doma
+        langu         = i_langu
+      IMPORTING
+        dd01v_wa      = l_dd01v
+      TABLES
+        dd07v_tab     = lt_dd07v
+      EXCEPTIONS
+        illegal_input = 1
+        OTHERS        = 2.
     IF sy-subrc <> 0.
       MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
       WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
@@ -611,10 +637,10 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 *--- Look for text in foreign-texttable
 * find text table
       CALL FUNCTION 'DDUT_TEXTTABLE_GET'
-      EXPORTING
-        tabname   = l_dd01v-entitytab
-      IMPORTING
-        texttable = l_tname.
+        EXPORTING
+          tabname   = l_dd01v-entitytab
+        IMPORTING
+          texttable = l_tname.
 
       IF l_tname IS INITIAL.
         l_tname = l_dd01v-entitytab.
@@ -628,13 +654,13 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
         RAISE error.
       ENDIF.
 
-      SORT lt_dd03l BY POSITION.
+      SORT lt_dd03l BY position.
 * find selection criteria and bulid where-clause
 
       READ TABLE lt_dd03l INTO DATA(ls_dd03l) WITH KEY
             domname = i_doma
             keyflag = 'X'.
-      l_where-LINE = |{ ls_dd03l-fieldname } = '{ i_value }'|.
+      l_where-line = |{ ls_dd03l-fieldname } = '{ i_value }'|.
       APPEND l_where TO lt_where.
       IF sy-subrc <> 0.
         RETURN.
@@ -646,7 +672,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
       READ TABLE lt_dd03l INTO ls_dd03l
       WITH KEY datatype = 'LANG'.
       IF  sy-subrc = 0 .
-        l_where-LINE = |AND { ls_dd03l-fieldname } = '{ i_langu }'|.
+        l_where-line = |AND { ls_dd03l-fieldname } = '{ i_langu }'|.
         APPEND l_where TO lt_where.
       ENDIF.
 
@@ -676,7 +702,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
         rv_ok = abap_true.
       ENDIF.
 
-      ELSE.
+    ELSE.
 *--- Find text in value-table
       READ TABLE lt_dd07v INTO l_dd07v WITH KEY domvalue_l = i_value.
       IF sy-subrc EQ 0.
@@ -688,7 +714,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     ENDIF.
 
     IF l_use_buf EQ abap_true.
-      ls_doma_buf-TEXT = e_text.
+      ls_doma_buf-text = e_text.
       INSERT ls_doma_buf INTO TABLE lt_doma_buf.
     ENDIF.
 
@@ -700,11 +726,11 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     CALL FUNCTION 'ZWFT_DOMA_GET'
 *     EXPORTING
 *       SPRAS            = '1'
-    TABLES
-      doma_list  = doma_list
+      TABLES
+        doma_list  = doma_list
 *       DD04T      =
-      doma_value = doma_value
-      ref_data   = ref_data.
+        doma_value = doma_value
+        ref_data   = ref_data.
 
   ENDMETHOD.
 
@@ -715,10 +741,10 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     CALL FUNCTION 'ZWFT_DOMA_GET'
 *    EXPORTING
 *      SPRAS            = '1'
-    TABLES
-      doma_list  = lt_doma_list
+      TABLES
+        doma_list  = lt_doma_list
 *       DD04T      =
-      doma_value = doma_value
+        doma_value = doma_value
 *       ref_data   =
       .
 
@@ -726,10 +752,10 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD FCAT_SET_VALUE.
+  METHOD fcat_set_value.
 
-    FIELD-SYMBOLS: <ft_config> TYPE TABLE.
-    FIELD-SYMBOLS: <fs_config> TYPE ANY.
+    FIELD-SYMBOLS: <ft_config> TYPE table.
+    FIELD-SYMBOLS: <fs_config> TYPE any.
 
     DATA:ls_fcat TYPE ty_fcat.
     DATA:lt_fcat TYPE TABLE OF ty_fcat .
@@ -745,9 +771,9 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
       IF sy-subrc EQ 0.
         <fs_fcat> = VALUE #( BASE <fs_fcat>
         col_pos = ls_fcat-col_pos
-        EDIT = ls_fcat-EDIT
+        edit = ls_fcat-edit
         emphasize = ls_fcat-emphasize
-        HOTSPOT = ls_fcat-HOTSPOT
+        hotspot = ls_fcat-hotspot
         coltext = ls_fcat-coltext
         scrtext_l = ls_fcat-coltext
         scrtext_m = ls_fcat-coltext
@@ -801,9 +827,9 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
 * 下载SMW0模版
     CALL FUNCTION 'DOWNLOAD_WEB_OBJECT'
-    EXPORTING
-      KEY         = ls_key
-      destination = CONV localfile( lv_fullpath ).
+      EXPORTING
+        key         = ls_key
+        destination = CONV localfile( lv_fullpath ).
   ENDMETHOD.
 
 
@@ -873,41 +899,36 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     FIELD-SYMBOLS: <cdata> TYPE STANDARD TABLE.
     DATA filename TYPE string.
     DATA: salv  TYPE REF TO cl_salv_table.
-    CHECK DATA IS NOT INITIAL.
+    CHECK data IS NOT INITIAL.
 
     filename = file_get_save_path( 'xlsx' ).
     CHECK filename IS NOT INITIAL.
-    ASSIGN DATA TO <cdata>.
+    ASSIGN data TO <cdata>.
     cl_salv_table=>factory(  IMPORTING  r_salv_table = salv
     CHANGING t_table = <cdata> ).
 
-    DATA(fcat) = cl_salv_controller_metadata=>get_lvc_fieldcatalog(
-          r_columns      = salv->get_columns( )
-          r_aggregations = salv->get_aggregations( ) ).
-
-    LOOP AT fcat INTO DATA(ls_fcat).
-      DATA(lr_column) = salv->get_columns( )->get_column( ls_fcat-fieldname ).
-      lr_column->set_short_text( |{ ls_fcat-reptext }| ) .
-      lr_column->set_medium_text( |{ ls_fcat-reptext }| ) .
-      lr_column->set_long_text( |{ ls_fcat-reptext }| ) .
-    ENDLOOP.
-
-    DATA(xstring) = salv->to_xml( '10' ).
-
+*    DATA(fcat) = cl_salv_controller_metadata=>get_lvc_fieldcatalog(
+*          r_columns      = salv->get_columns( )
+*          r_aggregations = salv->get_aggregations( ) ).
+*    LOOP AT fcat INTO DATA(ls_fcat).
+*      DATA(lr_column) = salv->get_columns( )->get_column( ls_fcat-fieldname ).
+*      lr_column->set_short_text( |{ ls_fcat-reptext }| ) .
+*      lr_column->set_medium_text( |{ ls_fcat-reptext }| ) .
+*      lr_column->set_long_text( |{ ls_fcat-reptext }| ) .
+*    ENDLOOP.
     cl_salv_data_services=>download_xml_to_file(
     filename = filename
-    xcontent = xstring ).
-
+    xcontent = salv->to_xml( '10' ) ).
   ENDMETHOD.
 
 
   METHOD get_encoding.
     DATA :  l_codepage TYPE cpcodepage .
     CALL FUNCTION 'SCP_CODEPAGE_BY_EXTERNAL_NAME'
-    EXPORTING
-      external_name = i_external_name
-    IMPORTING
-      sap_codepage  = l_codepage.
+      EXPORTING
+        external_name = i_external_name
+      IMPORTING
+        sap_codepage  = l_codepage.
     r_encoding = l_codepage.
   ENDMETHOD.
 
@@ -925,11 +946,11 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
   METHOD get_logsys.
     CLEAR rv_logsys.
     CALL FUNCTION 'OWN_LOGICAL_SYSTEM_GET'
-    IMPORTING
-      own_logical_system             = rv_logsys
-    EXCEPTIONS
-      own_logical_system_not_defined = 1
-      OTHERS                         = 99.
+      IMPORTING
+        own_logical_system             = rv_logsys
+      EXCEPTIONS
+        own_logical_system_not_defined = 1
+        OTHERS                         = 99.
   ENDMETHOD.
 
 
@@ -955,7 +976,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
       RETURN.
     ENDIF.
 
-    FIELD-SYMBOLS <lv_number> TYPE ANY.
+    FIELD-SYMBOLS <lv_number> TYPE any.
     IF ls_datainfo-datatype = 'NUMC' OR ls_datainfo-datatype = 'CHAR'.
       CREATE DATA rv_number TYPE char100.
     ELSE.
@@ -964,25 +985,25 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
     ASSIGN rv_number->* TO <lv_number>.
 
-    DATA lv_number_temp TYPE C LENGTH 100.
+    DATA lv_number_temp TYPE c LENGTH 100.
 
     CALL FUNCTION 'NUMBER_GET_NEXT'
-    EXPORTING
-      nr_range_nr             = lv_nr
-      object                  = lv_object
-      toyear                  = COND #( WHEN iv_year IS NOT INITIAL THEN iv_year ELSE '0000' )
-      ignore_buffer           = COND #( WHEN iv_no_buffer IS INITIAL THEN abap_false ELSE abap_true )
-    IMPORTING
-      NUMBER                  = lv_number_temp
-    EXCEPTIONS
-      interval_not_found      = 1
-      number_range_not_intern = 2
-      object_not_found        = 3
-      quantity_is_0           = 4
-      quantity_is_not_1       = 5
-      interval_overflow       = 6
-      buffer_overflow         = 7
-      OTHERS                  = 8.
+      EXPORTING
+        nr_range_nr             = lv_nr
+        object                  = lv_object
+        toyear                  = COND #( WHEN iv_year IS NOT INITIAL THEN iv_year ELSE '0000' )
+        ignore_buffer           = COND #( WHEN iv_no_buffer IS INITIAL THEN abap_false ELSE abap_true )
+      IMPORTING
+        number                  = lv_number_temp
+      EXCEPTIONS
+        interval_not_found      = 1
+        number_range_not_intern = 2
+        object_not_found        = 3
+        quantity_is_0           = 4
+        quantity_is_not_1       = 5
+        interval_overflow       = 6
+        buffer_overflow         = 7
+        OTHERS                  = 8.
     IF sy-subrc <> 0.
       CLEAR <lv_number>.
     ELSE.
@@ -1012,11 +1033,11 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
 
   METHOD number_check.
-    DATA lv_char100 TYPE C LENGTH 100.
+    DATA lv_char100 TYPE c LENGTH 100.
     lv_char100 = iv_string.
     IF cl_abap_matcher=>matches(
     pattern = '^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$'
-    TEXT = lv_char100 ) = abap_true.
+    text = lv_char100 ) = abap_true.
       rv_ok = abap_true.
     ELSE.
       rv_ok = abap_false.
@@ -1025,17 +1046,17 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
 
   METHOD number_input.
-    REPLACE ALL OCCURRENCES OF REGEX ',' IN VALUE WITH ''.
+    REPLACE ALL OCCURRENCES OF REGEX ',' IN value WITH ''.
     rv_ok = abap_true.
     TRY .
-      NUMBER = VALUE.
-    CATCH cx_root INTO DATA(lr_message).
-      rv_ok = abap_false.
+        number = value.
+      CATCH cx_root INTO DATA(lr_message).
+        rv_ok = abap_false.
     ENDTRY.
   ENDMETHOD.
 
 
-  METHOD PROGRESSBAR_SHOW.
+  METHOD progressbar_show.
     DATA: lv_msg TYPE string.
     IF iv_msg IS INITIAL.
       lv_msg = |{ TEXT-t01 }........ { iv_current }/{ iv_total }|.
@@ -1082,16 +1103,16 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     OR name1 LIKE kunnr
     OR sortl LIKE kunnr.
 
-    IF LINES( lt_customer_found ) EQ 0.
+    IF lines( lt_customer_found ) EQ 0.
       CLEAR kunnr.
-  ELSEIF LINES( lt_customer_found ) EQ 1.
+    ELSEIF lines( lt_customer_found ) EQ 1.
       kunnr = lt_customer_found[ 1 ]-kunnr.
     ELSE.
       CALL FUNCTION 'MM_CUSTOMER_SHOW_HITS'
-      IMPORTING
-        e_customer_return = l_customer
-      TABLES
-        t_customer_value  = lt_customer_found.
+        IMPORTING
+          e_customer_return = l_customer
+        TABLES
+          t_customer_value  = lt_customer_found.
       kunnr = l_customer-kunnr.
     ENDIF.
 
@@ -1131,16 +1152,16 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     OR sortl LIKE lifnr .
 
 
-    IF LINES( lt_vendors ) EQ 0.
+    IF lines( lt_vendors ) EQ 0.
       CLEAR lifnr.
-  ELSEIF LINES( lt_vendors ) EQ 1.
+    ELSEIF lines( lt_vendors ) EQ 1.
       lifnr = lt_vendors[ 1 ]-lifnr.
     ELSE.
       CALL FUNCTION 'MM_VENDOR_SHOW_HITS'
-      IMPORTING
-        e_vendor_return = l_vendor
-      TABLES
-        t_vendor_value  = lt_vendors.
+        IMPORTING
+          e_vendor_return = l_vendor
+        TABLES
+          t_vendor_value  = lt_vendors.
       lifnr = l_vendor-lifnr.
     ENDIF.
 
@@ -1150,7 +1171,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
   METHOD set_admin_value_create.
 
-    FIELD-SYMBOLS: <fs_data> TYPE ANY.
+    FIELD-SYMBOLS: <fs_data> TYPE any.
     ASSIGN is_data->* TO <fs_data>.
 
     ASSIGN COMPONENT 'ERDAT' OF STRUCTURE <fs_data> TO FIELD-SYMBOL(<fs_value>).
@@ -1178,7 +1199,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
   METHOD set_admin_value_modify.
 
-    FIELD-SYMBOLS: <fs_data> TYPE ANY.
+    FIELD-SYMBOLS: <fs_data> TYPE any.
     ASSIGN is_data->* TO <fs_data>.
 
     ASSIGN COMPONENT 'AEDAT' OF STRUCTURE <fs_data> TO FIELD-SYMBOL(<fs_value>).
@@ -1201,8 +1222,8 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
   METHOD set_default_value_line.
 
-    FIELD-SYMBOLS: <fs_data> TYPE ANY.
-    FIELD-SYMBOLS: <ft_config> TYPE TABLE.
+    FIELD-SYMBOLS: <fs_data> TYPE any.
+    FIELD-SYMBOLS: <ft_config> TYPE table.
 
     ASSIGN is_data->* TO <fs_data>.
     ASSIGN it_config->* TO <ft_config>.
@@ -1223,8 +1244,8 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
 
   METHOD set_default_value_table.
-    FIELD-SYMBOLS: <ft_data> TYPE TABLE.
-    FIELD-SYMBOLS: <ft_config> TYPE TABLE.
+    FIELD-SYMBOLS: <ft_data> TYPE table.
+    FIELD-SYMBOLS: <ft_config> TYPE table.
 
     ASSIGN it_data->* TO <ft_data>.
     ASSIGN it_config->* TO <ft_config>.
@@ -1248,33 +1269,33 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
   METHOD set_init_icon.
     CASE status.
-    WHEN ''."无关
-      ICON = icon_light_out.
-    WHEN 'A'."待处理
-      ICON = icon_yellow_light.
-    WHEN 'B'."执行中
-      ICON = icon_generate.
-    WHEN 'C'."完成
-      ICON = icon_green_light.
-    WHEN 'D'."作废
-      ICON = icon_delete.
-    WHEN 'E'."错误
-      ICON = icon_red_light.
-    WHEN 'F'."错误2
-      ICON = icon_incomplete.
-    WHEN 'P'."完成/释放
-      ICON = icon_complete.
-    WHEN 'R'."记账/释放
-      ICON = icon_release.
-    WHEN 'L'."锁定
-      ICON = icon_locked.
+      WHEN ''."无关
+        icon = icon_light_out.
+      WHEN 'A'."待处理
+        icon = icon_yellow_light.
+      WHEN 'B'."执行中
+        icon = icon_generate.
+      WHEN 'C'."完成
+        icon = icon_green_light.
+      WHEN 'D'."作废
+        icon = icon_delete.
+      WHEN 'E'."错误
+        icon = icon_red_light.
+      WHEN 'F'."错误2
+        icon = icon_incomplete.
+      WHEN 'P'."完成/释放
+        icon = icon_complete.
+      WHEN 'R'."记账/释放
+        icon = icon_release.
+      WHEN 'L'."锁定
+        icon = icon_locked.
     ENDCASE.
   ENDMETHOD.
 
 
   METHOD set_init_sdate.
-    FIELD-SYMBOLS <ft_value> TYPE TABLE.
-    FIELD-SYMBOLS <fs_value> TYPE ANY.
+    FIELD-SYMBOLS <ft_value> TYPE table.
+    FIELD-SYMBOLS <fs_value> TYPE any.
 
     ASSIGN sdate->* TO  <ft_value>.
 
@@ -1300,7 +1321,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD GET_TABLE_FIELDS.
+  METHOD get_table_fields.
     DATA lv_tabname TYPE tabname.
     lv_tabname = |{ iv_tabname CASE = UPPER }|.
     DATA ls_x030l TYPE x030l .
@@ -1308,14 +1329,14 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     CLEAR: ls_x030l, lt_x031l.
     CLEAR rt_x031l.
     CALL FUNCTION 'DDIF_NAMETAB_GET'
-    EXPORTING
-      tabname   = lv_tabname
-    IMPORTING
-      x030l_wa  = ls_x030l
-    TABLES
-      x031l_tab = lt_x031l
-    EXCEPTIONS
-      OTHERS    = 1.
+      EXPORTING
+        tabname   = lv_tabname
+      IMPORTING
+        x030l_wa  = ls_x030l
+      TABLES
+        x031l_tab = lt_x031l
+      EXCEPTIONS
+        OTHERS    = 1.
     IF ls_x030l-tabtype = 'T'.
       rt_x031l = lt_x031l.
     ENDIF.
@@ -1337,7 +1358,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
       <ls_compo>-name = <ls_fcat>-fieldname.
       lo_data = CAST cl_abap_datadescr(
       cl_abap_datadescr=>describe_by_name( |{ <ls_fcat>-tabname }-{ <ls_fcat>-fieldname }| ) ).
-      <ls_compo>-TYPE = lo_data.
+      <ls_compo>-type = lo_data.
     ENDLOOP.
     rv_ok = zwft_common=>create_table_compo( EXPORTING it_compo = lt_compo CHANGING ct_data = ct_data ).
   ENDMETHOD.
@@ -1357,7 +1378,7 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
       <ls_compo>-name = <ls_dfies>-fieldname.
       lo_data = CAST cl_abap_datadescr(
       cl_abap_datadescr=>describe_by_name( |{ <ls_dfies>-tabname }-{ <ls_dfies>-fieldname }| ) ).
-      <ls_compo>-TYPE = lo_data.
+      <ls_compo>-type = lo_data.
     ENDLOOP.
     rv_ok = zwft_common=>create_table_compo( EXPORTING it_compo = lt_compo CHANGING ct_data = ct_data ).
   ENDMETHOD.
@@ -1378,11 +1399,11 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     CLEAR rt_dfies.
 
     CALL FUNCTION 'DDIF_FIELDINFO_GET'
-    EXPORTING
-      tabname   = iv_tabname
-      langu     = sy-langu
-    TABLES
-      dfies_tab = rt_dfies.
+      EXPORTING
+        tabname   = iv_tabname
+        langu     = sy-langu
+      TABLES
+        dfies_tab = rt_dfies.
   ENDMETHOD.
 
 
@@ -1395,14 +1416,14 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     CLEAR: ls_x030l, lt_x031l.
     CLEAR rt_x031l.
     CALL FUNCTION 'DDIF_NAMETAB_GET'
-    EXPORTING
-      tabname   = lv_tabname
-    IMPORTING
-      x030l_wa  = ls_x030l
-    TABLES
-      x031l_tab = lt_x031l
-    EXCEPTIONS
-      OTHERS    = 1.
+      EXPORTING
+        tabname   = lv_tabname
+      IMPORTING
+        x030l_wa  = ls_x030l
+      TABLES
+        x031l_tab = lt_x031l
+      EXCEPTIONS
+        OTHERS    = 1.
     rt_x031l = lt_x031l.
     FREE: ls_x030l, lt_x031l, lv_tabname.
   ENDMETHOD.
@@ -1410,107 +1431,111 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
   METHOD call_transation_by_line.
 
-    ASSIGN COMPONENT fieldname OF STRUCTURE LINE TO FIELD-SYMBOL(<value>).
+    ASSIGN COMPONENT fieldname OF STRUCTURE line TO FIELD-SYMBOL(<value>).
     CHECK sy-subrc EQ 0.
 
     CASE fieldname.
-    WHEN 'BANFN' ."采购申请
-      SET PARAMETER ID 'BAN' FIELD <value>.
-      CALL TRANSACTION 'ME53N' AND SKIP FIRST SCREEN.
+      WHEN 'BANFN' ."采购申请
+        SET PARAMETER ID 'BAN' FIELD <value>.
+        CALL TRANSACTION 'ME53N' AND SKIP FIRST SCREEN.
 
-    WHEN 'EBELN' .  "采购订单
-      SET PARAMETER ID 'BES' FIELD <value>.
-      CALL TRANSACTION  'ME23N' AND SKIP FIRST SCREEN.
+      WHEN 'EBELN' .  "采购订单
+        SET PARAMETER ID 'BES' FIELD <value>.
+        CALL TRANSACTION  'ME23N' AND SKIP FIRST SCREEN.
 
-    WHEN 'VBELN_ASN' . "内向交货单"
-      SET PARAMETER ID 'VL' FIELD <value>.
-      CALL TRANSACTION 'VL33N' AND SKIP FIRST SCREEN.
+      WHEN 'VBELN_ASN' . "内向交货单"
+        SET PARAMETER ID 'VL' FIELD <value>.
+        CALL TRANSACTION 'VL33N' AND SKIP FIRST SCREEN.
 
-    WHEN 'VBELN_VA'. "销售订单"
-      SET PARAMETER ID 'AUN' FIELD <value>.
-      CALL TRANSACTION 'VA03' AND SKIP FIRST SCREEN.
+      WHEN 'VBELN_VA'. "销售订单"
+        SET PARAMETER ID 'AUN' FIELD <value>.
+        CALL TRANSACTION 'VA03' AND SKIP FIRST SCREEN.
 
-    WHEN 'VBELN_VL'. "交货单"
-      SET PARAMETER ID 'VL' FIELD <value>.
-      CALL TRANSACTION 'VL03N' AND SKIP FIRST SCREEN.
+      WHEN 'VBELN_VL'. "交货单"
+        SET PARAMETER ID 'VL' FIELD <value>.
+        CALL TRANSACTION 'VL03N' AND SKIP FIRST SCREEN.
 
-    WHEN 'VBELN_VF'. "发票"
-      SET PARAMETER ID 'VF' FIELD <value>.
-      CALL TRANSACTION 'VF03' AND SKIP FIRST SCREEN.
+      WHEN 'VBELN_VF'. "发票"
+        SET PARAMETER ID 'VF' FIELD <value>.
+        CALL TRANSACTION 'VF03' AND SKIP FIRST SCREEN.
 
-    WHEN 'RSNUM'. "预留"
-      SET PARAMETER ID 'RES' FIELD <value>.
-      CALL TRANSACTION  'MB23' AND SKIP FIRST SCREEN.
+      WHEN 'RSNUM'. "预留"
+        SET PARAMETER ID 'RES' FIELD <value>.
+        CALL TRANSACTION  'MB23' AND SKIP FIRST SCREEN.
 
-    WHEN 'MBLNR'. "商品凭证"
-      ASSIGN COMPONENT 'MJAHR' OF STRUCTURE LINE TO FIELD-SYMBOL(<mjahr>).
-      CHECK sy-subrc EQ 0.
-      CALL FUNCTION 'MIGO_DIALOG'
-      EXPORTING
-        i_action = 'A04'
-        i_refdoc = 'R02'
-        i_mblnr  = <value>
-        i_mjahr  = <mjahr>.
+      WHEN 'MBLNR'. "商品凭证"
+        ASSIGN COMPONENT 'MJAHR' OF STRUCTURE line TO FIELD-SYMBOL(<mjahr>).
+        CHECK sy-subrc EQ 0.
+        CALL FUNCTION 'MIGO_DIALOG'
+          EXPORTING
+            i_action = 'A04'
+            i_refdoc = 'R02'
+            i_mblnr  = <value>
+            i_mjahr  = <mjahr>.
 
-    WHEN 'BELNR_R' .            "发票校验"
-      ASSIGN COMPONENT 'GJAHR_R' OF STRUCTURE LINE TO FIELD-SYMBOL(<gjahr_r>).
-      CHECK sy-subrc EQ 0.
-      SET PARAMETER ID 'RBN' FIELD <value>.
-      SET PARAMETER ID 'GJR' FIELD <gjahr_r>.
-      CALL TRANSACTION 'MIR4' AND SKIP FIRST SCREEN.
+      WHEN 'BELNR_R' .            "发票校验"
+        ASSIGN COMPONENT 'GJAHR_R' OF STRUCTURE line TO FIELD-SYMBOL(<gjahr_r>).
+        CHECK sy-subrc EQ 0.
+        SET PARAMETER ID 'RBN' FIELD <value>.
+        SET PARAMETER ID 'GJR' FIELD <gjahr_r>.
+        CALL TRANSACTION 'MIR4' AND SKIP FIRST SCREEN.
 
-    WHEN 'BELNR' .  "会计凭证
-      ASSIGN COMPONENT 'GJAHR' OF STRUCTURE LINE TO FIELD-SYMBOL(<gjahr>).
-      CHECK sy-subrc EQ 0.
-      ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs>).
-      CHECK sy-subrc EQ 0.
-      SET PARAMETER ID 'BLN' FIELD <value>.
-      SET PARAMETER ID 'GJR' FIELD <gjahr>.
-      SET PARAMETER ID 'BUK' FIELD <bukrs>.
-      CALL TRANSACTION 'FB03' AND SKIP FIRST SCREEN.
+      WHEN 'BELNR' .  "会计凭证
+        ASSIGN COMPONENT 'GJAHR' OF STRUCTURE line TO FIELD-SYMBOL(<gjahr>).
+        CHECK sy-subrc EQ 0.
+        ASSIGN COMPONENT 'BUKRS' OF STRUCTURE line TO FIELD-SYMBOL(<bukrs>).
+        CHECK sy-subrc EQ 0.
+        SET PARAMETER ID 'BLN' FIELD <value>.
+        SET PARAMETER ID 'GJR' FIELD <gjahr>.
+        SET PARAMETER ID 'BUK' FIELD <bukrs>.
+        CALL TRANSACTION 'FB03' AND SKIP FIRST SCREEN.
 
-    WHEN 'MATNR' OR 'STANR'. "商品"
-      SET PARAMETER ID 'MAT' FIELD <value>.
-      CALL TRANSACTION 'MM43' AND SKIP FIRST SCREEN.
-
-
-    WHEN 'LIFNR' OR 'KUNNR' . "客户/供应商"
-      SET PARAMETER ID 'BPA' FIELD <value>.
-      SUBMIT r_ftr_display_bp WITH p_bp = <value> AND RETURN.
-
-    WHEN 'AUFNR_U' .  "内部订单"
-      SET PARAMETER ID 'ANR' FIELD <value>.
-      CALL TRANSACTION 'KO03' AND SKIP FIRST SCREEN.
-
-    WHEN 'SAKNR' OR 'HKONT' . "科目"
-      ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs_skb1>).
-      CHECK sy-subrc EQ 0.
-      SET PARAMETER ID 'SAK' FIELD <value>.
-      SET PARAMETER ID 'BUK' FIELD <bukrs_skb1>.
-      CALL TRANSACTION 'FS00' AND SKIP FIRST SCREEN.
+      WHEN 'MATNR' OR 'STANR'. "商品"
+        SET PARAMETER ID 'MAT' FIELD <value>.
+        CALL TRANSACTION 'MM43' AND SKIP FIRST SCREEN.
 
 
-    WHEN 'ANLA' OR 'ANLN1' OR 'BUS1022'.   "固定资产
-      ASSIGN COMPONENT 'BUKRS' OF STRUCTURE LINE TO FIELD-SYMBOL(<bukrs_as03>).
-      CHECK sy-subrc EQ 0.
-      SET PARAMETER ID 'AN1' FIELD <value>.
-      SET PARAMETER ID 'BUK' FIELD <bukrs_as03>.
-      CALL TRANSACTION 'AS03' AND SKIP FIRST SCREEN.
+      WHEN 'LIFNR' OR 'KUNNR' . "客户/供应商"
+        SET PARAMETER ID 'BPA' FIELD <value>.
+        SUBMIT r_ftr_display_bp WITH p_bp = <value> AND RETURN.
 
-    WHEN 'WERKS'  OR 'UMWRK'. "地点
-      SET PARAMETER ID 'WRK' FIELD <value>.
-      CALL TRANSACTION 'WB03' AND SKIP FIRST SCREEN.
+      WHEN 'AUFNR_U' .  "内部订单"
+        SET PARAMETER ID 'ANR' FIELD <value>.
+        CALL TRANSACTION 'KO03' AND SKIP FIRST SCREEN.
 
-    WHEN 'AUFNR' ."生产订单
-      SET PARAMETER ID 'ANR' FIELD <value>.
-      CALL TRANSACTION 'CO03' AND SKIP FIRST SCREEN.
+      WHEN 'SAKNR' OR 'HKONT' . "科目"
+        ASSIGN COMPONENT 'BUKRS' OF STRUCTURE line TO FIELD-SYMBOL(<bukrs_skb1>).
+        CHECK sy-subrc EQ 0.
+        SET PARAMETER ID 'SAK' FIELD <value>.
+        SET PARAMETER ID 'BUK' FIELD <bukrs_skb1>.
+        CALL TRANSACTION 'FS00' AND SKIP FIRST SCREEN.
 
-    WHEN 'DOCNUM' ."IDOC
-      SUBMIT idoc_tree_control WITH docnum = <value> AND RETURN.
 
-    WHEN 'XML' OR 'PROXY'.
-      SUBMIT rsxmb_display_msg_vers_new WITH msgguid = <value>
-      AND RETURN.
+      WHEN 'ANLA' OR 'ANLN1' OR 'BUS1022'.   "固定资产
+        ASSIGN COMPONENT 'BUKRS' OF STRUCTURE line TO FIELD-SYMBOL(<bukrs_as03>).
+        CHECK sy-subrc EQ 0.
+        SET PARAMETER ID 'AN1' FIELD <value>.
+        SET PARAMETER ID 'BUK' FIELD <bukrs_as03>.
+        CALL TRANSACTION 'AS03' AND SKIP FIRST SCREEN.
+
+      WHEN 'WERKS'  OR 'UMWRK'. "地点
+        SET PARAMETER ID 'WRK' FIELD <value>.
+        CALL TRANSACTION 'WB03' AND SKIP FIRST SCREEN.
+
+      WHEN 'AUFNR' ."生产订单
+        SET PARAMETER ID 'ANR' FIELD <value>.
+        CALL TRANSACTION 'CO03' AND SKIP FIRST SCREEN.
+
+      WHEN 'KOSTL'.
+        SET PARAMETER ID 'KOS' FIELD <value>.
+        CALL TRANSACTION 'KS03' AND SKIP FIRST SCREEN.
+
+      WHEN 'DOCNUM' ."IDOC
+        SUBMIT idoc_tree_control WITH docnum = <value> AND RETURN.
+
+      WHEN 'XML' OR 'PROXY'.
+        SUBMIT rsxmb_display_msg_vers_new WITH msgguid = <value>
+        AND RETURN.
     ENDCASE.
 
   ENDMETHOD.
@@ -1523,30 +1548,30 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
     msg = NEW zwft_message( ).
     CALL FUNCTION 'ALSM_EXCEL_TO_INTERNAL_TABLE'
-    EXPORTING
-      filename                = pv_path
-      i_begin_col             = begin_col
-      i_begin_row             = begin_row
-      i_end_col               = end_col
-      i_end_row               = end_row
-    TABLES
-      intern                  = lt_excel
-    EXCEPTIONS
-      inconsistent_parameters = 1
-      upload_ole              = 2
-      OTHERS                  = 3.
+      EXPORTING
+        filename                = pv_path
+        i_begin_col             = begin_col
+        i_begin_row             = begin_row
+        i_end_col               = end_col
+        i_end_row               = end_row
+      TABLES
+        intern                  = lt_excel
+      EXCEPTIONS
+        inconsistent_parameters = 1
+        upload_ole              = 2
+        OTHERS                  = 3.
     IF sy-subrc <> 0.
       msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = '读取导入文件失败' ).
     ENDIF.
 
-    CLEAR DATA.
-    DATA(fcat) = fcat_from_data( DATA ).
+    CLEAR data.
+    DATA(fcat) = fcat_from_data( data ).
 
 
     LOOP AT lt_excel INTO DATA(ls_excel).
       IF ls_excel-row = 1.
         READ TABLE fcat INTO DATA(ls_fcat) WITH KEY col_pos = ls_excel-col.
-        IF sy-subrc NE 0 OR ls_excel-VALUE <> ls_fcat-reptext .
+        IF sy-subrc NE 0 OR ls_excel-value <> ls_fcat-reptext .
           msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |列{ ls_fcat-reptext }模板与数据不一致| ).
           msg->pop_msg( ).
           RETURN.
@@ -1558,25 +1583,25 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
 
 
       AT NEW row.
-        APPEND INITIAL LINE TO DATA ASSIGNING FIELD-SYMBOL(<line>).
+        APPEND INITIAL LINE TO data ASSIGNING FIELD-SYMBOL(<line>).
       ENDAT.
       READ TABLE fcat INTO ls_fcat WITH KEY col_pos = ls_excel-col.
       IF sy-subrc EQ 0.
         ASSIGN COMPONENT ls_fcat-fieldname OF STRUCTURE <line> TO FIELD-SYMBOL(<value>).
         IF sy-subrc EQ 0.
           CASE ls_fcat-inttype.
-          WHEN 'I' OR 'P'.
-            IF number_check( ls_excel-VALUE ).
-              <value> = ls_excel-VALUE.
-            ELSE.
-              msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |行{ ls_excel-row }列{ ls_fcat-fieldname }不是数值,导入失败| ).
-            ENDIF.
-          WHEN 'D'.
-            IF NOT date_input( EXPORTING VALUE = ls_excel-VALUE CHANGING DATE = <value> ).
-              msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |行{ ls_excel-row }列{ ls_fcat-fieldname }不是日期,导入失败|  ).
-            ENDIF.
-          WHEN OTHERS.
-            <value> = ls_excel-VALUE.
+            WHEN 'I' OR 'P'.
+              IF number_check( ls_excel-value ).
+                <value> = ls_excel-value.
+              ELSE.
+                msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |行{ ls_excel-row }列{ ls_fcat-fieldname }不是数值,导入失败| ).
+              ENDIF.
+            WHEN 'D'.
+              IF NOT date_input( EXPORTING value = ls_excel-value CHANGING date = <value> ).
+                msg->add_single( msgty = 'E' msgid = 'MG' msgno = '899' msgv1 = |行{ ls_excel-row }列{ ls_fcat-fieldname }不是日期,导入失败|  ).
+              ENDIF.
+            WHEN OTHERS.
+              <value> = ls_excel-value.
           ENDCASE.
         ENDIF.
       ENDIF.
@@ -1589,14 +1614,17 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD FILE_GET_SAVE_PATH.
+  METHOD file_get_save_path.
 
     DATA:filename TYPE string.
     DATA:path TYPE string.
     DATA:fullpath TYPE string.
-    cl_gui_frontend_services=>get_desktop_directory( CHANGING desktop_directory = path ).
+    cl_gui_frontend_services=>get_desktop_directory( CHANGING desktop_directory = path
+                                                                                    EXCEPTIONS cntl_error = 1
+                                                                                                          error_no_gui = 2
+                                                                                                          not_supported_by_gui = 3 ).
     cl_gui_cfw=>flush( ).
-    filename = |{ sy-TITLE }_{ sy-datum  }_{ sy-uzeit }|.
+    filename = |{ sy-title }_{ sy-datum  }_{ sy-uzeit }|.
 
     cl_gui_frontend_services=>file_save_dialog(
     EXPORTING
@@ -1628,25 +1656,28 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
     DATA:fullpath TYPE string.
 
     DATA: lt_filetab TYPE filetable,
-          lv_rc      TYPE I.
-    cl_gui_frontend_services=>get_desktop_directory( CHANGING desktop_directory = path ).
+          lv_rc      TYPE i.
+    cl_gui_frontend_services=>get_desktop_directory( CHANGING desktop_directory = path
+                                                                                    EXCEPTIONS cntl_error = 1
+                                                                                                          error_no_gui = 2
+                                                                                                          not_supported_by_gui = 3 ).
     cl_gui_cfw=>flush( ).
-    filename = |{ sy-TITLE }_{ sy-datum  }_{ sy-uzeit }|.
+    filename = |{ sy-title }_{ sy-datum  }_{ sy-uzeit }|.
     CALL METHOD cl_gui_frontend_services=>file_open_dialog
-    EXPORTING
-      default_extension       = extname
-      default_filename        = filename
-      file_filter             = extname
-      initial_directory       = path
-    CHANGING
-      file_table              = lt_filetab
-      rc                      = lv_rc
-    EXCEPTIONS
-      file_open_dialog_failed = 1
-      cntl_error              = 2
-      error_no_gui            = 3
-      not_supported_by_gui    = 4
-      OTHERS                  = 5.
+      EXPORTING
+        default_extension       = extname
+        default_filename        = filename
+        file_filter             = extname
+        initial_directory       = path
+      CHANGING
+        file_table              = lt_filetab
+        rc                      = lv_rc
+      EXCEPTIONS
+        file_open_dialog_failed = 1
+        cntl_error              = 2
+        error_no_gui            = 3
+        not_supported_by_gui    = 4
+        OTHERS                  = 5.
 
     IF sy-subrc <> 0.
       MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
@@ -1656,30 +1687,28 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
       IF sy-subrc EQ 0.
         rv_file = ls_filetab-filename.
       ENDIF.
-
-
     ENDIF.
   ENDMETHOD.
 
 
-METHOD get_user_parameter.
-  DATA:PARAMETER TYPE TABLE OF bapiparam.
-  DATA:RETURN TYPE TABLE OF bapiret2 .
-  CALL FUNCTION 'BAPI_USER_GET_DETAIL'
-  EXPORTING
-    username  = uname
-  TABLES
-    PARAMETER = PARAMETER
-    RETURN    = RETURN.
-  READ TABLE PARAMETER INTO DATA(l_parameter) WITH KEY parid = parid.
-  IF sy-subrc EQ 0.
-    r_parameter_value = l_parameter-parva.
-  ENDIF.
+  METHOD get_user_parameter.
+    DATA:parameter TYPE TABLE OF bapiparam.
+    DATA:return TYPE TABLE OF bapiret2 .
+    CALL FUNCTION 'BAPI_USER_GET_DETAIL'
+      EXPORTING
+        username  = uname
+      TABLES
+        parameter = parameter
+        return    = return.
+    READ TABLE parameter INTO DATA(l_parameter) WITH KEY parid = parid.
+    IF sy-subrc EQ 0.
+      r_parameter_value = l_parameter-parva.
+    ENDIF.
 
-ENDMETHOD.
+  ENDMETHOD.
 
 
-  METHOD FCAT_FROM_NAME.
+  METHOD fcat_from_name.
     CLEAR rt_fcat.
     DATA lv_tabname TYPE tabname.
     lv_tabname = |{ iv_tabname CASE = UPPER }|.
@@ -1689,7 +1718,7 @@ ENDMETHOD.
       MESSAGE '给定的DDIC表名或者结构名不存在' TYPE 'S' DISPLAY LIKE 'E'.
       RETURN.
     ENDIF.
-    DATA lds_structure TYPE REF TO DATA.
+    DATA lds_structure TYPE REF TO data.
     CREATE DATA lds_structure TYPE (lv_tabname).
     ASSIGN lds_structure->* TO FIELD-SYMBOL(<lds_structure>).
     rt_fcat = fcat_from_data( <lds_structure> ).
@@ -1755,5 +1784,81 @@ ENDMETHOD.
             where_clauses = twhere.
       CATCH cx_root INTO DATA(lx_fm_error).
     ENDTRY.
+  ENDMETHOD.
+
+
+  METHOD get_report_alv_data.
+    SELECT SINGLE * FROM tstc
+                    WHERE tcode = @tcode
+                    INTO @DATA(l_tstc).
+
+    CHECK sy-subrc EQ 0.
+
+    cl_salv_bs_runtime_info=>set( EXPORTING display  = abap_false
+      metadata = abap_false
+    data     = abap_true ).
+
+    IF variant IS INITIAL.
+      SUBMIT (l_tstc-pgmna)
+      EXPORTING LIST TO MEMORY AND RETURN.
+    ELSE.
+      SUBMIT (l_tstc-pgmna)
+      USING SELECTION-SET variant
+      EXPORTING LIST TO MEMORY AND RETURN.
+    ENDIF.
+
+    TRY.
+        cl_salv_bs_runtime_info=>get_data_ref( IMPORTING r_data = data ).
+*      ASSIGN gr_data->* TO <fs_table>.
+      CATCH cx_salv_bs_sc_runtime_info.
+        MESSAGE '获取数据错误' TYPE 'S' DISPLAY LIKE 'E'.
+        RETURN.
+    ENDTRY.
+    cl_salv_bs_runtime_info=>clear_all( ).
+  ENDMETHOD.
+
+
+  METHOD get_report_alv_mate.
+    SELECT SINGLE * FROM tstc
+      WHERE tcode = @tcode
+      INTO @DATA(l_tstc).
+
+    CHECK sy-subrc EQ 0.
+
+    cl_salv_bs_runtime_info=>set( EXPORTING display  = abap_false
+      metadata = abap_true
+      data     = abap_true ).
+
+    IF variant IS INITIAL.
+      SUBMIT (l_tstc-pgmna)
+      EXPORTING LIST TO MEMORY AND RETURN.
+    ELSE.
+      SUBMIT (l_tstc-pgmna)
+      USING SELECTION-SET variant
+      EXPORTING LIST TO MEMORY AND RETURN.
+    ENDIF.
+
+    TRY.
+        metadata = cl_salv_bs_runtime_info=>get_metadata( ).
+*      ASSIGN gr_data->* TO <fs_table>.
+      CATCH cx_salv_bs_sc_runtime_info.
+        MESSAGE '获取数据错误' TYPE 'S' DISPLAY LIKE 'E'.
+        RETURN.
+    ENDTRY.
+
+    TRY.
+        cl_salv_bs_runtime_info=>get_data_ref( IMPORTING r_data = data ).
+*      ASSIGN gr_data->* TO <fs_table>.
+      CATCH cx_salv_bs_sc_runtime_info.
+        MESSAGE '获取数据错误' TYPE 'S' DISPLAY LIKE 'E'.
+        RETURN.
+    ENDTRY.
+
+
+    cl_salv_bs_runtime_info=>clear_all( ).
+  ENDMETHOD.
+
+
+  METHOD class_constructor.
   ENDMETHOD.
 ENDCLASS.
