@@ -43,7 +43,6 @@ public section.
   data:
     doma_value TYPE TABLE OF ty_doma_value .
 
-  class-methods CLASS_CONSTRUCTOR .
   class-methods GET_GUID32
     returning
       value(RV_GUID32) type SYSUUID_C32 .
@@ -260,6 +259,12 @@ public section.
       !CT_DATA type ref to DATA
     returning
       value(RV_OK) type ABAP_BOOL .
+  class-methods GET_COMP_FROM_DATA
+    importing
+      !DATA type ref to DATA optional
+      !STRUCT type ref to CL_ABAP_STRUCTDESCR optional
+    changing
+      !CT_COMP type ABAP_COMPONENT_TAB optional .
   class-methods GET_USER_PARAMETER
     importing
       value(PARID) type MEMORYID
@@ -285,8 +290,20 @@ public section.
       !DATA type ref to DATA
     returning
       value(METADATA) type S_TYPE_METADATA .
+  class-methods GET_DYNNR_FIELD
+    importing
+      !PROGRAM type PROGRAM
+      !DYNNR type DYNNR
+    exporting
+      !SCREEN_SSCR type RSBK_T_RSSCR
+      !GLOBAL_SSCR type RSBK_T_RSSCR .
+  class-methods FIX_DATA_COLUMN_BY_FCAT
+    importing
+      !FCAT type LVC_T_FCAT
+    changing
+      !DATA type ref to DATA .
   PROTECTED SECTION.
-  PRIVATE SECTION.
+private section.
 ENDCLASS.
 
 
@@ -1854,11 +1871,74 @@ CLASS ZWFT_COMMON IMPLEMENTATION.
         RETURN.
     ENDTRY.
 
-
+    DATA(fcat) = metadata-t_fcat.
+    DELETE fcat WHERE no_out = 'X' OR tech = 'X'.
+    zwft_common=>fix_data_column_by_fcat( EXPORTING fcat = fcat CHANGING data = data ).
     cl_salv_bs_runtime_info=>clear_all( ).
   ENDMETHOD.
 
 
-  METHOD class_constructor.
+  METHOD get_dynnr_field.
+    CALL FUNCTION 'RS_ISOLATE_1_SELSCREEN'
+      EXPORTING
+        program     = program
+        dynnr       = dynnr
+      TABLES
+        screen_sscr = screen_sscr
+        global_sscr = global_sscr
+      EXCEPTIONS
+        no_objects  = 1
+        OTHERS      = 2.
+    IF sy-subrc <> 0.
+* Implement suitable error handling here
+    ENDIF.
+  ENDMETHOD.
+
+
+  METHOD fix_data_column_by_fcat.
+
+    DATA:comp_old TYPE abap_component_tab.
+    DATA:comp_new TYPE abap_component_tab.
+    DATA:data_new TYPE REF TO data.
+
+    get_comp_from_data( EXPORTING data = data  CHANGING ct_comp = comp_old ).
+
+    LOOP AT fcat INTO DATA(l_fcat).
+      READ TABLE comp_old INTO DATA(l_comp) WITH KEY name = l_fcat-fieldname.
+      IF sy-subrc EQ 0.
+        APPEND l_comp TO comp_new.
+      ENDIF.
+    ENDLOOP.
+
+    DATA(lo_table_new) = cl_abap_tabledescr=>create( cl_abap_structdescr=>create( comp_new ) ).
+    CREATE DATA data_new TYPE HANDLE lo_table_new.
+    MOVE-CORRESPONDING data->* TO data_new->*.
+    data = data_new.
+  ENDMETHOD.
+
+
+  METHOD get_comp_from_data.
+    IF data IS NOT INITIAL.
+      DATA(lt_comp)  =
+            CAST cl_abap_structdescr(
+            CAST cl_abap_tabledescr(
+      cl_abap_tabledescr=>describe_by_data( data->* ) )->get_table_line_type( ) )->get_components( ).
+      LOOP AT lt_comp INTO DATA(l_comp) WHERE as_include = 'X' AND type IS INSTANCE OF cl_abap_structdescr.
+        get_comp_from_data( EXPORTING struct = CAST cl_abap_structdescr( l_comp-type )
+        CHANGING ct_comp = ct_comp ).
+      ENDLOOP.
+      DELETE lt_comp WHERE as_include = 'X'.
+      APPEND LINES OF lt_comp TO ct_comp.
+    ENDIF.
+
+    IF struct IS NOT INITIAL.
+      lt_comp = struct->get_components( ).
+      LOOP AT lt_comp INTO l_comp WHERE as_include = 'X'.
+        get_comp_from_data( EXPORTING struct = CAST cl_abap_structdescr( l_comp-type )
+                                           CHANGING ct_comp = ct_comp ).
+      ENDLOOP.
+      DELETE lt_comp WHERE as_include = 'X'.
+      APPEND LINES OF lt_comp TO ct_comp.
+    ENDIF.
   ENDMETHOD.
 ENDCLASS.
